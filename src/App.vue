@@ -66,6 +66,7 @@ img{vertical-align:top;border:none}
 }
 .el-main {
   padding: 0;
+  height: calc(100% - 50px);
 }
   
 .el-container {
