@@ -11,13 +11,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '首页',
-      component: home
+      component: home,
+      meta: {
+        name: '首页'
+      }
     },
     {
       path: '/login',
-      name: '登录页',
-      component: login
+      component: login,
+      meta: {
+        name: '登录页'
+      }
     },
     {
       path: '*',
