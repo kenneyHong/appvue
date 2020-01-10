@@ -79,8 +79,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .sideBar {
-  position: fixed;
-  left: 0;
   width: 200px;
   height: 100%;
   .sideContent {
