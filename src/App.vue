@@ -62,7 +62,6 @@ img{vertical-align:top;border:none}
 .el-aside {
   background-color: #D3DCE6;
   color: #333;
-  text-align: center;
 }
 .el-main {
   padding: 0;
