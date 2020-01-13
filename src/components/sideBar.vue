@@ -2,7 +2,7 @@
 <template>
   <div class="sideBar">
     <div class="sideContent">
-      <span class="shrink">
+      <span class="shrink" @click="telescopicTab">
         <img class="Icon" src="../assets/images/clicktoShrink.png" alt="img">
         <span class="clickto">点击收缩</span>
       </span>
@@ -62,19 +62,24 @@
 export default {
   props: {},
   data () {
-    return {}
+    return {
+      isShrink: false
+    }
   },
   methods: {
+    telescopicTab() {
+      this.isShrink = !this.isShrink
+      this.$emit('isShow', this.isShrink)
+    }
   },
-  mounted () {
-  },
+  mounted () {},
   watch: {},
   components: {}
 }
 </script>
 <style lang="scss" scoped>
 .sideBar {
-  width: 200px;
+  width: 180px;
   height: 100%;
   background-color: #1e2e45;
   .sideContent {
@@ -94,6 +99,7 @@ export default {
     .Icon{
       float: left;
       margin-top: 14px;
+      width: 18px;
     }
     .clickto{
       color: #546987;
