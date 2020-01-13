@@ -50,7 +50,10 @@ export default {
   }
 }
 </script>
-
+<style lang="scss">
+@import '@/assets/style/reset.scss';
+@import '@/assets/style/common.scss'
+</style>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -58,56 +61,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   width:100%;
   height:100%;
-}
-*{
-  margin:0;
-  padding:0;
-}
-html,body{
-  width:100%;
-  height:100%;
-}
-body {
-  min-width: 1280px;
-  height: 100%;
-  padding: 0px !important;
-  margin: 0px !important;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, Arial, sans-serif;
-  font-size: 12px;
-  overflow: hidden;
-  overflow-x: auto;
-}
-ul{list-style:none}
-a{text-decoration: none;} 
-img{vertical-align:top;border:none}
- 
-.clearf:after,
-.clearf:before{
-  content:"";
-  display:block;
-  clear:both;
-}
-.el-header {
-  padding: 0;
-}
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  overflow:hidden;
-  transition: width 0.5s;
-  -moz-transition: width 0.5s;	/* Firefox 4 */
-  -webkit-transition: width 0.5s;	/* Safari 和 Chrome */
-  -o-transition: width 0.5s;
-}
-.el-main {
-  padding: 10px;
-}
-  
-.el-container {
-  height: 100%;
 }
 </style>

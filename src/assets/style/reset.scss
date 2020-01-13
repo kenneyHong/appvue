@@ -1,0 +1,89 @@
+.el-button {
+  border-radius: 0;
+}
+
+.el-button--primary {
+  background: #399fe5;
+  &.is-disabled {
+    background: #a0cfff;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.el-button--default {
+  background: #f8f8f8;
+  border-color: #e5e5e5;
+  color: #333;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.el-transfer__button.is-disabled,
+.el-transfer__button.is-disabled:hover {
+  border: 1px solid #dcdfe6;
+  background-color: #f5f7fa;
+  color: #c0c4cc;
+}
+
+.el-dropdown {
+  .el-button--default {
+    background: #fff;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.el-input-group__prepend {
+  .el-button--default {
+    border-top: 1px solid #dcdfe6;
+    border-bottom: 1px solid #dcdfe6;
+    background: #fff;
+    height: 28px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.el-button--text {
+  color: #1f91df;
+}
+
+.el-radio-button__inner:hover,
+.el-checkbox-button__inner:hover {
+  color: #399fe5;
+}
+
+.el-radio-button__orig-radio:checked + .el-radio-button__inner,
+.el-checkbox-button.is-checked .el-checkbox-button__inner {
+  background-color: #399fe5;
+  border-color: #399fe5;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #399fe5;
+  border-color: #399fe5;
+}
+
+a:focus,
+a:active {
+  outline: none;
+  border-collapse: collapse;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: #007ed5;
+  text-decoration: none;
+}

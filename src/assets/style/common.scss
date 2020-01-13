@@ -1,0 +1,108 @@
+*{
+  margin:0;
+  padding:0;
+}
+html,body{
+  width:100%;
+  height:100%;
+}
+::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
+body {
+  min-width: 1280px;
+  height: 100%;
+  padding: 0px !important;
+  margin: 0px !important;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
+  font-size: 12px;
+  overflow: hidden;
+  overflow-x: auto;
+}
+ul{list-style:none}
+a{text-decoration: none;} 
+img{vertical-align:top;border:none}
+ 
+.clearf:after,
+.clearf:before{
+  content:"";
+  display:block;
+  clear:both;
+}
+.clearf:after,
+
+.el-header {
+  padding: 0;
+}
+.el-aside {
+  background-color: #D3DCE6;
+  color: #333;
+  overflow:hidden;
+  transition: width 0.5s;
+  -moz-transition: width 0.5s;	/* Firefox 4 */
+  -webkit-transition: width 0.5s;	/* Safari 和 Chrome */
+  -o-transition: width 0.5s;
+}
+.el-main {
+  padding: 10px;
+}
+  
+.el-container {
+  height: 100%;
+}
+table {
+  width: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+  border-collapse: collapse;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: #007ed5;
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+em {
+  font-style: normal;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.clearfix {
+  &:after {
+    display: block;
+    height: 0;
+    font-size: 0;
+    content: ' ';
+    clear: both;
+    visibility: hidden;
+  }
+}
