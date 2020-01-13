@@ -21,3 +21,10 @@ export const USERS_API_GETHUPUDATA = parameters => {
     data: parameters
   })
 }
+export const GOODS_API_CREATEFALSEDATA = parameters => {
+  return fetch({
+    url: '/createFalseData',
+    method: 'get',
+    data: parameters
+  })
+}

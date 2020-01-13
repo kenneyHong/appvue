@@ -4,6 +4,7 @@ import home from '@/views/home'
 import login from '@/views/login'
 import notfound from '@/views/404'
 import cargoStorage from '@/views/cargoStorage'
+import createData from '@/views/createData'
 
 Vue.use(Router)
 
@@ -29,6 +30,13 @@ export default new Router({
       component: cargoStorage,
       meta: {
         name: '货品入库'
+      }
+    },
+    {
+      path: '/createData',
+      component: createData,
+      meta: {
+        name: '测试页'
       }
     },
     {
