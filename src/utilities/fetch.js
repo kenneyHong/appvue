@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cookies from 'js-cookie'
+import router from '@/router'
 import { Message } from 'element-ui'
 const service = axios.create({
   timeout: 600000,
@@ -30,11 +31,11 @@ service.interceptors.response.use(
   response => {
     const code = response.data.Code
     if (code == 'ERROR') {
-      if (response.data.Command) {
-        window.globalApp.router.replace({
-          path: '/login'
-        })
-      }
+      // if (response.data.Command) {
+      //   router.replace({
+      //     path: '/login'
+      //   })
+      // }
       Message.error(response.data.Message)
     }
     return response
