@@ -23,7 +23,7 @@ export default {
       })
     },
     getData() {
-      GOODS_API_GETGOODSDATA({ BillNumber: '123', Supplier: '321123' }).then(res => {
+      GOODS_API_GETGOODSDATA({ PageSize: 10, PageIndex: 1 }).then(res => {
         if (res.data.Code == 'CORRECT') {
           console.log(res)
         }
