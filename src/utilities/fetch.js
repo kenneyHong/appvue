@@ -31,11 +31,11 @@ service.interceptors.response.use(
   response => {
     const code = response.data.Code
     if (code == 'ERROR') {
-      // if (response.data.Command) {
-      //   router.replace({
-      //     path: '/login'
-      //   })
-      // }
+      if (response.data.Command) {
+        router.replace({
+          path: '/login'
+        })
+      }
       Message.error(response.data.Message)
     }
     return response
