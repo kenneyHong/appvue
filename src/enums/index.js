@@ -1,3 +1,21 @@
+// 是否状态;
+export const YNStatus = {
+  Yes: 3,
+  No: 1,
+  Types: {
+    '3': '是',
+    '1': '否'
+  },
+  TypeArray: [{
+    KeyId: '3',
+    Value: '是'
+  },
+  {
+    KeyId: '1',
+    Value: '否'
+  }
+  ]
+}
 export const GoodsStatus = {
   'Draft': 1,
   'Pending': 2,
