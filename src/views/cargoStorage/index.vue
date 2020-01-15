@@ -2,16 +2,16 @@
   <div class="content">
     <el-button type="primary" class="newButton">新建</el-button>
     <el-dropdown>
-    <el-button class="primary">
-      批量操作<i class="el-icon-arrow-down el-icon--right"></i>
-    </el-button>
-    <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item>黄金糕</el-dropdown-item>
-      <el-dropdown-item>狮子头</el-dropdown-item>
-      <el-dropdown-item>螺蛳粉</el-dropdown-item>
-      <el-dropdown-item>双皮奶</el-dropdown-item>
-      <el-dropdown-item>蚵仔煎</el-dropdown-item>
-    </el-dropdown-menu>
+      <el-button class="primary">
+        批量操作<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>黄金糕</el-dropdown-item>
+        <el-dropdown-item>狮子头</el-dropdown-item>
+        <el-dropdown-item>螺蛳粉</el-dropdown-item>
+        <el-dropdown-item>双皮奶</el-dropdown-item>
+        <el-dropdown-item>蚵仔煎</el-dropdown-item>
+      </el-dropdown-menu>
     </el-dropdown>
     <el-button class="customize">自定义列</el-button>
     <div class="rightLayout">
@@ -55,8 +55,26 @@
           <el-date-picker
             v-model="form.creationTime"
             type="date"
-            placeholder="选择日期">
+            placeholder="2016/01/01 - 2016/02/01">
           </el-date-picker>
+        </el-form-item>
+        <el-form-item label="送货单号：">
+          <el-input v-model="form.articleNumber"></el-input>
+        </el-form-item>
+        <el-button type="primary" class="searchFor">搜索</el-button>
+        <el-button class="reset">重置</el-button>
+        <el-form-item label="采购员：">
+          <el-input v-model="form.buyer"></el-input>
+        </el-form-item>
+          <el-form-item label="最后操作日期：">
+          <el-date-picker
+            v-model="form.finallyTime"
+            type="date"
+            placeholder="2016/01/01 - 2016/02/01">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="备注：">
+          <el-input v-model="form.remark"></el-input>
         </el-form-item>
       </el-form> 
     </div> 
@@ -71,7 +89,11 @@ export default {
       form: {
         documentNumber: '',
         supplier: '',
-        creationTime: ''
+        creationTime: '',
+        articleNumber: '',
+        buyer: '',
+        finallyTime: '',
+        remark: ''
       }
     }
   },
@@ -130,8 +152,7 @@ export default {
      float: left;
      margin-left: 10px;
      margin-top: 10px;
-   }
-   
+   } 
   }
 }
 </style>
