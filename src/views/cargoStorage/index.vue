@@ -55,8 +55,28 @@
           <el-date-picker
             v-model="form.creationTime"
             type="date"
-            placeholder="选择日期">
+            placeholder="2016/01/01-2016/02/01">
           </el-date-picker>
+        </el-form-item>
+        <el-form-item label="送货单号：">
+          <el-input v-model="form.singleNumber"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary">搜索</el-button>
+           <el-button>重置</el-button>
+        </el-form-item>
+        <el-form-item label="采购员：">
+          <el-input v-model="form.buyer"></el-input>
+        </el-form-item>
+        <el-form-item label="最后操作时间：">
+          <el-date-picker
+            v-model="form.lastMinute"
+            type="date"
+            placeholder="2016/01/01-2016/02/01">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="备注：">
+          <el-input v-model="form.note"></el-input>
         </el-form-item>
       </el-form> 
     </div> 
@@ -71,7 +91,11 @@ export default {
       form: {
         documentNumber: '',
         supplier: '',
-        creationTime: ''
+        creationTime: '',
+        singleNumber:'',
+        buyer:'',
+        lastMinute:'',
+        note:''
       }
     }
   },
