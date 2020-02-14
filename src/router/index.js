@@ -5,6 +5,7 @@ import login from '@/views/login'
 import notfound from '@/views/404'
 import cargoStorage from '@/views/cargoStorage'
 import createData from '@/views/createData'
+import walletAccount from '@/views/walletAccount'
 
 Vue.use(Router)
 
@@ -30,6 +31,13 @@ export default new Router({
       component: cargoStorage,
       meta: {
         name: '货品入库'
+      }
+    },
+    {
+      path: '/walletAccount',
+      component: walletAccount,
+      meta: {
+        name: '电子钱包账户'
       }
     },
     {

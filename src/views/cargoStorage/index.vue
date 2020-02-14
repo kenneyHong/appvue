@@ -41,47 +41,53 @@
           </el-dropdown-menu>
         </el-dropdown>
       </el-input>
-      <span class="generalSearch">普通搜索</span>
+      <span class="generalSearch"  @click="btn">{{searchTitle}}</span>
     </div> 
-    <div class="middleBorder">
-      <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="120px">
-        <div class="leftlayout">
-          <el-form-item label="单据编号：">
-            <el-input v-model="form.documentNumber"></el-input>
-          </el-form-item>
-          <el-form-item label="供应商：">
-            <el-input v-model="form.supplier"></el-input>
-          </el-form-item>
-          <el-form-item label="创建时间：">
-            <el-date-picker
-              v-model="form.creationTime"
-              type="date"
-              placeholder="2016/01/01-2016/02/01">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="送货单号：">
-            <el-input v-model="form.singleNumber"></el-input>
-          </el-form-item>
-          <el-form-item label="采购员：">
-            <el-input v-model="form.buyer"></el-input>
-          </el-form-item>
-          <el-form-item label="最后操作时间：">
-            <el-date-picker
-              v-model="form.lastMinute"
-              type="date"
-              placeholder="2016/01/01-2016/02/01">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="备注：">
-            <el-input v-model="form.note"></el-input>  
-          </el-form-item>
-        </div>
-        <div class="rightLayout">
-          <el-form-item>
-            <el-button type="primary">搜索</el-button>
-            <el-button>重置</el-button>
-          </el-form-item>
-        </div>  
+    <div class="middleBorder" v-if="searchTitle == '高级搜索'">
+      <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
+        <el-row :gutter="20">
+          <el-col :span="20">
+            <el-form-item label="单据编号：">
+              <el-input v-model="form.documentNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="供应商：">
+              <el-input v-model="form.supplier"></el-input>
+            </el-form-item>
+            <el-form-item label="创建时间：" label-width="120px">
+              <el-date-picker
+                v-model="form.creationTime"
+                type="daterange"
+                range-separator="-"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item label="送货单号：">
+              <el-input v-model="form.singleNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="采购员：">
+              <el-input v-model="form.buyer"></el-input>
+            </el-form-item>
+            <el-form-item label="最后操作时间：">
+              <el-date-picker
+                v-model="form.lastMinute"
+                type="daterange"
+                range-separator="-"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item label="备注：">
+              <el-input v-model="form.note"></el-input>  
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+            <el-form-item>
+              <el-button type="primary">搜索</el-button>
+              <el-button>重置</el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
     </div>
     <el-table
@@ -144,10 +150,15 @@
       </el-table-column>
     </el-table>
     <div class="block">
-     <el-pagination
-        background
-        layout="prev, pager, next"
-        :total="100">
+      <el-pagination
+        layout="slot, prev, pager, next "
+        :page-size="20"
+        :total="200"
+        style="display: inline-block;padding-right: 0px;">
+        <el-button>首页</el-button>
+      </el-pagination>
+      <el-pagination layout="slot" style="display: inline-block;padding-right: 0px;">
+        <el-button>末页</el-button>
       </el-pagination>
     </div>
   </div>
@@ -156,6 +167,7 @@
 export default {
   data () {
     return {
+      searchTitle: '普通搜索',
       input3: '',
       select: '',
       form: {
@@ -215,6 +227,13 @@ export default {
     }
   },
   methods: {
+    btn() {
+      if (this.searchTitle == '普通搜索') {
+        this.searchTitle = '高级搜索'
+      } else if (this.searchTitle == '高级搜索') {
+        this.searchTitle = '普通搜索'
+      }
+    }
   },
   mounted () {
   },
@@ -265,24 +284,22 @@ export default {
     margin-top: 10px;
     margin-right: 10px;
     overflow: hidden;
-   .demo-form-inline{
-     float: left;
-     margin-left: 10px;
-     margin-top: 10px;
-   }
-   .leftlayout{
-     float: left;
-     width: 70%;
-   }
-   .rightLayout{
-     float: right;
-     width: 30%;
-   }
+    .demo-form-inline{
+      float: left;
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+    /deep/ .el-date-editor {
+      width: 178px;
+    }
   }
   .el-table{
     border-top: 1px solid #e5e5e5;
     margin-top: 10px;
   }
-  
+  .first{
+    background-color: #f4f4f5;
+    color: #606266;
+  }
 }
 </style>
