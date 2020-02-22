@@ -141,7 +141,7 @@
         prop="status"
         label="状态">
       </el-table-column>
-        <el-table-column
+      <el-table-column
         prop="operating"
         label="操作"> 
         <template slot-scope="scope">

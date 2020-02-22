@@ -6,6 +6,7 @@ import notfound from '@/views/404'
 import cargoStorage from '@/views/cargoStorage'
 import createData from '@/views/createData'
 import walletAccount from '@/views/walletAccount'
+import accountApplication from '@/views/accountApplication'
 
 Vue.use(Router)
 
@@ -38,6 +39,13 @@ export default new Router({
       component: walletAccount,
       meta: {
         name: '电子钱包账户'
+      }
+    },
+    {
+      path: '/accountApplication',
+      component:accountApplication,
+      meta: {
+        name: '电子钱包开户申请'
       }
     },
     {
