@@ -2,7 +2,7 @@
   <div class="content">
     <el-row>
       <el-col :span="24"><div class="grid-content bg-purple-dark">
-        <span class="walletlist">电子钱包账户列表</span>
+        <span class="walletlistAccount">电子钱包账户列表</span>
         <span class="platform">
           <el-select v-model="value" placeholder="Z.平台">
             <el-option
@@ -103,6 +103,7 @@
     :data="tableData">
       <el-table-column
         prop="fundAccount"
+        sortable
         label="资金账号"
         width="150">
       </el-table-column>
@@ -118,6 +119,7 @@
       </el-table-column>
       <el-table-column
         prop="accountOpeningtime"
+        sortable
         label="开户时间"
         width="150">
       </el-table-column>
@@ -377,7 +379,7 @@ min-height: 36px;
 padding: 0;
 background-color: #f9fafc;
 }
-.walletlist{
+.walletlistAccount{
   padding-top: 10px;
   padding-left: 10px;
   display: inline-block;

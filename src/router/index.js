@@ -7,6 +7,7 @@ import cargoStorage from '@/views/cargoStorage'
 import createData from '@/views/createData'
 import walletAccount from '@/views/walletAccount'
 import accountApplication from '@/views/accountApplication'
+import accountManagement from '@/views/accountManagement'
 
 Vue.use(Router)
 
@@ -42,8 +43,15 @@ export default new Router({
       }
     },
     {
+      path: '/accountManagement',
+      component: accountManagement,
+      meta: {
+        name: '电子钱包账户管理'
+      }
+    },
+    {
       path: '/accountApplication',
-      component:accountApplication,
+      component: accountApplication,
       meta: {
         name: '电子钱包开户申请'
       }
