@@ -8,6 +8,7 @@ import createData from '@/views/createData'
 import walletAccount from '@/views/walletAccount'
 import accountApplication from '@/views/accountApplication'
 import accountManagement from '@/views/accountManagement'
+import personalRechargeHistory from '@/views/personalRechargeHistory'
 
 Vue.use(Router)
 
@@ -54,6 +55,13 @@ export default new Router({
       component: accountApplication,
       meta: {
         name: '电子钱包开户申请'
+      }
+    },
+    {
+      path: '/personalRechargeHistory',
+      component:personalRechargeHistory,
+      meta: {
+        name: '电子钱包（基本户）充值记录'
       }
     },
     {
