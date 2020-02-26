@@ -9,6 +9,7 @@ import walletAccount from '@/views/walletAccount'
 import accountApplication from '@/views/accountApplication'
 import accountManagement from '@/views/accountManagement'
 import personalRechargeHistory from '@/views/personalRechargeHistory'
+import reconciliationStatement from '@/views/reconciliationStatement'
 
 Vue.use(Router)
 
@@ -62,6 +63,13 @@ export default new Router({
       component:personalRechargeHistory,
       meta: {
         name: '电子钱包（基本户）充值记录'
+      }
+    },
+    {
+      path: '/reconciliationStatement',
+      component:reconciliationStatement,
+      meta: {
+        name: '电子钱包（基本户）对账报表'
       }
     },
     {

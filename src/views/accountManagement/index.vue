@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          <span class="accountManagement">电子钱包账户管理</span>
+          <span class=" ">电子钱包账户管理</span>
           <span class="platform">
             <el-select v-model="value" placeholder="Z.平台">
               <el-option
