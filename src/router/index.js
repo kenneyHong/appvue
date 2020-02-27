@@ -10,6 +10,7 @@ import accountApplication from '@/views/accountApplication'
 import accountManagement from '@/views/accountManagement'
 import personalRechargeHistory from '@/views/personalRechargeHistory'
 import reconciliationStatement from '@/views/reconciliationStatement'
+import basicHousehold from '@/views/basicHousehold'
 
 Vue.use(Router)
 
@@ -70,6 +71,13 @@ export default new Router({
       component:reconciliationStatement,
       meta: {
         name: '电子钱包（基本户）对账报表'
+      }
+    },
+    {
+      path: '/basicHousehold',
+      component:basicHousehold,
+      meta: {
+        name: '电子钱包（基本户）流水'
       }
     },
     {
