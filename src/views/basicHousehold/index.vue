@@ -413,7 +413,6 @@ background-color: #f9fafc;
     background-color: #e5e9f2;
   }
 }
-
 /deep/.el-table th{
   background: #F5F7FA;
 } 
