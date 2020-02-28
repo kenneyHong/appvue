@@ -11,6 +11,7 @@ import accountManagement from '@/views/accountManagement'
 import personalRechargeHistory from '@/views/personalRechargeHistory'
 import reconciliationStatement from '@/views/reconciliationStatement'
 import basicHousehold from '@/views/basicHousehold'
+import operatorManagement  from '@/views/operatorManagement'
 
 Vue.use(Router)
 
@@ -78,6 +79,13 @@ export default new Router({
       component:basicHousehold,
       meta: {
         name: '电子钱包（基本户）流水'
+      }
+    },
+    {
+      path: '/operatorManagement',
+      component:operatorManagement,
+      meta: {
+        name: '电子钱包(运营户)管理'
       }
     },
     {
