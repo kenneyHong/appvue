@@ -13,6 +13,7 @@ import reconciliationStatement from '@/views/reconciliationStatement'
 import basicHousehold from '@/views/basicHousehold'
 import operatorManagement  from '@/views/operatorManagement'
 import operatorsFlow from '@/views/operatorsFlow'
+import operatingAccount from '@/views/operatingAccount'
 
 Vue.use(Router)
 
@@ -94,6 +95,13 @@ export default new Router({
       component:operatorsFlow,
       meta: {
         name: '电子钱包(运营户)流水'
+      }
+    },
+    {
+      path: '/operatingAccount',
+      component:operatingAccount,
+      meta: {
+        name: '电子钱包(运营户)对账报表'
       }
     },
     {
