@@ -119,7 +119,7 @@ export default {
       margin-top: 14px;
     }
     .functions{
-      margin-left: 11px;
+      margin-left: 14px;
       color: #ffffff;
     }
   }
