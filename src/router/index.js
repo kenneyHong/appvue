@@ -15,6 +15,7 @@ import operatorManagement  from '@/views/operatorManagement'
 import operatorsFlow from '@/views/operatorsFlow'
 import operatingAccount from '@/views/operatingAccount'
 import EwalletrechargeReport from '@/views/EwalletrechargeReport'
+import depositData from '@/views/depositData'
 
 Vue.use(Router)
 
@@ -65,51 +66,58 @@ export default new Router({
     },
     {
       path: '/personalRechargeHistory',
-      component:personalRechargeHistory,
+      component: personalRechargeHistory,
       meta: {
         name: '电子钱包（基本户）充值记录'
       }
     },
     {
       path: '/reconciliationStatement',
-      component:reconciliationStatement,
+      component: reconciliationStatement,
       meta: {
         name: '电子钱包（基本户）对账报表'
       }
     },
     {
       path: '/basicHousehold',
-      component:basicHousehold,
+      component: basicHousehold,
       meta: {
         name: '电子钱包（基本户）流水'
       }
     },
     {
       path: '/operatorManagement',
-      component:operatorManagement,
+      component: operatorManagement,
       meta: {
         name: '电子钱包(运营户)管理'
       }
     },
     {
       path: '/operatorsFlow',
-      component:operatorsFlow,
+      component: operatorsFlow,
       meta: {
         name: '电子钱包(运营户)流水'
       }
     },
     {
       path: '/operatingAccount',
-      component:operatingAccount,
+      component: operatingAccount,
       meta: {
         name: '电子钱包(运营户)对账报表'
       }
     },
     {
       path: '/EwalletrechargeReport',
-      component:EwalletrechargeReport,
+      component: EwalletrechargeReport,
       meta: {
         name: '电子钱包(运营户)充值报表'
+      }
+    },
+    {
+      path: '/depositData',
+      component: depositData,
+      meta: {
+        name: '入金单'
       }
     },
     {

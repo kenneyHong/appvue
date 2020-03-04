@@ -157,7 +157,7 @@ export default {
         giftSupplier: '',
         gift: ''
       },
-      tableData:[{
+      tableData: [{
         region: '',
         companyCode: '',
         companyName: '',

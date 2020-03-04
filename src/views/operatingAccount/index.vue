@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          <span class="operatingAccount">电子钱包(基本户)流水</span>
+          <span class="operatingAccount">电子钱包(运营户)对账报表</span>
           <span class="platform">
             <el-select v-model="value" placeholder="z.平台">
               <el-option
