@@ -17,6 +17,76 @@
         </div>
       </el-col>
     </el-row>
+    <div class="middleBorder">
+      <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
+        <div class="Upperlayout">
+          <el-row :gutter="20">
+            <el-col :span="18">
+              <el-form-item label="时间：" label-width="120px">
+                <el-date-picker
+                  v-model="form.time"
+                  type="daterange"
+                  range-separator="-"
+                  start-placeholder="2016/01/01"
+                  end-placeholder="2016/01/01">
+                </el-date-picker>
+              </el-form-item>
+            
+              <el-form-item label="公司编码：">
+                <el-input v-model="form.companyCode"></el-input>
+              </el-form-item>
+              <el-form-item label="公司名称：">
+                <el-input v-model="form.companyName"></el-input>
+              </el-form-item>
+              </el-form-item>
+                <el-form-item label="门店编码：">
+                <el-input v-model="form.storeCode"></el-input>
+              </el-form-item>
+              </el-form-item>
+                <el-form-item label="门店名称：">
+                <el-input v-model="form.storeName"></el-input>
+              </el-form-item> 
+              <el-form-item label="状态：">
+                <el-select v-model="formInline.region1" placeholder="全部">
+                  <el-option label="全部" value="all1"></el-option>
+                  <el-option label="已支付" value="Paid"></el-option>
+                  <el-option label="未支付" value="unpaid"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item>
+                <el-button type="primary">搜索</el-button>
+                <el-button>重置</el-button>
+                <el-button>导出</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="lowerLayout">
+          <el-row :gutter="25">
+            <el-col :span="6">
+              <div class="grid-content bg-purple">
+                <div class="number1">10</div>
+                <div class="accountBalance">商家数量</div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple-light">
+                <div class="number2">10</div>
+                <div class="currentIncome">充值次数</div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple">
+                <div class="number3">￥300,000.00</div>
+                <div class="currentExpenditure">充值金额</div>
+              </div>
+            </el-col>
+          </el-row> 
+        </div>      
+      </el-form>
+    </div>
   </div>  
 </template>
 <script>
