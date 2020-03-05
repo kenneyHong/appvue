@@ -16,6 +16,7 @@ import operatorsFlow from '@/views/operatorsFlow'
 import operatingAccount from '@/views/operatingAccount'
 import EwalletrechargeReport from '@/views/EwalletrechargeReport'
 import depositData from '@/views/depositData'
+import withdrawal from '@/views/withdrawal'
 
 Vue.use(Router)
 
@@ -111,6 +112,13 @@ export default new Router({
       component: EwalletrechargeReport,
       meta: {
         name: '电子钱包(运营户)充值报表'
+      }
+    },
+    {
+      path: '/withdrawal',
+      component: withdrawal,
+      meta: {
+        name: '出金单'
       }
     },
     {

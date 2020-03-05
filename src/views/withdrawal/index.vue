@@ -1,19 +1,18 @@
 <template>
- <div class="content">
+  <div class="content">
     <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="depositData">入金单</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="Z.平台">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
+      <el-col :span="24"><div class="grid-content bg-purple-dark">
+        <span class="withdrawal">出金单</span>
+        <span class="platform">
+          <el-select v-model="value" placeholder="Z.平台">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </span>
         </div>
       </el-col>
     </el-row>
@@ -22,14 +21,26 @@
         <div class="Upperlayout">
           <el-row :gutter="20">
             <el-col :span="18">
-              <el-form-item label="时间：" label-width="120px">
+              <el-form-item label="创建时间：" label-width="120px">
                 <el-date-picker
-                  v-model="form.time"
+                  v-model="form.creationTime"
                   type="daterange"
                   range-separator="-"
                   start-placeholder="2016/01/01"
                   end-placeholder="2016/01/01">
                 </el-date-picker>
+              </el-form-item>
+              <el-form-item label="交易时间：" label-width="120px">
+                <el-date-picker
+                  v-model="form.transactionHour"
+                  type="daterange"
+                  range-separator="-"
+                  start-placeholder="2016/01/01"
+                  end-placeholder="2016/01/01">
+                </el-date-picker>
+              </el-form-item>
+              <el-form-item label="交易流水号：">
+                <el-input v-model="form.serialNumber"></el-input>
               </el-form-item>
               <el-form-item label="资金账户：">
                 <el-input v-model="form.fundAccount"></el-input>
@@ -64,15 +75,18 @@
               <el-form-item label="来源：">
                 <el-select v-model="formInline.region1" placeholder="全部">
                   <el-option label="全部" value="all1"></el-option>
-                  <el-option label="提现" value="withdraw"></el-option>
-                  <el-option label="零售单" value="retailOrder"></el-option>
-                  <el-option label="充值" value="recharge"></el-option>
-                  <el-option label="SaaS订单" value="SaaSOrders"></el-option>
-                  <el-option label="短信充值" value="SMSTopup"></el-option>
-                  <el-option label="科技院订单" value="academyOrder"></el-option>
-                  <el-option label="定制单" value="customOrder"></el-option>
-                  <el-option label="转账" value="transfer"></el-option>
-                  <el-option label="零售退货单" value="retailReturn"></el-option>
+                </el-select>
+              </el-form-item>
+              </el-form-item>
+                <el-form-item label="来源单号：">
+                <el-input v-model="form.ticketNumber"></el-input>
+              </el-form-item>
+              <el-form-item label="状态：">
+                <el-select v-model="formInline.region" placeholder="全部">
+                  <el-option label="全部" value="all1"></el-option>
+                  <el-option label="支付中" value="payments"></el-option>
+                  <el-option label="支付成功" value="paymentSuccessful"></el-option>
+                  <el-option label="支付失败" value="paymentFailed"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -115,7 +129,7 @@
         </div>      
       </el-form>
     </div>
-     <el-table
+      <el-table
     :data="tableData"
       border>
       <el-table-column
@@ -234,24 +248,28 @@
         <el-button>末页</el-button>
       </el-pagination>
     </div>
-  </div>  
+  </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      value: '',
       options: [{
         value: '选项1',
         label: 'Z.平台'
       }],
-      value: '',
       form: {
+        creationTime: '',
+        transactionHour: '',
+        serialNumber: '',
         fundAccount: '',
         accountName: '',
         companyCode: '',
         companyName: '',
         storeCode: '',
-        storeName: ''
+        storeName: '',
+        ticketNumber: ''
       },
       formInline: {
         all: '',
@@ -261,17 +279,32 @@ export default {
         giftSupplier: '',
         gift: '',
         all1: '',
-        withdraw: '',
-        retailOrder: '',
-        recharge: '',
-        SaaSOrders: '',
-        SMSTopup: '',
-        academyOrder: '',
-        customOrder: '',
-        transfer: '',
-        retailReturn: ''
+        payments: '',
+        paymentSuccessful: '',
+        paymentFailed: ''
       },
       tableData: [{
+        creationTime: '',
+        transactionHour: '',
+        serialNumber: '',
+        documentAmount: '',
+        amountReceived: '',
+        platformServiceFee: '',
+        payagencyServiceFee: '',
+        fundAccount: '',
+        accountName: '',
+        region: '',
+        companyCode: '',
+        companyName: '',
+        storeCode: '',
+        name: '',
+        source: '',
+        relatedDocuments: '',
+        founder: '',
+        paymentMethod: '',
+        Note: '',
+        tradingStatus: ''
+      }, {
         creationTime: '',
         transactionHour: '',
         serialNumber: '',
@@ -362,7 +395,7 @@ min-height: 36px;
 padding: 0;
 background-color: #f9fafc;
 }
-.depositData{
+.withdrawal{
   padding-top: 10px;
   padding-left: 10px;
   display: inline-block;
@@ -411,5 +444,5 @@ background-color: #f9fafc;
 }
 /deep/.el-table th{
   background: #F5F7FA;
-} 
-</style> 
+}
+</style>
