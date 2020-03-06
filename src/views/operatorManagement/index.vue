@@ -333,6 +333,7 @@ background-color: #f9fafc;
   min-height: 92px;
   border: 1px solid #e5e5e5;
   margin-left: 10px;
+  margin-bottom: 10px;
   margin-top: 10px;
   margin-right: 10px;
   overflow: hidden;

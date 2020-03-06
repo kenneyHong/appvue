@@ -17,6 +17,7 @@ import operatingAccount from '@/views/operatingAccount'
 import EwalletrechargeReport from '@/views/EwalletrechargeReport'
 import depositData from '@/views/depositData'
 import withdrawal from '@/views/withdrawal'
+import lnPlatformTransferBill from '@/views/lnPlatformTransferBill'
 
 Vue.use(Router)
 
@@ -126,6 +127,13 @@ export default new Router({
       component: depositData,
       meta: {
         name: '入金单'
+      }
+    },
+    {
+      path: '/lnPlatformTransferBill',
+      component: lnPlatformTransferBill,
+      meta: {
+        name: '平台内转账单'
       }
     },
     {
