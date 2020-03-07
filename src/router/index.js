@@ -7,17 +7,18 @@ import cargoStorage from '@/views/cargoStorage'
 import createData from '@/views/createData'
 import walletAccount from '@/views/walletAccount'
 import accountApplication from '@/views/accountApplication'
-import accountManagement from '@/views/accountManagement'
+import withdrawalApplication from '@/views/withdrawalApplication'
 import personalRechargeHistory from '@/views/personalRechargeHistory'
 import reconciliationStatement from '@/views/reconciliationStatement'
 import basicHousehold from '@/views/basicHousehold'
-import operatorManagement  from '@/views/operatorManagement'
+import operatorManagement from '@/views/operatorManagement'
 import operatorsFlow from '@/views/operatorsFlow'
 import operatingAccount from '@/views/operatingAccount'
 import EwalletrechargeReport from '@/views/EwalletrechargeReport'
 import depositData from '@/views/depositData'
 import withdrawal from '@/views/withdrawal'
 import lnPlatformTransferBill from '@/views/lnPlatformTransferBill'
+import EWalletManagement from '@/views/EWalletManagement'
 
 Vue.use(Router)
 
@@ -49,14 +50,21 @@ export default new Router({
       path: '/walletAccount',
       component: walletAccount,
       meta: {
-        name: '电子钱包账户'
+        name: '电子钱包账户列表'
       }
     },
     {
-      path: '/accountManagement',
-      component: accountManagement,
+      path: '/EWalletManagement',
+      component: EWalletManagement,
       meta: {
-        name: '电子钱包账户管理'
+        name: '电子钱包管理'
+      }
+    },
+    {
+      path: '/withdrawalApplication',
+      component: withdrawalApplication,
+      meta: {
+        name: '电子钱包提现申请'
       }
     },
     {
