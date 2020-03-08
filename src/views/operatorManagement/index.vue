@@ -96,7 +96,7 @@
         </el-row> 
       </el-form>
     </div>
-     <el-table
+    <el-table
     :data="tableData"
     border>
     <el-table-column
