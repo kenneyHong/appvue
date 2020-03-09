@@ -3,9 +3,9 @@
     <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          <span class="EWalletManagement">电子钱包管理</span>
+          <span class="EWalletManagement">系统首页</span>
           <span class="platform">
-            <el-select v-model="value" placeholder="A.珠宝门店（一号一店）">
+            <el-select v-model="value" placeholder="">
               <el-option
                 v-for="item in options"
                 :key="item.value"
@@ -65,22 +65,6 @@
         </el-col>
       </el-row>
     </div>
-    <div class="ReloginLayout">
-      <el-row>
-        <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="inputBox">
-            <i class="el-icon-info"></i>
-            <span class="EWalletIsOpen">电子钱包已开通！</span>
-            <span class="systemLogin">
-              （开通后需要重新登录一下系统！）
-            </span>
-            <el-button type="primary" class="logInSystem">重新登录系统</el-button>
-          </span> 
-        </div>
-        </el-col>
-      </el-row>
-    </div>
     <div class="alreadyOpened">
       <el-row>
         <el-col :span="24">
@@ -104,13 +88,13 @@
           <div class="balance">基本户余额</div>
           <div class="available">    
             <span class="basicallyAvailable">可用：￥50000.00</span>
-            <span class="LockBalance">锁定：￥0</span>
+            <span class="LockBalance">锁定：￥3000.00</span>
           </div>
         </div>
         <div class="rechargeSystem">
-          <div class="recharge">充值</div>
-          <div class="withdraw">提现</div>
-          <div class="accountFlow">账户流水</div>
+          <div class="recharge"><el-button type="warning">充值</el-button></div>
+          <div class="withdraw"><el-button>提现</el-button></div>
+          <div class="accountFlow"><el-button>账户流水</el-button></div>
         </div>       
       </div>
       <div class="rightLayout">
@@ -125,9 +109,53 @@
           <div class="sufficientBalance">(用于与礼品供应商结算等，请保证余额充足)</div>
         </div>
         <div class="operationRechargeSystem">
-          <div class="operationRecharge">充值</div>
-          <div class="operationAccountFlow">账户流水</div>
+          <div class="operationRecharge"><el-button type="warning">充值</el-button></div>
+          <div class="operationAccountFlow"><el-button>账户流水</el-button></div>
         </div>        
+      </div>
+    </div>
+    <div class="bankCardLayout">
+      <div class="bankAccounts">
+        <div class="walletAccount">电子钱包账户</div>
+        <div class="accountName">
+          <span class="accountName1">户名：</span>
+          <span class="accountName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="accountNumber">
+          <span class="accountNumber1">银行电子账号：</span>
+          <span class="accountNumber2">1234 5678 1234 5678</span>
+        </div>
+        <div class="branchNumber">
+          <span class="branchNumber1">归属支行号：</span>
+          <span class="branchNumber2">304100040018</span>
+        </div>
+        <div class="branchName">
+          <span class="branchName1">归属支行名称：</span>
+          <span class="branchName2">华夏银行北京和平门支行</span>
+        </div>
+      </div>
+      <div class="withdrawalBankAccount">
+        <div class="withdrawalBank">提现银行钱包账户</div>
+        <div class="withdrawName">
+          <span class="withdrawName1">户名：</span>
+          <span class="withdrawName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="withdrawNumber">
+          <span class="withdrawNumber1">银行：</span>
+          <span class="withdrawNumber2">1234 5678 1234 5678</span>
+        </div>
+        <div class="cardNumber">
+          <span class="cardNumber1">卡号：</span>
+          <span class="cardNumber2">304100040018</span>
+        </div>
+        <div class="accountOpening">
+          <span class="accountOpening1">开户网点：</span>
+          <span class="accountOpening2">华夏银行北京和平门支行</span>
+        </div>
+      </div>
+      <div class="addBankAccount">
+        <div class="addWithdrawalBank">提现银行账户</div>
+        <div class="addTo"><i class="el-icon-plus"></i>添加提现银行卡</div>
       </div>
     </div>
  </div>
@@ -171,7 +199,7 @@ el-row {
   border-radius: 4px;
 }
 .bg-purple-dark {
-  background: #d9e2e8;
+  background: #faf7e3;
 }
 .bg-purple {
   background: #d3dce6;
@@ -190,7 +218,7 @@ background-color: #f9fafc;
   width: 77%;
 }
 .el-icon-info{
-  color: green;
+  color: #da0000;
 }
 .nonactivated{
   margin-top: 20px;
@@ -198,10 +226,11 @@ background-color: #f9fafc;
   .inputBox{
     padding-left: 10px;
     .unopenedWallet{
-      color: green;
+      color: #333333;
+      padding-left: 10px;
     }
     .supportCollectionCommentary{
-      color: dimgray;
+      color: #999999;
     }
   }
   .openEWallet{
@@ -209,6 +238,7 @@ background-color: #f9fafc;
     height: 30px;
     margin-left: 10px;
     border-radius: 4px;
+    margin-left: 32%;
   }
   .grid-content {
   min-height: 50px;
@@ -220,10 +250,11 @@ background-color: #f9fafc;
   .inputBox{
     padding-left: 10px;
     .EwalletOpening{
-      color: green;
+      color:  #333333;
+      padding-left: 10px;
     }
     .pendingReviewAfterOpening{
-      color: dimgray;
+      color: #999999; 
     }
   }
   .grid-content {
@@ -234,6 +265,7 @@ background-color: #f9fafc;
     height: 30px;
     margin-left: 10px;
     border-radius: 4px;
+    margin-left: 57.4%;
   }
 }
 .reopenLayout{
@@ -242,10 +274,11 @@ background-color: #f9fafc;
   .inputBox{
     padding-left: 10px;
     .walletFailedToOpen{
-      color: green;
+       padding-left: 10px;
+      color: #333333;
     }
     .causeOfFailure{
-      color: dimgray;
+      color: #999999;
     }
   }
   .grid-content {
@@ -256,28 +289,7 @@ background-color: #f9fafc;
     height: 30px;
     margin-left: 10px;
     border-radius: 4px;
-  }
-}
-.ReloginLayout{
-  margin-top: 20px;
-  line-height: 4em;
-  .inputBox{
-    padding-left: 10px;
-    .EWalletIsOpen{
-      color: green;
-    }
-    .systemLogin{
-      color: red;
-    }
-  }
-  .grid-content {
-  min-height: 50px;
-  }
-  .logInSystem{
-    width: 100px;
-    height: 30px;
-    margin-left: 10px;
-    border-radius: 4px;
+    margin-left: 60.9%;
   }
 }
 .alreadyOpened{
@@ -286,10 +298,11 @@ background-color: #f9fafc;
   .inputBox{
     padding-left: 10px;
     .supportDirectDeposit{
-      color: green;
+      padding-left: 10px;
+      color: #333333;
     }
     .delayedRefresh{
-      color: dimgray;
+      color: #999999;
     }
   }
   .grid-content {
@@ -300,13 +313,14 @@ background-color: #f9fafc;
     height: 30px;
     margin-left: 10px;
     border-radius: 4px;
+    margin-left: 35.7%;
   }
 }
 .leftAndRightLayout{
   .leftLayout{
   width: 501px;
   height: 195px;
-  background-color: rgba(0, 153, 0, 1);
+  background-color: #5873ff;
   margin-top: 10px;
   text-align: center;
   float: left;
@@ -333,15 +347,18 @@ background-color: #f9fafc;
         width: 166px;
         height: 48px;
         float: left;
-        background-color: rgba(0, 102, 0, 1);
+        background-color: #4a61d6;
         color: #FFFFFF;
         line-height: 4em;
+        .el-button{
+          background-color: #ffa200;
+        }
       }
       .withdraw{
         width: 166px;
         height: 48px;
         float: left;
-        background-color: rgba(0, 102, 0, 1);
+        background-color: #4a61d6;
         color: #FFFFFF;
         line-height: 4em;
         margin-left: 1px;
@@ -350,7 +367,7 @@ background-color: #f9fafc;
         width: 166px;
         height: 48px;
         float: left;
-        background-color: rgba(0, 102, 0, 1);
+        background-color: #4a61d6;
         color: #FFFFFF;
         line-height: 4em;
         margin-left: 1px;
@@ -360,7 +377,7 @@ background-color: #f9fafc;
   .rightLayout{
     width: 501px;
     height: 195px;
-    background-color: #00cc00;
+    background-color: #e79300;
     margin-top: 10px;
     text-align: center;
     float: left;
@@ -381,7 +398,6 @@ background-color: #f9fafc;
     }
     .sufficientBalance{
       font-size: 14px;
-      color: #ff0000;
     }
     .lockedAmount{
       margin-left: 5px;
@@ -395,20 +411,152 @@ background-color: #f9fafc;
         width: 249px;
         height: 48px;
         float: left;
-        background-color: rgba(0, 153, 0, 1);
+        background-color: #c57d00;
         color: #FFFFFF;
         line-height: 4em;
+        .el-button{
+          background-color: #ffa200;
+        }
       }
       .operationAccountFlow{
         width: 249px;
         height: 48px;
         float: left;
-        background-color: rgba(0, 153, 0, 1);
+        background-color: #c57d00;
         color: #FFFFFF;
         line-height: 4em;
         margin-left: 2px;
       }
     }
   }
-}   
+}
+.bankCardLayout{
+  float: left;
+  margin-top: 10px;
+  .bankAccounts{
+    float: left;
+    width: 320px;
+    height: 180px;
+    border: 1px solid #e5e5e5;
+    .walletAccount{
+      height: 32px;
+      color: #333333;
+      font-size: 12px;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #e5e5e5;
+      padding-left: 20px;
+      line-height: 2.5em;
+    }
+    .accountName{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 15px;
+      .accountName2{
+        color: #333333;
+        margin-left: 20%;
+      }
+    }
+    .accountNumber{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 10px;
+      .accountNumber2{
+        color: #333333;
+        margin-left: 4%;
+      }
+    }
+    .branchNumber{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 10px;
+      .branchNumber2{
+        color: #333333;
+        margin-left: 8%;
+      }
+    }
+    .branchName{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 10px;
+      .branchName2{
+        color: #333333;
+        margin-left: 4%;
+      }
+    }
+  }
+  .withdrawalBankAccount{
+    float: left;
+    margin-left: 10px;
+    width: 320px;
+    height: 180px;
+    border: 1px solid #e5e5e5;
+    .withdrawalBank{
+      height: 32px;
+      color: #333333;
+      font-size: 12px;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #e5e5e5;
+      padding-left: 20px;
+      line-height: 2.5em;
+    }
+    .withdrawName{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 15px;
+      .withdrawName2{
+        color: #333333;
+        margin-left: 10%;
+      }
+    }
+    .withdrawNumber{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 10px;
+      .withdrawNumber2{
+        color: #333333;
+        margin-left: 10%;
+      }
+    }
+    .cardNumber{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 10px;
+      .cardNumber2{
+        color: #333333;
+        margin-left: 10%;
+      }
+    }
+    .accountOpening{
+      color: #777777;
+      padding-left: 20px;
+      padding-top: 10px;
+      .accountOpening2{
+        color: #333333;
+        margin-left: 2%;
+      }
+    }
+  }
+  .addBankAccount{
+    float: left;
+    margin-left: 10px;
+    width: 320px;
+    height: 180px;
+    border: 1px solid #e5e5e5;
+    .addWithdrawalBank{
+      height: 32px;
+      color: #333333;
+      font-size: 12px;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #e5e5e5;
+      padding-left: 20px;
+      line-height: 2.5em;
+    }
+    .addTo{
+      font-size: 12px;
+      color: #1f91df;
+      text-align: center;
+      line-height: 12em;
+    }
+  }
+} 
 </style>
