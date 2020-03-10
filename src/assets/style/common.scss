@@ -107,3 +107,24 @@ em {
     visibility: hidden;
   }
 }
+.el-form-item--mini .el-form-item__label {
+  font-size: 12px;
+  text-align: left;
+  width: 90px !important;
+  color: #333;
+}
+.el-form-item--mini .el-form-item__content {
+  width: 210px !important;
+  .el-select,
+  .el-select--mini,
+  .el-range-editor.el-input__inner {
+    width: 210px !important;
+    border-radius: 0;
+  }
+  input {
+    border-radius: 0;
+  }
+}
+.el-table th{
+  background: #f5f5f5;
+}

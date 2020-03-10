@@ -13,15 +13,15 @@
       <span class="features">
         <img class="Icon" src="../assets/images/erpsystemsystm.png" alt="img">
         <span class="functions">ERP管理系统</span>
-      </span>  
+      </span>
       <span class="features">
         <img class="Icon" src="../assets/images/wechatMarketing.png" alt="img">
         <span class="functions">微信营销</span>
-      </span>  
+      </span>
       <span class="features">
         <img class="Icon" src="../assets/images/salaryPerformance.png" alt="img">
         <span class="functions">薪酬绩效系统</span>
-      </span> 
+      </span>
       <span class="features">
         <img class="Icon" src="../assets/images/marketingActivities.png" alt="img">
         <span class="functions">营销活动</span>
@@ -33,7 +33,7 @@
       <span class="features">
         <img class="Icon" src="../assets/images/CRM.png" alt="img">
         <span class="functions">SCRM系统</span>
-      </span> 
+      </span>
       <span class="features">
         <img class="Icon" src="../assets/images/SMSsystem.png" alt="img">
         <span class="functions">短信系统</span>
@@ -41,7 +41,7 @@
       <span class="features">
         <img class="Icon" src="../assets/images/catCat.png" alt="img">
         <span class="functions">抓财猫</span>
-      </span>  
+      </span>
       <span class="features">
         <img class="Icon" src="../assets/images/controlCenter.png" alt="img">
         <span class="functions">管控中心</span>
@@ -49,13 +49,12 @@
       <span class="features">
         <img class="Icon" src="../assets/images/customerService.png" alt="img">
         <span class="functions">专属客服</span>
-      </span> 
+      </span>
       <span class="features">
         <img class="Icon" src="../assets/images/giftShop.png" alt="img">
         <span class="functions">礼品商城</span>
-      </span>                                                             
+      </span>
     </div>
-   
   </div>
 </template>
 <script>
