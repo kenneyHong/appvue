@@ -1,22 +1,5 @@
 <template>
  <div class="content">
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="EWalletManagement">系统首页</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
     <div class="nonactivated">
       <el-row>
         <el-col :span="24">
@@ -164,26 +147,6 @@
 export default {
   data() {
     return {
-      value: '',
-      options: [{
-        value: '选项1',
-        label: 'A.珠宝门店（一号一店）'
-      }, {
-        value: '选项2',
-        label: 'B.珠宝公司（一号一店）'
-      }, {
-        value: '选项3',
-        label: 'C.珠宝门店（一号多店）（同B）'
-      }, {
-        value: '选项4',
-        label: 'D.珠宝公司（一号多店）（同A）'
-      }, {
-        value: '选项5',
-        label: 'G.礼品供应商（同B）'
-      }, {
-        value: '选项6',
-        label: 'Z.平台）'
-      }]
     }
   }
 }

@@ -1,22 +1,5 @@
 <template>
   <div class="content">
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="operatorsFlow">电子钱包(基本户)流水</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="A.珠宝门店（一号一店）">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
     <div class="middleBorder">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="120px">
         <div class="Upperlayout">
@@ -187,23 +170,6 @@
 export default {
   data() {
     return {
-      value: '',
-      options: [{
-        value: '选项1',
-        label: 'A.珠宝门店（一号一店）'
-      }, {
-        value: '选项2',
-        label: 'B.珠宝公司（一号一店）'
-      }, {
-        value: '选项4',
-        label: 'D.珠宝公司（一号多店）'
-      }, {
-        value: '选项5',
-        label: 'E.珠宝集团'
-      }, {
-        value: '选项8',
-        label: 'Z.平台'
-      }],
       form: {
         time: '',
         companyCode: '',
@@ -350,6 +316,10 @@ background-color: #f9fafc;
     padding: 10px 0;
     background-color: #e5e9f2;
   }
+}
+.el-table--border{
+  margin-left: 10px;
+  margin-top: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

@@ -1,23 +1,6 @@
 <template>
  <div class="content">
     <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="operatorManagement">电子钱包(运营户)管理</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="Z.平台">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
       <el-button type="primary" class="export">导出</el-button>
       <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
       </el-input>
@@ -180,11 +163,6 @@ export default {
   data() {
     return {
       searchTitle: '普通搜索',
-      options: [{
-        value: '选项1',
-        label: 'Z.平台）'
-      }],
-      value: '',
       input3: '',
       formInline: {
         all: '',

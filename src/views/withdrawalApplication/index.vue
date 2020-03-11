@@ -1,22 +1,6 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="24"><div class="grid-content bg-purple-dark">
-        <span class="withdrawalApplication">电子钱包提现申请</span>
-        <span class="platform">
-          <el-select v-model="value" placeholder="Z.平台">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </span>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
       <el-button type="primary" class='export'>导出</el-button>
       <el-button type="primary" class='auditRequirements'>审核规定</el-button>
       <el-dropdown>
@@ -209,13 +193,6 @@
 export default {
   data() {
     return {
-      value: '',
-      searchTitle: '普通搜索',
-      input3: '',
-      options: [{
-        value: '选项1',
-        label: 'Z.平台'
-      }],
       form: {
         documentNumber: '',
         creationTime: '',

@@ -1,22 +1,6 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="24"><div class="grid-content bg-purple-dark">
-        <span class="walletlistAccount">电子钱包账户列表</span>
-        <span class="platform">
-          <el-select v-model="value" placeholder="Z.平台">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </span>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
       <el-button type="primary" class='export'>导出</el-button>
       <el-dropdown>
         <el-button type="primary" class='status'>
@@ -229,17 +213,6 @@ export default {
   data () {
     return {
       searchTitle: '普通搜索',
-      options: [{
-        value: '选项1',
-        label: 'Z.平台'
-      }, {
-        value: '选项2',
-        label: 'D.珠宝公司'
-      }, {
-        value: '选项3',
-        label: 'E.珠宝集团'
-      }],
-      value: '',
       input3: '',
       form: {
         fundAccount: '',
@@ -420,5 +393,9 @@ background-color: #f9fafc;
   .el-date-editor{
     width: 178px;
   }
+}
+.el-table--border{
+  margin-left: 10px;
+  margin-top: 10px;
 }
 </style>
