@@ -49,11 +49,11 @@
             <el-form-item label="公司名称：">
               <el-input v-model="form.companyName"></el-input>
             </el-form-item>
-            </el-form-item>
+            <el-form-item>
               <el-form-item label="门店编码：">
               <el-input v-model="form.storeCode"></el-input>
             </el-form-item>
-            </el-form-item>
+            <el-form-item>
               <el-form-item label="门店名称：">
               <el-input v-model="form.storeName"></el-input>
             </el-form-item>
@@ -139,7 +139,7 @@
         label="服务费"
         width="100">
       </el-table-column>
-       <el-table-column
+      <el-table-column
         prop="reviewTime"
         label="审核时间"
         width="140">

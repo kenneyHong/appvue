@@ -35,11 +35,11 @@
               <el-form-item label="公司名称：">
                 <el-input v-model="form.companyName"></el-input>
               </el-form-item>
-              </el-form-item>
+              <el-form-item>
                 <el-form-item label="门店编码：">
                 <el-input v-model="form.storeCode"></el-input>
               </el-form-item>
-              </el-form-item>
+              <el-form-item>
                 <el-form-item label="门店名称：">
                 <el-input v-model="form.storeName"></el-input>
               </el-form-item> 
@@ -95,7 +95,7 @@
                 <div class="endingAccountbalance">期末账户余额</div>
               </div>
             </el-col>
-            </el-row> 
+          </el-row> 
         </div>      
      </el-form>       
     </div>

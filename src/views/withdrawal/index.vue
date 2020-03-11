@@ -48,11 +48,11 @@
               <el-form-item label="公司名称：">
                 <el-input v-model="form.companyName"></el-input>
               </el-form-item>
-              </el-form-item>
+              <el-form-item>
                 <el-form-item label="门店编码：">
                 <el-input v-model="form.storeCode"></el-input>
               </el-form-item>
-              </el-form-item>
+              <el-form-item>
                 <el-form-item label="门店名称：">
                 <el-input v-model="form.storeName"></el-input>
               </el-form-item> 
@@ -61,7 +61,7 @@
                   <el-option label="全部" value="all1"></el-option>
                 </el-select>
               </el-form-item>
-              </el-form-item>
+              <el-form-item>
                 <el-form-item label="来源单号：">
                 <el-input v-model="form.ticketNumber"></el-input>
               </el-form-item>

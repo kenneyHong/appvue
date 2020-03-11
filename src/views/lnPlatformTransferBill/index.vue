@@ -103,7 +103,7 @@
                 <el-option label="全部" value="all1"></el-option>
               </el-select>
             </el-form-item>
-            </el-form-item>
+            <el-form-item>
               <el-form-item label="来源单号：">
               <el-input v-model="form.ticketNumber"></el-input>
             </el-form-item>

@@ -88,7 +88,7 @@
         label="本期支出"
         width="120">
       </el-table-column>
-       <el-table-column
+      <el-table-column
         prop="endingAccountBalance"
         label="期末账户余额"
         width="180">
