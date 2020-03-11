@@ -1,22 +1,5 @@
 <template>
  <div class="content">
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="depositData">入金单</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="Z.平台">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
     <div class="middleBorder">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
         <div class="Upperlayout">
@@ -240,11 +223,6 @@
 export default {
   data() {
     return {
-      options: [{
-        value: '选项1',
-        label: 'Z.平台'
-      }],
-      value: '',
       form: {
         fundAccount: '',
         accountName: '',
@@ -346,34 +324,6 @@ export default {
     margin-bottom: 0;
   }
 }
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.depositData{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
-.export{
-  width: 100px;
-  height: 30px;
-  margin-left: 10px;
-  border-radius: 4px;
-}
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;
@@ -382,6 +332,9 @@ background-color: #f9fafc;
   margin-right: 10px;
   margin-bottom: 10px;
   overflow: hidden;
+  .el-row{
+    margin-bottom: 10px;
+  }
   .demo-form-inline{
     float: left;
     margin-left: 10px;
@@ -409,6 +362,9 @@ background-color: #f9fafc;
     padding: 10px 0;
     background-color: #e5e9f2;
   }
+}
+.el-table{
+  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

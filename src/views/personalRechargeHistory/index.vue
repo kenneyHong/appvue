@@ -1,23 +1,6 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="24">
-      <div class="grid-content bg-purple-dark">
-        <span class="personalRechargeHistory">电子钱包（基本户）充值记录</span>
-        <span class="platform">
-          <el-select v-model="value" placeholder="Z.平台">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </span>
-      </div>
-      </el-col>
-    </el-row>
-    <el-row>
       <el-button type="primary" class="export">导出</el-button>
       <el-dropdown>
         <el-button type="primary" class='status'>
@@ -178,32 +161,6 @@ export default {
   data() {
     return {
       searchTitle: '普通搜索',
-      value1: '',
-      options: [{
-        value: '选项1',
-        label: 'A.珠宝门店（一号一店）'
-      }, {
-        value: '选项2',
-        label: 'B.珠宝公司（一号一店）'
-      }, {
-        value: '选项3',
-        label: 'C.珠宝门店（一号多店）'
-      }, {
-        value: '选项4',
-        label: 'D.珠宝公司（一号多店）'
-      }, {
-        value: '选项5',
-        label: 'E.珠宝集团'
-      }, {
-        value: '选项6',
-        label: 'F .珠宝供应商'
-      }, {
-        value: '选项7',
-        label: 'G.礼品供应商'
-      }, {
-        value: '选项8',
-        label: 'Z.平台）'
-      }],
       form: {
         time: '',
         fundAccount: '',
@@ -299,28 +256,6 @@ export default {
     margin-bottom: 0;
   }
 }
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.personalRechargeHistory{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
 .export{
   width: 100px;
   height: 30px;
@@ -356,6 +291,9 @@ background-color: #f9fafc;
   .el-date-editor{
     width: 178px;
   }
+}
+.el-table{
+  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

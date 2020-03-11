@@ -324,6 +324,9 @@ background-color: #f9fafc;
     width: 178px;
   }
 }
+.el-table{
+  margin-left: 10px;
+}
 /deep/.el-table th{
   background: #F5F7FA;
 }

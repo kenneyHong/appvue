@@ -1,22 +1,5 @@
 <template>
  <div class="content">
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="operatingAccount">电子钱包(运营户)对账报表</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="z.平台">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
     <div class="middleBorder">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
         <el-row :gutter="20">
@@ -129,11 +112,6 @@
 export default {
   data() {
     return {
-      value: '',
-      options: [{
-        value: '选项1',
-        label: 'z.平台'
-      }],
       formInline: {
         all: '',
         jewelryCompany: '',
@@ -198,34 +176,6 @@ el-row {
     margin-bottom: 0;
   }
 }
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.operatingAccount{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
-.export{
-  width: 100px;
-  height: 30px;
-  margin-left: 10px;
-  border-radius: 4px;
-}
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;
@@ -242,6 +192,9 @@ background-color: #f9fafc;
   .el-date-editor{
     width: 178px;
   }
+}
+.el-table{
+  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

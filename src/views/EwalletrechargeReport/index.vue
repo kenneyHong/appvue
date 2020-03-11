@@ -1,22 +1,5 @@
 <template>
   <div class="content">
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="EwalletrechargeReport">电子钱包(基本户)充值报表</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="z.平台">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
     <div class="middleBorder">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
         <div class="formHeader">
@@ -50,11 +33,11 @@
               <el-form-item label="公司名称：">
                 <el-input v-model="form.companyName"></el-input>
               </el-form-item>
-              <el-form-item>
+              </el-form-item>
                 <el-form-item label="门店编码：">
                 <el-input v-model="form.storeCode"></el-input>
               </el-form-item>
-              <el-form-item>
+              </el-form-item>
                 <el-form-item label="门店名称：">
                 <el-input v-model="form.storeName"></el-input>
               </el-form-item> 
@@ -213,12 +196,7 @@
 export default {
   data() {
     return {
-      value: '',
       rechargeStatistics: '充值统计',
-      options: [{
-        value: '选项1',
-        label: 'z.平台'
-      }],
       form: {
         time: '',
         companyCode: '',
@@ -326,34 +304,6 @@ el-row {
     margin-bottom: 0;
   }
 }
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.EwalletrechargeReport {
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
-.export{
-  width: 100px;
-  height: 30px;
-  margin-left: 10px;
-  border-radius: 4px;
-}
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;
@@ -362,6 +312,9 @@ background-color: #f9fafc;
   margin-right: 10px;
   margin-bottom: 10px;
   overflow: hidden;
+  .el-row{
+    margin-bottom: 10px;
+  }
   .demo-form-inline{
     float: left;
     margin-left: 10px;
@@ -389,5 +342,8 @@ background-color: #f9fafc;
     padding: 10px 0;
     background-color: #e5e9f2;
   }
+}
+.el-table{
+  margin-left: 10px;
 }
 </style>

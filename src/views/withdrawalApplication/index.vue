@@ -193,6 +193,8 @@
 export default {
   data() {
     return {
+      searchTitle: '普通搜索',
+      input3: '',
       form: {
         documentNumber: '',
         creationTime: '',
@@ -351,6 +353,9 @@ background-color: #f9fafc;
   .el-date-editor{
     width: 178px;
   }
+}
+.el-table{
+  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

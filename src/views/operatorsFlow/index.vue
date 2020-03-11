@@ -253,34 +253,6 @@ el-row {
     margin-bottom: 0;
   }
 }
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.operatorsFlow{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
-.export{
-  width: 100px;
-  height: 30px;
-  margin-left: 10px;
-  border-radius: 4px;
-}
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;

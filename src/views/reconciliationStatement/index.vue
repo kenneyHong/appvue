@@ -1,22 +1,5 @@
 <template>
   <div class="content">
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="reconciliationStatement">电子钱包（基本户）对账报表</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="Z.平台">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
     <div class="middleBorder">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
         <el-row :gutter="20">
@@ -138,11 +121,6 @@
 export default {
   data() {
     return {
-      value: '',
-      options: [{
-        value: '选项1',
-        label: 'Z.平台'
-      }],
       form: {
         time: '',
         companyCode: '',
@@ -243,6 +221,9 @@ background-color: #f9fafc;
   .el-date-editor{
     width: 178px;
   }
+}
+.el-table{
+  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

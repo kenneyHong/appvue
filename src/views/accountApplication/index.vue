@@ -1,22 +1,6 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="24"><div class="grid-content bg-purple-dark">
-        <span class="accountApplication">电子钱包开户申请</span>
-        <span class="platform">
-          <el-select v-model="value" placeholder="Z.平台">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </span>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
       <el-button type="primary" class='export'>导出</el-button>
       <el-button type="primary" class='auditRequirements'>审核规定</el-button>
       <el-dropdown>
@@ -257,12 +241,7 @@ export default {
         giftSupplier: '',
         gift: ''
       },
-      options: [{
-        value: '选项1',
-        label: 'Z.平台'
-      }],
-      input3: '',
-      value: ''
+      input3: ''
     }
   },
   methods: {
@@ -282,34 +261,6 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
-}
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.accountApplication{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
-.export{
-  width: 100px;
-  height: 30px;
-  margin-left: 10px;
-  border-radius: 4px;
 }
 .auditRequirements{
   width: 100px;
@@ -346,6 +297,9 @@ background-color: #f9fafc;
   .el-date-editor{
     width: 178px;
   }
+}
+.el-table{
+  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;
