@@ -1,23 +1,6 @@
 <template>
   <div class="content">
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="lnPlatformTransferBill">平台内转账单</span>
-          <span class="platform">
-            <el-select v-model="value" placeholder="z.平台">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </span>
-        </div>
-      </el-col>
-    </el-row>
-     <div class="middleBorder">
+    <div class="middleBorder">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
         <el-row :gutter="20">
           <el-col :span="18">
@@ -126,7 +109,7 @@
         </el-row>
       </el-form>
     </div>
-     <el-table
+    <el-table
     :data="tableData"
       border>
       <el-table-column
@@ -272,11 +255,6 @@
 export default {
   data() {
     return {
-      value: '',
-      options: [{
-        value: '选项1',
-        label: 'z.平台'
-      }],
       form: {
         time: '',
         transactionHour: '',
@@ -401,28 +379,6 @@ el-row {
   &:last-child {
     margin-bottom: 0;
   }
-}
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.lnPlatformTransferBill {
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
 }
 .export{
   width: 100px;

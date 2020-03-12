@@ -15,9 +15,9 @@
       </el-dropdown>
       <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
       </el-input>
-      <span class="generalSearch"  @click="btn">{{searchTitle}}</span>
+      <span class="generalSearch" @click="btn">{{searchTitle}}</span>
     </el-row>
-     <div class="middleBorder" v-if="searchTitle == '高级搜索'">
+    <div class="middleBorder" v-if="searchTitle == '高级搜索'">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
         <el-row :gutter="20">
           <el-col :span="20">
@@ -49,12 +49,10 @@
             <el-form-item label="公司名称：">
               <el-input v-model="form.companyName"></el-input>
             </el-form-item>
-            <el-form-item>
-              <el-form-item label="门店编码：">
+            <el-form-item label="门店编码：">
               <el-input v-model="form.storeCode"></el-input>
             </el-form-item>
-            <el-form-item>
-              <el-form-item label="门店名称：">
+            <el-form-item label="门店名称：">
               <el-input v-model="form.storeName"></el-input>
             </el-form-item>
             <el-form-item label="提现金额：">
@@ -289,28 +287,6 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
-}
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #d9e2e8;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
-min-height: 36px;
-}
-.row-bg {
-padding: 0;
-background-color: #f9fafc;
-}
-.withdrawalApplication{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
 }
 .export{
   width: 100px;

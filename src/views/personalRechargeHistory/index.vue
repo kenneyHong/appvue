@@ -234,7 +234,6 @@ export default {
         serviceFee: '',
         status: ''
       }],
-      value: '',
       input3: ''
     }
   },

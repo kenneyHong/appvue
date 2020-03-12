@@ -262,6 +262,12 @@ export default {
     margin-bottom: 0;
   }
 }
+.export{
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+  border-radius: 4px;
+}
 .auditRequirements{
   width: 100px;
   height: 30px;
