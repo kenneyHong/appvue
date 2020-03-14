@@ -68,37 +68,39 @@
             </el-col>
           </el-row>
         </div>
-        <div class="lowerLayout">
-          <el-row :gutter="25">
-            <el-col :span="6">
-              <div class="grid-content bg-purple">
-                <div class="number1">￥100,000.00</div>
-                <div class="documentAmount">单据金额</div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple-light">
-                <div class="number2">￥99,000.00</div>
-                <div class="amountReceived">到账金额</div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple">
-                <div class="number3">￥1,000.00</div>
-                <div class="platformServiceFee">平台服务费</div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple">
-                <div class="number3">￥500.00</div>
-                <div class="PayagencyServiceFee">支付机构服务费</div>
-              </div>
-            </el-col>
-          </el-row> 
-        </div>      
       </el-form>
     </div>
-     <el-table
+    <div class="lowerLayout">
+      <div class="grid-content bg-purple">
+        <div class="number1">￥0,00</div>
+        <div class="documentAmount">
+          单据金额
+          <i class="el-icon-question"></i>
+        </div>
+      </div>          
+      <div class="grid-content bg-purple-light">
+        <div class="number2">￥0,00</div>
+        <div class="amountReceived">
+          到账金额
+          <i class="el-icon-question"></i>
+        </div>
+      </div>
+      <div class="grid-content bg-purple1">
+        <div class="number3">￥0.00</div>
+        <div class="platformServiceFee">
+          平台服务费
+          <i class="el-icon-question"></i>
+        </div>
+      </div>
+      <div class="grid-content bg-purple2">
+        <div class="number3">￥0.00</div>
+        <div class="PayagencyServiceFee">
+          支付机构服务费
+          <i class="el-icon-question"></i>
+        </div>
+      </div> 
+    </div>      
+    <el-table
     :data="tableData"
       border>
       <el-table-column
@@ -326,7 +328,6 @@ export default {
 }
 .middleBorder{
   min-height: 92px;
-  border: 1px solid #e5e5e5;
   margin-left: 10px;
   margin-top: 10px;
   margin-right: 10px;
@@ -340,22 +341,48 @@ export default {
     margin-left: 10px;
     margin-top: 10px;
   }
+}
+.lowerLayout{
+  margin-left: 10px;
+  .demo-form-inline{
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
   .el-date-editor{
     width: 178px;
   }
   .bg-purple-dark {
     background: #e5e9f2;
+    float: left;
   }
   .bg-purple {
     background: #e5e9f2;
+    float: left;
+    border-right: 1px solid #777777;
+    line-height: 2em;
+  }
+  .bg-purple1{
+    background: #e5e9f2;
+    float: left;
+    line-height: 2em;
+    border-right: 1px solid #777777;
+  }
+  .bg-purple2{
+    background: #e5e9f2;
+    float: left;
+    line-height: 2em;
   }
   .bg-purple-light {
     background: #e5e9f2;
+    float: left;
+    border-right: 1px solid #777777;
+    line-height: 2em;
   }
   .grid-content {
     min-height: 56px;
     text-align: center;
-    width: 230px;
+    width: 25%;
     padding-top: 5px;
   }
   .row-bg {
@@ -365,6 +392,7 @@ export default {
 }
 .el-table{
   margin-left: 10px;
+  margin-top: 80px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

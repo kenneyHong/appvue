@@ -176,7 +176,6 @@ el-row {
 }
 .middleBorder{
   min-height: 92px;
-  border: 1px solid #e5e5e5;
   margin-left: 10px;
   margin-top: 10px;
   margin-right: 10px;
@@ -193,6 +192,7 @@ el-row {
 }
 .el-table{
   margin-left: 10px;
+  border: none;
 }
 /deep/.el-table th{
   background: #F5F7FA;

@@ -1,13 +1,13 @@
 <template>
   <div class="content">
+    <div class="formHeader">
+      <el-row>
+        <el-button class="rechargeStatistics"  @click="statistics">充值统计</el-button>
+        <el-button  class="rechargeStatement"@click="tj">充值对账单</el-button>
+      </el-row>
+    </div>
     <div class="middleBorder">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
-        <div class="formHeader">
-          <el-row>
-            <el-button  @click="statistics">充值统计</el-button>
-            <el-button @click="tj">充值对账单</el-button>
-          </el-row>
-        </div>
         <div class="Upperlayout">
           <el-row :gutter="20">
             <el-col :span="18">
@@ -58,30 +58,22 @@
             </el-col>
           </el-row>
         </div>
-        <div class="lowerLayout">
-          <el-row :gutter="25">
-            <el-col :span="6">
-              <div class="grid-content bg-purple">
-                <div class="number1">10</div>
-                <div class="accountBalance">商家数量</div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple-light">
-                <div class="number2">10</div>
-                <div class="currentIncome">充值次数</div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple">
-                <div class="number3">￥300,000.00</div>
-                <div class="currentExpenditure">充值金额</div>
-              </div>
-            </el-col>
-          </el-row> 
-        </div>      
       </el-form>
     </div>
+    <div class="lowerLayout">
+      <div class="grid-content bg-purple">
+        <div class="number1">0</div>
+        <div class="accountBalance">商家数量</div>
+      </div>
+      <div class="grid-content bg-purple-light">
+        <div class="number2">0</div>
+        <div class="currentIncome">充值次数</div>
+      </div>
+      <div class="grid-content bg-purple1">
+        <div class="number3">￥0.00</div>
+        <div class="currentExpenditure">充值金额</div>
+      </div>
+   </div>      
     <div class="formClassification"  v-if="rechargeStatistics == '充值统计'">
       <el-table 
       :data="tableData"
@@ -304,17 +296,33 @@ el-row {
     margin-bottom: 0;
   }
 }
+.formHeader{
+  .el-button{
+  background: #ffffff;
+  }
+  .rechargeStatement{
+  margin-left: -3px;
+  border-bottom: none;
+  }
+  .rechargeStatistics{
+    border-right: none;
+    margin-left: 10px;
+    border-bottom: none;
+  }
+}
 .middleBorder{
   min-height: 92px;
-  border: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
   margin-left: 10px;
-  margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
   overflow: hidden;
-  .el-row{
-    margin-bottom: 10px;
+  .el-col{
+    margin-top: 10px;
   }
+}
+.lowerLayout{
+  margin-left: 10px;
   .demo-form-inline{
     float: left;
     margin-left: 10px;
@@ -325,17 +333,29 @@ el-row {
   }
   .bg-purple-dark {
     background: #e5e9f2;
+    float: left;
   }
   .bg-purple {
     background: #e5e9f2;
+    float: left;
+    border-right: 1px solid #777777;
+    line-height: 2em;
+  }
+  .bg-purple1{
+    background: #e5e9f2;
+    float: left;
+    line-height: 2em;
   }
   .bg-purple-light {
     background: #e5e9f2;
+    float: left;
+    border-right: 1px solid #777777;
+    line-height: 2em;
   }
   .grid-content {
     min-height: 56px;
     text-align: center;
-    width: 230px;
+    width: 33%;
     padding-top: 5px;
   }
   .row-bg {
@@ -343,7 +363,11 @@ el-row {
     background-color: #e5e9f2;
   }
 }
-.el-table{
+.el-table {
+  padding-top: 20px;
   margin-left: 10px;
+}
+.el-table--border{
+  border: none;
 }
 </style>
