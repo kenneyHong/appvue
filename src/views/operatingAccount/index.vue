@@ -49,7 +49,7 @@
       <el-table-column
         prop="region"
         label="商户类型"
-        width="150">
+        min-width="120">
       </el-table-column>
       <el-table-column
         prop="companyCode"
@@ -71,25 +71,48 @@
         label="门店名称"
         width="120">
       </el-table-column>
-      <el-table-column
-        prop="openingAccountBalance"
-        label="期初账户余额"
-        width="120">
+      <el-table-column  prop="openingAccountBalance" abel="期初账户余额"
+        width="170" show-overflow-tooltip>
+        <template slot='header'>
+          <span>
+            期初账户余额
+            <i class="el-icon-question"></i>
+          </span>
+        </template>  
+      </el-table-column>
+      <el-table-column  prop="currentIncome" abel="本期收入"
+        width="120" show-overflow-tooltip>
+        <template slot='header'>
+          <span>
+            本期收入
+            <i class="el-icon-question"></i>
+          </span>
+        </template>  
+      </el-table-column>
+      <el-table-column  prop="currentExpenditure" abel="本期支出"
+        width="120" show-overflow-tooltip>
+        <template slot='header'>
+          <span>
+            本期支出
+            <i class="el-icon-question"></i>
+          </span>
+        </template>  
+      </el-table-column>
+      <el-table-column  prop="endingAccountBalance" abel=" 期末账户余额"
+        width="170" show-overflow-tooltip>
+        <template slot='header'>
+          <span>
+            期末账户余额
+            <i class="el-icon-question"></i>
+          </span>
+        </template>  
       </el-table-column>
       <el-table-column
-        prop="currentIncome"
-        label="本期收入"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="currentExpenditure"
-        label="本期支出"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="endingAccountBalance"
-        label="期末账户余额"
-        width="180">
+        prop="operating"
+        label="操作"> 
+        <template slot-scope="scope">
+          <el-button @click="handleClick(scope.row)" type="text" size="small">账户流水</el-button>
+        </template>
       </el-table-column>
     </el-table>
     <div class="block">

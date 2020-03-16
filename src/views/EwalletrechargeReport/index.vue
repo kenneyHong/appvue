@@ -81,8 +81,7 @@
         >
         <el-table-column
           prop="region"
-          label="商户类型"
-          width="170">
+          label="商户类型">
         </el-table-column>
         <el-table-column
           prop="companyCode"
@@ -123,7 +122,7 @@
         <el-table-column
           prop="time"
           label="时间"
-          width="150">
+          min-width="150">
         </el-table-column>
         <el-table-column
           prop="rechargeNumber"
@@ -323,6 +322,8 @@ el-row {
 }
 .lowerLayout{
   margin-left: 10px;
+  background-color: #e5e9f2;
+  overflow: hidden;
   .demo-form-inline{
     float: left;
     margin-left: 10px;
@@ -340,6 +341,8 @@ el-row {
     float: left;
     border-right: 1px solid #777777;
     line-height: 2em;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   .bg-purple1{
     background: #e5e9f2;
@@ -351,6 +354,8 @@ el-row {
     float: left;
     border-right: 1px solid #777777;
     line-height: 2em;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   .grid-content {
     min-height: 56px;

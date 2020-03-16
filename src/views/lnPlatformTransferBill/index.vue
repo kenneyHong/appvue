@@ -115,7 +115,7 @@
         prop="creationTime"
         sortable
         label="创建时间"
-        width='120'>
+        min-width="150">
       </el-table-column>
       <el-table-column
         prop="transactionHour"

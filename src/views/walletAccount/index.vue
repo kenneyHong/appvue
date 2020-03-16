@@ -87,7 +87,7 @@
         prop="fundAccount"
         sortable
         label="资金账号"
-        width="150">
+        min-width="150">
       </el-table-column>
       <el-table-column
         prop="accountName"

@@ -81,7 +81,7 @@
       <el-table-column
         prop="documentNumber"
         label="单号编号"
-        width="150">
+        min-width="150">
       </el-table-column>
       <el-table-column
         prop="creationTime"

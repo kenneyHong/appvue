@@ -119,7 +119,7 @@
         prop="creationTime"
         sortable
         label="创建时间"
-        width='150'>
+        min-width="150">
       </el-table-column>
       <el-table-column
         prop="transactionHour"
@@ -375,6 +375,8 @@ export default {
 }
 .lowerLayout{
   margin-left: 10px;
+  background-color: #e5e9f2;
+  overflow: hidden;
   .demo-form-inline{
     float: left;
     margin-left: 10px;
@@ -391,6 +393,8 @@ export default {
     background: #e5e9f2;
     float: left;
     border-right: 1px solid #777777;
+    margin-top: 5px;
+    margin-bottom: 5px;
     line-height: 2em;
   }
   .bg-purple1{
@@ -398,6 +402,8 @@ export default {
     float: left;
     line-height: 2em;
     border-right: 1px solid #777777;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   .bg-purple2{
     background: #e5e9f2;
@@ -408,6 +414,8 @@ export default {
     background: #e5e9f2;
     float: left;
     border-right: 1px solid #777777;
+    margin-top: 5px;
+    margin-bottom: 5px;
     line-height: 2em;
   }
   .grid-content {
@@ -423,7 +431,7 @@ export default {
 }
 .el-table--border{
   margin-left: 10px;
-  margin-top: 80px;
+  margin-top: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;
