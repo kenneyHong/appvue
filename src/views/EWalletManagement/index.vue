@@ -10,7 +10,7 @@
             <span class="supportCollectionCommentary">
               （开通后支持微信和支付宝收款，服务费低至0.5%，支持提现、礼品商城充值、系统续费等）
             </span>
-            <el-button type="primary" class="openEWallet" @click="dialogFormVisible = true">开通电子钱包</el-button>
+            <el-button type="primary" class="openEWallet" @click="dialogTableVisible = true">开通电子钱包</el-button>
           </span> 
         </div>
         </el-col>
@@ -21,7 +21,7 @@
         <el-col :span="24">
         <div class="grid-content bg-purple-dark">
           <span class="inputBox">
-            <i class="el-icon-info"></i>
+            <i class  ="el-icon-info"></i>
             <span class="EwalletOpening" 
             >电子钱包开通中！</span>
             <span class="pendingReviewAfterOpening">
@@ -43,7 +43,7 @@
             <span class="causeOfFailure">
               （失败原因失败原因失败原因...）
             </span>
-            <el-button type="primary" class="reopen">重新开通</el-button>
+            <el-button type="primary" class="reopen"  @click="dialogTableVisible = true">重新开通</el-button>
           </span> 
         </div>
         </el-col>
@@ -142,65 +142,67 @@
         <div class="addTo"><i class="el-icon-plus"></i>添加提现银行卡</div>
       </div>
     </div>
-    <div class="poPupWindow" :visible.sync="dialogFormVisible">
+    <div class="poPupWindow"> 
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="118px" class="demo-ruleForm" >
-        <el-form-item label="*账户类型：">
-          <el-radio-group v-model="ruleForm.accountType">
-            <el-radio class="personalInformation" label="公司"  @click="firm"></el-radio>
-            <el-radio class="personalInformation"  label="个人" @click="personal"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <div class="the company" v-if="personalInformation == '公司'">
-          <el-form-item label="*户名：">
-            <el-input v-model="ruleForm.accountName"></el-input>
-            <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
+        <el-dialog title="开通电子钱包" :visible.sync="dialogTableVisible">
+          <el-form-item label="*账户类型：">
+            <el-radio-group v-model="ruleForm.accountType">
+              <el-radio class="personalInformation"  label="公司"></el-radio>
+              <el-radio class="personalInformation"  label="个人"></el-radio>
+            </el-radio-group>
           </el-form-item>
-          <el-form-item label="*统一社会信用代码：">
-            <el-input v-model="ruleForm.creditCode"></el-input>
-          </el-form-item>
-          <el-form-item label="*法定代表人姓名：">
-            <el-input v-model="ruleForm.legalName"></el-input>
-          </el-form-item>
-          <el-form-item label="*法定代表人身份证：">
-            <el-input v-model="ruleForm.legalIdentityCard"></el-input>
-          </el-form-item>
-          <el-form-item label="*手机号码：">
-            <el-input v-model="ruleForm.mobilePhone"></el-input>
-          </el-form-item>
-          <el-form-item label="*邮箱：">
-            <el-input v-model="ruleForm.mailbox"></el-input>
-          </el-form-item>
-          <el-form-item label="*所属区域：">
-            <el-cascader
-              :options="options"
-              :props="{ multiple: true,checkStrictly: true }"
-              clearable>
-            </el-cascader>
-          </el-form-item>
-          <el-form-item label="*详细地址：">
-            <el-input v-model="ruleForm.address"></el-input>
-          </el-form-item>
-        </div>
-        <div class="personal" v-if="personalInformation == '个人'" >
-          <el-form-item label="*户名：">
-            <el-input v-model="ruleForm.accountName1"></el-input>
-            <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
-          </el-form-item>
-          <el-form-item label="*身份证号码：">
-            <el-input v-model="ruleForm.identityCard1"></el-input>
-          </el-form-item>
-          <el-form-item label="*手机号码：">
-            <el-input v-model="ruleForm.mobilePhone1"></el-input>
-            <span class="reservedNumber">（必须为提现银行卡预留的手机，否则无法提现）</span>
-          </el-form-item>
-          <el-form-item label="*邮箱：">
-            <el-input v-model="ruleForm.mailbox1"></el-input>
-          </el-form-item>
-        </div>
-        <div class="submit">
-          <el-button type="primary" class="searchFor">确定</el-button>
-          <el-button class="reset">取消</el-button>
-        </div>
+          <div class="the company" v-if="ruleForm.accountType == '公司'">
+            <el-form-item label="*户名：">
+              <el-input v-model="ruleForm.accountName"></el-input>
+              <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
+            </el-form-item>
+            <el-form-item label="*统一社会信用代码：">
+              <el-input v-model="ruleForm.creditCode"></el-input>
+            </el-form-item>
+            <el-form-item label="*法定代表人姓名：">
+              <el-input v-model="ruleForm.legalName"></el-input>
+            </el-form-item>
+            <el-form-item label="*法定代表人身份证：">
+              <el-input v-model="ruleForm.legalIdentityCard"></el-input>
+            </el-form-item>
+            <el-form-item label="*手机号码：">
+              <el-input v-model="ruleForm.mobilePhone"></el-input>
+            </el-form-item>
+            <el-form-item label="*邮箱：">
+              <el-input v-model="ruleForm.mailbox"></el-input>
+            </el-form-item>
+            <el-form-item label="*所属区域：">
+              <el-cascader
+                :options="options"
+                :props="{ multiple: true,checkStrictly: true }"
+                clearable>
+              </el-cascader>
+            </el-form-item>
+            <el-form-item label="*详细地址：">
+              <el-input v-model="ruleForm.address"></el-input>
+            </el-form-item>
+          </div>
+          <div class="personal" v-if="ruleForm.accountType == '个人'" >
+            <el-form-item label="*户名：">
+              <el-input v-model="ruleForm.accountName1"></el-input>
+              <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
+            </el-form-item>
+            <el-form-item label="*身份证号码：">
+              <el-input v-model="ruleForm.identityCard1"></el-input>
+            </el-form-item>
+            <el-form-item label="*手机号码：">
+              <el-input v-model="ruleForm.mobilePhone1"></el-input>
+              <span class="reservedNumber">（必须为提现银行卡预留的手机，否则无法提现）</span>
+            </el-form-item>
+            <el-form-item label="*邮箱：">
+              <el-input v-model="ruleForm.mailbox1"></el-input>
+            </el-form-item>
+          </div>
+          <div class="submit">
+            <el-button type="primary"class="searchFor" >确定</el-button>
+            <el-button class="reset">取消</el-button>
+          </div>
+        </el-dialog>
       </el-form>  
     </div>
   </div>
@@ -209,8 +211,7 @@
 export default {
   data() {
     return {
-      personalInformation: '公司',
-      dialogFormVisible: false,
+      dialogTableVisible: false,
       ruleForm: {
         accountType: '',
         accountName: '',
@@ -251,22 +252,6 @@ export default {
         accountType: [
           { accountType: true, message: '请选择活动资源', trigger: 'change' }
         ]
-      }
-    }
-  },
-  methods: {
-    firm() {
-      if (this.personalInformation == '个人') {
-        this.personalInformation = '公司'
-      } else if (this.searchTitle == '公司') {
-        this.searchTitle = '个人'
-      }
-    },
-    personal() {
-      if (this.personalInformation == '公司') {
-        this.personalInformation = '个人'
-      } else if (this.personalInformation == '公司') {
-        this.personalInformation = '个人'
       }
     }
   }
