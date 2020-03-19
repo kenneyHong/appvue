@@ -274,15 +274,11 @@ export default {
     statistics() {
       if (this.rechargeStatistics == '充值对账单') {
         this.rechargeStatistics = '充值统计'
-      } else if (this.searchTitle == '充值统计') {
-        this.searchTitle = '充值对账单'
       }
     },
     tj() {
       if (this.rechargeStatistics == '充值统计') {
         this.rechargeStatistics = '充值对账单'
-      } else if (this.rechargeStatistics == '充值对账单') {
-        this.rechargeStatistics = '充值统计'
       }
     }
   }
