@@ -78,7 +78,7 @@
         <div class="rechargeSystem">
           <div class="recharge"><el-button type="warning" @click="RechargePopup = true">充值</el-button></div>
           <div class="withdraw"><el-button>提现</el-button></div>
-          <div class="accountFlow"><el-button>账户流水</el-button></div>
+          <div class="accountFlow" @click="accountFlow = true"><el-button >账户流水</el-button></div>
         </div>       
       </div>
       <div class="rightLayout">
@@ -93,7 +93,7 @@
           <div class="sufficientBalance">(用于与礼品供应商结算等，请保证余额充足)</div>
         </div>
         <div class="operationRechargeSystem">
-          <div class="operationRecharge"><el-button type="warning">充值</el-button></div>
+          <div class="operationRecharge" @click="operationTopUp = true"><el-button type="warning">充值</el-button></div>
           <div class="operationAccountFlow"><el-button>账户流水</el-button></div>
         </div>        
       </div>
@@ -206,7 +206,7 @@
       </el-form>
     </div>
     <div class="economy">
-      <el-dialog :visible.sync="RechargePopup">
+      <el-dialog  :visible.sync="RechargePopup">
         <div class="OfflineTransfer">
           <el-button class="transfer" @click="Offline">
             <div class="Offline" >线下转账</div>
@@ -261,19 +261,198 @@
           </div>
         </div>
       </el-dialog>  
-    </div> 
+    </div>
+    <div class= "accountFlowPopups">
+      <el-dialog :visible.sync="accountFlow" width="80%">
+        <div class="AccountFlow">
+          <el-form :inline="true" :model="formInline" class="demo-form-inline">
+            <el-form-item label="时间：" label-width="120px">
+              <el-date-picker
+                v-model="form.time"
+                type="daterange"
+                range-separator="-"
+                start-placeholder="2016/01/01"
+                end-placeholder="2016/01/01">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item label="来源：">
+              <el-select v-model="formInline.source" placeholder="全部">
+                <el-option label="全部" value="all1"></el-option>
+                <el-option label="提现" value="withdraw"></el-option>
+                <el-option label="零售单" value="retailOrder"></el-option>
+                <el-option label="充值" value="recharge"></el-option>
+                <el-option label="SaaS订单" value="SaaSOrders"></el-option>
+                <el-option label="短信充值" value="SMSTopup"></el-option>
+                <el-option label="科技院订单" value="academyOrder"></el-option>
+                <el-option label="定制单" value="customOrder"></el-option>
+                <el-option label="转账" value="transfer"></el-option>
+                <el-option label="零售退货单" value="retailReturn"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </div>
+        <el-table
+          :data="tableData"
+          border>
+          <el-table-column
+            prop="serialNumber"
+            label="交易流水号"
+            min-width="120">
+          </el-table-column>
+          <el-table-column
+            prop="creationTime"
+            sortable
+            label="操作时间"
+            width='150'>
+          </el-table-column>
+          <el-table-column
+            prop="incomeAndExpenses"
+            label="收入/支出"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="amount"
+            label="金额"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="accountBalance"
+            label="账户余额"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="region1"
+            label="来源"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="relatedDocuments"
+            label="相关单据"
+            width="150">
+          </el-table-column>
+          <el-table-column
+            prop="transactionAmount"
+            label="交易金额"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="serviceFee"
+            label="服务费"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="operator"
+            label="操作人"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="Note"
+            label="备注"
+            width="120">
+          </el-table-column>
+        </el-table>
+        <div class="block">
+          <el-pagination
+            layout="slot, prev, pager, next "
+            :page-size="20"
+            :total="200"
+            style="display: inline-block;padding-right: 0px;">
+            <el-button>首页</el-button>
+          </el-pagination>
+          <el-pagination layout="slot" style="display: inline-block;padding-right: 0px;">
+            <el-button>末页</el-button>
+          </el-pagination>
+        </div>
+      </el-dialog>
+    </div>
+    <div class="operationTopUp">
+      <el-dialog  :visible.sync="operationTopUp">
+        <div class="whole">
+          <span class="amount">充值金额：</span>
+          <el-input class="amount1" v-model="input"></el-input>
+          <span class="amount2">元，只能充值整数，最低充值2000元</span>
+        </div>
+        <div class="money">
+          <el-radio v-model="radio" label="1">5000</el-radio>
+          <el-radio v-model="radio" label="2">10000</el-radio>
+          <el-radio v-model="radio" label="3">20000</el-radio>
+          <el-radio v-model="radio" label="4">50000</el-radio>
+          <el-radio v-model="radio" label="5">100000</el-radio>
+        </div>
+        <div class="paymentMethod">
+          <span class="Method">支付方式：</span>
+          <el-radio v-model="radios" label="1">电子钱包（基本户）</el-radio>
+          <div class="available">可用金额<span class="countOff">￥10000.00</span></div>
+          <el-button type="primary" class="immediately">立即支付</el-button>
+          <el-button class="cancel">取消</el-button>
+        </div>
+      </el-dialog>  
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      form: {
+        time: ''
+      },
+      formInline: {
+        all1: '',
+        withdraw: '',
+        retailOrder: '',
+        SaaSOrders: '',
+        SMSTopup: '',
+        academyOrder: '',
+        customOrder: '',
+        transfer: '',
+        retailReturn: ''
+      },
+      tableData: [{
+        serialNumber: '',
+        creationTime: '',
+        incomeAndExpenses: '',
+        amount: '',
+        accountBalance: '',
+        region1: '',
+        relatedDocuments: '',
+        transactionAmount: '',
+        serviceFee: '',
+        operator: '',
+        Note: ''
+      }, {
+        serialNumber: '',
+        creationTime: '',
+        incomeAndExpenses: '',
+        amount: '',
+        accountBalance: '',
+        region1: '',
+        relatedDocuments: '',
+        transactionAmount: '',
+        serviceFee: '',
+        operator: '',
+        Note: ''
+      }, {
+        serialNumber: '',
+        creationTime: '',
+        incomeAndExpenses: '',
+        amount: '',
+        accountBalance: '',
+        region1: '',
+        relatedDocuments: '',
+        transactionAmount: '',
+        serviceFee: '',
+        operator: '',
+        Note: ''
+      }],
       radio: '1',
       radios: '1',
       input: '',
       transfer: '线下转账',
       dialogTableVisible: false,
       RechargePopup: false,
+      accountFlow: false,
+      operationTopUp: false,
       ruleForm: {
         accountType: '',
         accountName: '',
@@ -785,6 +964,38 @@ background-color: #f9fafc;
         margin-left: 88px;
         margin-top: 20px;
       }
+    }
+  }
+}
+.operationTopUp{
+  float: left;
+  margin-top: 30px;
+  margin-left: 10px;
+  .amount1{
+    width: 100px;
+  }
+  .money{
+    margin-left: 72px;
+    margin-top: 10px;
+  }
+  .paymentMethod{
+    margin-top: 10px;
+    .serviceFee{
+      margin-top: 5px;
+      text-align: center;
+      .countOff{
+        color: #00cc00;
+      }
+    }
+    .immediately{
+      width: 100px;
+      border-radius: 3px;
+      margin-left: 88px;
+      margin-top: 20px;
+    }
+    .cancel{
+      width: 100px;
+      border-radius: 3px;
     }
   }
 }
