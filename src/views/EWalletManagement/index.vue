@@ -119,7 +119,10 @@
         </div>
       </div>
       <div class="withdrawalBankAccount">
-        <div class="withdrawalBank">提现银行钱包账户</div>
+        <div class="withdrawal">
+          <span class="withdrawalBank">提现银行钱包账户</span>
+          <span class="replace" @click="replace = true">更换</span>
+        </div>
         <div class="withdrawName">
           <span class="withdrawName1">户名：</span>
           <span class="withdrawName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
@@ -139,7 +142,7 @@
       </div>
       <div class="addBankAccount">
         <div class="addWithdrawalBank">提现银行账户</div>
-        <div class="addTo"><i class="el-icon-plus"></i>添加提现银行卡</div>
+        <div class="addTo"  @click="replace = true"><i class="el-icon-plus"></i>添加提现银行卡</div>
       </div>
     </div>
     <div class="poPupWindow"> 
@@ -388,6 +391,44 @@
         </div>
       </el-dialog>  
     </div>
+    <div class="changePopupLayout">
+      <el-dialog :visible.sync="replace">
+        <el-form ref="form" :model="form" label-width="120px">
+          <el-form-item label="*开户名称：">
+            <el-input placeholder="xxxxxxxxxx公司" v-model="form.mosquitoNet" :disabled="true"></el-input>
+            <span class="sameName">（提现卡必须为开通资金账户的同名账户）</span>
+          </el-form-item>
+          <el-form-item label="*银行：">
+            <el-select v-model="formInline.bank" placeholder="请选择">
+              <el-option label="请选择" value="pleaseChoose"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="*卡号：">
+            <el-input v-model="form.cardNumber"></el-input>
+          </el-form-item>
+          <el-form-item label="*开户地区：">
+            <el-cascader
+              :options="operatio"
+              :props="{ multiple: true,checkStrictly: true }"
+              clearable>
+            </el-cascader>
+          </el-form-item>
+          <el-form-item label="*开户网点：">
+            <el-select v-model="formInline.accountOpening" placeholder="请选择网点">
+              <el-option label="请选择网点" value="PleaseSelectBranch"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="*银行预留手机：">
+            <el-input v-model="form.reservePhone"></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="description">注：每天最多只能提交3次</div>
+        <div class="submit">
+          <el-button type="primary"class="nextStep" >下一步</el-button>
+          <el-button class="reset">取消</el-button>
+        </div>
+      </el-dialog>  
+    </div>
   </div>
 </template>
 <script>
@@ -395,7 +436,10 @@ export default {
   data() {
     return {
       form: {
-        time: ''
+        time: '',
+        mosquitoNet: '',
+        cardNumber: '',
+        reservePhone: ''
       },
       formInline: {
         all1: '',
@@ -406,7 +450,9 @@ export default {
         academyOrder: '',
         customOrder: '',
         transfer: '',
-        retailReturn: ''
+        retailReturn: '',
+        bank: '',
+        accountOpening: ''
       },
       tableData: [{
         serialNumber: '',
@@ -453,6 +499,7 @@ export default {
       RechargePopup: false,
       accountFlow: false,
       operationTopUp: false,
+      replace: false,
       ruleForm: {
         accountType: '',
         accountName: '',
@@ -487,6 +534,21 @@ export default {
         children: [{
           value: 'chaoyang',
           label: '潮阳区'
+        }]
+      }],
+      operatio: [{
+        value: 'shen',
+        label: '省',
+        children: [{
+          value: 'guangdongshen',
+          label: '广东省'
+        }]
+      }, {
+        value: 'shi',
+        label: '市',
+        children: [{
+          value: 'shentoushi',
+          label: '汕头市'
         }]
       }],
       rules: {
@@ -812,14 +874,22 @@ background-color: #f9fafc;
     width: 320px;
     height: 180px;
     border: 1px solid #e5e5e5;
-    .withdrawalBank{
+    .withdrawal{
+      border-bottom: 1px solid #e5e5e5;
+      .withdrawalBank{
       height: 32px;
       color: #333333;
       font-size: 12px;
       background-color: #f5f5f5;
-      border-bottom: 1px solid #e5e5e5;
       padding-left: 20px;
       line-height: 2.5em;
+      }
+     .replace{
+      color: #169BD5;
+      float: right;
+      line-height: 2.5em;
+      margin-right: 10px;
+      }
     }
     .withdrawName{
       color: #777777;
@@ -994,6 +1064,26 @@ background-color: #f9fafc;
       margin-top: 20px;
     }
     .cancel{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+}
+.changePopupLayout{
+  .description{
+    color: #ff0000;
+  }
+  .sameName{
+    color: #999999;
+  }
+  .submit{
+    margin-top: 10px;
+    margin-left: 70px;
+    .nextStep{
+      width: 100px;
+      border-radius: 3px;
+    }
+    .reset{
       width: 100px;
       border-radius: 3px;
     }
