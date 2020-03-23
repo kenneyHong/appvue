@@ -2,7 +2,7 @@
   <div class="content">
     <el-row>
       <el-button type="primary" class='export'>导出</el-button>
-      <el-button type="primary" class='auditRequirements'>审核规定</el-button>
+      <el-button type="primary" class='auditRequirements' @click="auditRequirements = true">审核规定</el-button>
       <el-dropdown>
         <el-button type="primary">
           所有状态<i class="el-icon-arrow-down el-icon--right"></i>
@@ -167,13 +167,51 @@
         <el-button>末页</el-button>
       </el-pagination>
     </div>
+    <el-dialog :visible.sync="auditRequirements">
+      <div class="auditRules">
+        <div class="documentReviewRules">单据审核规则:</div>
+        <div class="smartSelection">
+          <el-radio v-model="radio" label="1" >自动审核</el-radio>
+          <el-radio v-model="radio" label="2">人工审核</el-radio>
+        </div>
+        <div slot="footer" class="submit">
+          <el-button type="primary"class="searchFor"  @click="outerVisible = true">确定</el-button>
+          <el-button class="reset"  @click="auditRequirements = false">取消</el-button>
+        </div>
+      </div>
+    </el-dialog> 
+    <el-dialog :visible.sync="outerVisible">
+      <div class="automaticReview">
+        <div class="reviewContent">
+          <span class="documentNumber">单据编号：xxxxx00001</span>
+          <span class="founder">创建人：张三 2016-01-01</span>
+        </div>
+        <div class="auditResults">
+          <span class="auditResults1">审核结果：</span>
+          <span class="examinationPassed"><el-radio v-model="radio" label="1">审核通过</el-radio></span>
+          <div class= "void">
+            <el-radio v-model="radio" label="2">作废</el-radio>
+            <el-input  class="void1" v-model="voidNote" placeholder="作废原因备注"></el-input>
+          </div>
+        </div>
+        <div class="submit">
+          <el-button type="primary"class="searchFor">确定</el-button>
+          <el-button class="reset"   @click="outerVisible = false">取消</el-button>
+        </div>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      reset: false,
+      auditRequirements: false,
       searchTitle: '普通搜索',
+      radio: '1',
+      outerVisible: false,
+      voidNote: '',
       form: {
         documentNumber: '',
         accountName: '',
@@ -307,5 +345,52 @@ export default {
 }
 /deep/.el-table th{
   background: #F5F7FA;
+}
+.auditRules{ 
+  .documentReviewRules{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .submit{
+    margin-top: 20px;
+    .searchFor{
+    width: 100px;
+    border-radius: 3px;
+    }
+    .reset{
+      width: 100px;
+      border-radius: 3px;
+    }
+  } 
+}
+.automaticReview{
+  font-size: 14px;
+  .reviewContent{
+    .documentNumber{
+      float: left;
+      margin-right: 20px;
+    }
+  }
+  .auditResults{
+    margin-top: 20px;
+  }
+  .void{
+    margin-left: 74px;
+    .void1{
+      width: 200px;
+    }
+  }
+  .submit{
+    margin-top: 15px;
+    .searchFor{
+    width: 100px;
+    border-radius: 3px;
+    }
+    .reset{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
 }
 </style>
