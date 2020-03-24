@@ -77,7 +77,7 @@
         </div>
         <div class="rechargeSystem">
           <div class="recharge"><el-button type="warning" @click="RechargePopup = true">充值</el-button></div>
-          <div class="withdraw"><el-button>提现</el-button></div>
+          <div class="withdraw" @click="withdraw = true"><el-button>提现</el-button></div>
           <div class="accountFlow" @click="accountFlow = true"><el-button >账户流水</el-button></div>
         </div>       
       </div>
@@ -94,7 +94,7 @@
         </div>
         <div class="operationRechargeSystem">
           <div class="operationRecharge" @click="operationTopUp = true"><el-button type="warning">充值</el-button></div>
-          <div class="operationAccountFlow"><el-button>账户流水</el-button></div>
+          <div class="operationAccountFlow" @click="operationAccountFlow"><el-button>账户流水</el-button></div>
         </div>        
       </div>
     </div>
@@ -203,7 +203,7 @@
           </div>
           <div class="submit">
             <el-button type="primary"class="searchFor" >确定</el-button>
-            <el-button class="reset">取消</el-button>
+            <el-button class="reset"  @click="dialogTableVisible = false">取消</el-button>
           </div>
         </el-dialog>
       </el-form>
@@ -387,7 +387,7 @@
           <el-radio v-model="radios" label="1">电子钱包（基本户）</el-radio>
           <div class="available">可用金额<span class="countOff">￥10000.00</span></div>
           <el-button type="primary" class="immediately">立即支付</el-button>
-          <el-button class="cancel">取消</el-button>
+          <el-button class="cancel"@click="operationTopUp = false">取消</el-button>
         </div>
       </el-dialog>  
     </div>
@@ -424,11 +424,78 @@
         </el-form>
         <div class="description">注：每天最多只能提交3次</div>
         <div class="submit">
-          <el-button type="primary"class="nextStep" >下一步</el-button>
-          <el-button class="reset">取消</el-button>
+          <el-button type="primary"class="nextStep" @click="nextStep = true" >下一步</el-button>
+          <el-button class="reset"  @click="replace = false" >取消</el-button>
         </div>
       </el-dialog>  
     </div>
+    <!--<div class="untiedCashCard">
+      <el-dialog  :visible.sync="withdraw">
+        <div class="bindWithdrawal">
+          <i class="el-icon-info"></i>
+          <div class="unboundCard">您尚未绑定提现卡，请先绑定后再提现！</div>
+        </div>
+        <div class="untiedsubmit">
+          <el-button type="primary"class="tiedCardNow"  @click="replace = true">立即绑卡</el-button>
+          <el-button class="untiedCashCardreset" @click="withdraw = false">取消</el-button>
+        </div>
+      </el-dialog>
+    </div>-->
+    <div class="cardTied">
+      <el-dialog  :visible.sync="withdraw">
+        <div class="debitCard">
+          <span class="debitCard1">到账银行卡：</span>
+          <span class="debitCard2">XXXXX银行（1008）</span>
+          <span class="replace" @click="replace = true">更换</span>
+        </div>
+        <div class="arrivalTime">
+          <span class="arrivalTime1">到账时间：</span>
+          <span class="nextWorkingDay">下一工作日14:00-15:00</span>
+        </div>
+        <div class="withdrawalAmount">
+          <span class="withdrawalAmount1">提现金额：</span>
+          <span class="yuan"><el-input  class="quota" v-model="withdrawalAmount"></el-input> 元</span>
+        </div>
+        <div class="amountAvailable">账户可用金额 <span class="quotaColor">￥10000.00</span></div>
+        <div class="serviceFee">额外扣除<span class="quotaColor"> ￥10.00 </span>服务费（5万以内每笔10元，5万以上每笔20元）</div>
+        <div class="withdrawSubmission">
+          <el-button type="primary" class="confirmWithdrawal" @click="withdraw = false">确定提现</el-button>
+        </div>
+      </el-dialog>  
+    </div>
+    <!--<el-dialog  :visible.sync="nextStep">
+      <div class="accountTypeIsInUnits">
+        <div class="Precautions">
+          <span class="Precautions1">系统已经自动转入一定的金额到您的提现卡，用于验证！</span>
+          <span class="Precautions2">到账时间可能有延迟，可以稍候录入，3天内录入有效！</span>
+        </div>
+        <div class="entryAmount">
+          <span class="amountReceived">请录入收到的金额：</span>
+          <el-input  class="quota" v-model="amountReceived"></el-input> 
+        </div>
+        <div class="reTieTheCard">3次错误需要重新绑卡</div>
+        <div class="submit">
+          <el-button type="primary" class="submit1" @click="nextStep = false">提交</el-button>
+          <el-button  class="unbindCard" @click="nextStep = false">取消绑卡</el-button>
+          <el-button class="processLater" @click="nextStep = false">稍后处理</el-button>
+        </div>
+      </div>
+    </el-dialog>-->
+    <el-dialog  :visible.sync="nextStep">
+      <div class="phoneVerification">
+        <div class="Verification">
+          系统已经发送一条验证码到您提现卡绑定的手机138*****123，用于验证！
+        </div>
+        <div class="receivedVerificationCode">
+          <span class="verificationCode">请录入收到的验证码：</span>
+          <el-input class="InputBox" v-model="verificationCode"></el-input>
+        </div>
+        <div class="submit">
+          <el-button type="primary" class="submit1" @click="nextStep = false">提交</el-button>
+          <el-button  class="cancel" @click="nextStep = false">取消</el-button>
+        </div>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -491,6 +558,10 @@ export default {
         operator: '',
         Note: ''
       }],
+      verificationCode: '',
+      withdrawalAmount: '',
+      nextStep: false,
+      withdraw: false,
       radio: '1',
       radios: '1',
       input: '',
@@ -500,6 +571,7 @@ export default {
       accountFlow: false,
       operationTopUp: false,
       replace: false,
+      amountReceived: '',
       ruleForm: {
         accountType: '',
         accountName: '',
@@ -568,6 +640,9 @@ export default {
       if (this.transfer == '线下转账') {
         this.transfer = '在线支付'
       }
+    },
+    operationAccountFlow() {
+      this.$router.push('/operatorsFlow')
     }
   }
 }
@@ -1084,6 +1159,136 @@ background-color: #f9fafc;
       border-radius: 3px;
     }
     .reset{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+}
+.untiedCashCard{
+  .bindWithdrawal{
+    .el-icon-info{
+      color: #333333;
+      font-size: 36px;
+      float: left;
+      margin-right: 20px;
+    }
+    .unboundCard{
+      font-size: 16px;
+      line-height: 2.5em;
+    }
+  }
+  .untiedsubmit{
+    margin-top: 20px;
+    .tiedCardNow{
+      width: 100px;
+      border-radius: 3px;
+    }
+    .untiedCashCardreset{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+}
+.cardTied{
+  font-size: 15px;
+  .replace{
+    color: #169BD5;
+  }
+  .debitCard2{
+    margin-left: 20px;
+  }
+  .replace{
+    margin-left: 10px;
+  }
+  .arrivalTime{
+    margin-top: 10px;
+  }
+  .nextWorkingDay{
+    margin-left: 30px;
+  }
+  .quota{
+    width: 150px;
+  }
+  .quotaColor{
+    color: #00cc00;
+  }
+  .withdrawalAmount{
+    margin-top: 10px;
+    .yuan{
+      margin-left: 30px;
+    }
+  }
+  .withdrawSubmission{
+    margin-top: 20px;
+    margin-left: 100px;
+    .confirmWithdrawal{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+  .amountAvailable{
+    margin-top: 10px;
+    margin-left: 103px;
+    font-size: 12px;
+  }
+  .serviceFee{
+    margin-left: 102px;
+    font-size: 12px;
+  }
+}
+.accountTypeIsInUnits{
+  .entryAmount{
+    .quota{
+      width: 180px;
+    }
+  }
+  .reTieTheCard{
+    color: #ff0000;
+    margin-left: 138px;
+    font-size: 12px;
+  }
+  .submit{
+    margin-top: 20px;
+    margin-left: 10px;
+    .submit1{
+      width: 100px;
+      border-radius: 3px;
+    }
+    .unbindCard{
+      width: 100px;
+      border-radius: 3px;
+    }
+    .processLater{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+  .Precautions{
+    margin-left: 10px;
+  }
+  .entryAmount{
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+}
+.phoneVerification{
+  .receivedVerificationCode{
+    margin-top: 20px;
+    .verificationCode{
+      float: left;
+    }
+    .InputBox{
+      width: 150px;
+    }
+  }
+  .submit{
+    margin-top: 20px;
+    margin-left: 50px;
+    .submit1{
+      width: 100px;
+      border-radius: 3px;
+    }
+    .cancel{
       width: 100px;
       border-radius: 3px;
     }
