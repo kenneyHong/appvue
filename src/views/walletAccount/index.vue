@@ -189,7 +189,11 @@
       <el-table-column
         prop="operating"
         label="操作"
-        width="100">
+        width="150">
+        <template slot-scope="scope">
+          <el-button type="text" size="small" @click="View = true">查看</el-button>
+          <el-button  type="text" size="small"@click="accountFlow = true">账户流水</el-button>
+        </template>
       </el-table-column>
     </el-table>
     <div class="block">
@@ -204,6 +208,219 @@
         <el-button>末页</el-button>
       </el-pagination>
     </div>
+    <div class="tableView">
+      <el-dialog title="查看" :visible.sync="View">
+        <div class="basicMaterial" >
+          <el-button class="BasicInformation" type="primary"  @click="basicMaterial">基本资料</el-button>
+          <el-button  class="openLog" type="primary"  @click="openLog">开通日志</el-button>
+        </div>
+       <!-- <div class="companyBasicInformation">
+          <el-form ref="form" :model="checkingData" label-width="118px">
+            <el-form-item label="资金账号：">
+              <el-input v-model="checkingData.fundAccount"></el-input>
+            </el-form-item>
+            <el-form-item label="账户类型：">
+              <el-input v-model="checkingData.accountType"></el-input>
+            </el-form-item>
+            <el-form-item label="户名：">
+              <el-input v-model="checkingData.accountName"></el-input>
+            </el-form-item>
+            <el-form-item label="银行电子账户：">
+              <el-input v-model="checkingData.electronicAccount"></el-input>
+            </el-form-item>
+            <el-form-item label="开户时间：">
+              <el-input v-model="checkingData.accountOpeningtime"></el-input>
+            </el-form-item>
+            <el-form-item label="统一社会信用代码：">
+              <el-input v-model="checkingData.socialCredit"></el-input>
+            </el-form-item>
+            <el-form-item label="法定代表人姓名：">
+              <el-input v-model="checkingData.representativeName"></el-input>
+            </el-form-item>
+            <el-form-item label="法定代表人身份证：">
+              <el-input v-model="checkingData.representativeID"></el-input>
+            </el-form-item>
+            <el-form-item label="手机号码：">
+              <el-input v-model="checkingData.mobilePhoneNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="所属区域：">
+              <el-input v-model="checkingData.Area"></el-input>
+            </el-form-item>
+            <el-form-item label="详细地址：">
+              <el-input v-model="checkingData.address"></el-input>
+            </el-form-item>
+          </el-form>
+        </div>-->
+        <div class="PersonalBasicInformation" v-if="Switch == '基本资料'">
+          <el-form ref="form" :model="formation" label-width="118px">
+            <el-form-item label="资金账号：">
+              <el-input v-model="formation.fundAccount"></el-input>
+            </el-form-item>
+            <el-form-item label="账户类型：">
+              <el-input v-model="formation.accountType"></el-input>
+            </el-form-item>
+            <el-form-item label="户名：">
+              <el-input v-model="formation.accountName"></el-input>
+            </el-form-item>
+            <el-form-item label="银行电子账户：">
+              <el-input v-model="formation.electronicAccount"></el-input>
+            </el-form-item>
+            <el-form-item label="开户时间：">
+              <el-input v-model="formation.accountOpeningtime"></el-input>
+            </el-form-item>
+            <el-form-item label="身份证号码：">
+              <el-input v-model="formation.identificationNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="手机号码：">
+              <el-input v-model="formation.mobilePhoneNumber"></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="openLog" v-if="Switch == '开通日志'">
+          <el-table
+            :data="openLogtableData"
+            border
+            style="width: 100%">
+            <el-table-column
+              prop="operatingTime"
+              label="操作时间"
+              min-width="130">
+            </el-table-column>
+            <el-table-column
+              prop="operationType"
+              label="操作类型"
+              min-width="120">
+            </el-table-column>
+            <el-table-column
+              prop="entrance"
+              label="入口"
+              min-width="120">
+            </el-table-column>
+            <el-table-column
+              prop="operator"
+              label="操作人"
+              min-width="120">
+            </el-table-column>
+            <el-table-column
+              prop="Note"
+              label="备注"
+              min-width="180">
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-dialog>
+    </div>
+    <el-dialog title="账户流水" :visible.sync="accountFlow" width="80%">
+      <div class="accountFlowPopups">
+        <div class="accountFlow">
+          <el-form :inline="true" :model="formInline" class="demo-form-inline">
+            <el-row :gutter="20">
+              <el-col :span="15">
+                <el-form-item label="时间：" label-width="118px">
+                  <el-date-picker
+                    v-model="form.time"
+                    type="daterange"
+                    range-separator="-"
+                    start-placeholder="2016/01/01"
+                    end-placeholder="2016/01/01">
+                  </el-date-picker>
+                </el-form-item>
+                <el-form-item label="来源：">
+                  <el-select v-model="formInline.source" placeholder="全部">
+                    <el-option label="全部" value="all1"></el-option>
+                    <el-option label="提现" value="withdraw"></el-option>
+                    <el-option label="零售单" value="retailOrder"></el-option>
+                    <el-option label="充值" value="recharge"></el-option>
+                    <el-option label="SaaS订单" value="SaaSOrders"></el-option>
+                    <el-option label="短信充值" value="SMSTopup"></el-option>
+                    <el-option label="科技院订单" value="academyOrder"></el-option>
+                    <el-option label="定制单" value="customOrder"></el-option>
+                    <el-option label="转账" value="transfer"></el-option>
+                    <el-option label="零售退货单" value="retailReturn"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-button type="primary">搜索</el-button>
+                <el-button>重置</el-button>
+              </el-col>
+            </el-row>
+          </el-form>  
+        </div>
+        <el-table
+        :data="accountFlowTableData"
+        border>
+          <el-table-column
+            prop="serialNumber"
+            label="流水号"
+            min-width="150">
+          </el-table-column>
+          <el-table-column
+            prop="operatingTime"
+            sortable
+            label="操作时间"
+            width="140">
+          </el-table-column>
+          <el-table-column
+            prop="incomeAndExpenses"
+            label="收入/支出"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="Amount"
+            label="金额"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="accountBalance"
+            label="帐户余额"
+            width="130">
+          </el-table-column>
+          <el-table-column
+            prop="source"
+            label="来源"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="relatedDocuments"
+            label="相关单据"
+            width="130">
+          </el-table-column>
+          <el-table-column
+            prop="transactionAmount"
+            label="交易金额"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="serviceFee"
+            label="服务费"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="operator"
+            label="操作人"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="Note"
+            label="备注"
+            width="100">
+          </el-table-column>
+        </el-table>
+        <div class="block">
+          <el-pagination
+            layout="slot, prev, pager, next "
+            :page-size="20"
+            :total="200"
+            style="display: inline-block;padding-right: 0px;">
+            <el-button>首页</el-button>
+          </el-pagination>
+          <el-pagination layout="slot" style="display: inline-block;padding-right: 0px;">
+            <el-button>末页</el-button>
+          </el-pagination>
+        </div>
+      </div>
+    </el-dialog>  
   </div>
 </template>
 <script>
@@ -212,6 +429,9 @@ export default {
     return {
       searchTitle: '普通搜索',
       input3: '',
+      View: false,
+      Switch: '基本资料',
+      accountFlow: false,
       form: {
         fundAccount: '',
         accountName: '',
@@ -313,6 +533,84 @@ export default {
         operatingAccount2: '',
         accountstatus: '',
         operating: ''
+      }],
+      checkingData: {
+        fundAccount: '',
+        accountType: '',
+        accountName: '',
+        electronicAccount: '',
+        accountOpeningtime: '',
+        socialCredit: '',
+        representativeName: '',
+        representativeID: '',
+        mobilePhoneNumber: '',
+        Area: '',
+        address: ''
+      },
+      formation: {
+        fundAccount: '',
+        accountType: '',
+        accountName: '',
+        electronicAccount: '',
+        accountOpeningtime: '',
+        identificationNumber: '',
+        mobilePhoneNumber: ''
+      },
+      openLogtableData: [{
+        operatingTime: '',
+        operationType: '',
+        entrance: '',
+        operator: '',
+        Note: ''
+      }, {
+        operatingTime: '',
+        operationType: '',
+        entrance: '',
+        operator: '',
+        Note: ''
+      }, {
+        operatingTime: '',
+        operationType: '',
+        entrance: '',
+        operator: '',
+        Note: ''
+      }],
+      accountFlowTableData: [{
+        serialNumber: '',
+        operatingTime: '',
+        incomeAndExpenses: '',
+        Amount: '',
+        accountBalance: '',
+        source: '',
+        relatedDocuments: '',
+        transactionAmount: '',
+        serviceFee: '',
+        operator: '',
+        Note: ''
+      }, {
+        serialNumber: '',
+        operatingTime: '',
+        incomeAndExpenses: '',
+        Amount: '',
+        accountBalance: '',
+        source: '',
+        relatedDocuments: '',
+        transactionAmount: '',
+        serviceFee: '',
+        operator: '',
+        Note: ''
+      }, {
+        serialNumber: '',
+        operatingTime: '',
+        incomeAndExpenses: '',
+        Amount: '',
+        accountBalance: '',
+        source: '',
+        relatedDocuments: '',
+        transactionAmount: '',
+        serviceFee: '',
+        operator: '',
+        Note: ''
       }]
     }
   },
@@ -322,6 +620,16 @@ export default {
         this.searchTitle = '高级搜索'
       } else if (this.searchTitle == '高级搜索') {
         this.searchTitle = '普通搜索'
+      }
+    },
+    basicMaterial() {
+      if (this.Switch == '开通日志') {
+        this.Switch = '基本资料'
+      }
+    },
+    openLog() {
+      if (this.Switch == '基本资料') {
+        this.Switch = '开通日志'
       }
     }
   }
@@ -395,5 +703,29 @@ background-color: #f9fafc;
 .el-table--border{
   margin-left: 10px;
   margin-top: 10px;
+}
+.tableView{
+  .basicMaterial{
+    .el-button{
+      border: none;
+      width: 100px;
+      height: 40px;
+    }
+    .el-button--primary{
+      color: #409eff;
+      background: #ffffff;
+    }
+  }
+  .companyBasicInformation{
+    margin-top: 20px;
+  }
+  .PersonalBasicInformation{
+    margin-top: 20px;
+  }
+}
+.accountFlowPopups{
+  .el-col{
+    margin-left: 10px;
+  }
 }
 </style>

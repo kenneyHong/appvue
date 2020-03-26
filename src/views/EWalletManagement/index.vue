@@ -209,7 +209,7 @@
       </el-form>
     </div>
     <div class="economy">
-      <el-dialog  :visible.sync="RechargePopup">
+      <el-dialog  title="充值":visible.sync="RechargePopup">
         <div class="OfflineTransfer">
           <el-button class="transfer" @click="Offline">
             <div class="Offline" >线下转账</div>
@@ -266,7 +266,7 @@
       </el-dialog>  
     </div>
     <div class= "accountFlowPopups">
-      <el-dialog :visible.sync="accountFlow" width="80%">
+      <el-dialog title="账户流水":visible.sync="accountFlow" width="80%">
         <div class="AccountFlow">
           <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-form-item label="时间：" label-width="120px">
@@ -369,7 +369,7 @@
       </el-dialog>
     </div>
     <div class="operationTopUp">
-      <el-dialog  :visible.sync="operationTopUp">
+      <el-dialog  title="充值":visible.sync="operationTopUp">
         <div class="whole">
           <span class="amount">充值金额：</span>
           <el-input class="amount1" v-model="input"></el-input>
@@ -392,7 +392,7 @@
       </el-dialog>  
     </div>
     <div class="changePopupLayout">
-      <el-dialog :visible.sync="replace">
+      <el-dialog title="未绑定提现卡":visible.sync="replace">
         <el-form ref="form" :model="form" label-width="120px">
           <el-form-item label="*开户名称：">
             <el-input placeholder="xxxxxxxxxx公司" v-model="form.mosquitoNet" :disabled="true"></el-input>
@@ -430,7 +430,7 @@
       </el-dialog>  
     </div>
     <!--<div class="untiedCashCard">
-      <el-dialog  :visible.sync="withdraw">
+      <el-dialog  title="未绑定银行卡":visible.sync="withdraw">
         <div class="bindWithdrawal">
           <i class="el-icon-info"></i>
           <div class="unboundCard">您尚未绑定提现卡，请先绑定后再提现！</div>
@@ -442,7 +442,7 @@
       </el-dialog>
     </div>-->
     <div class="cardTied">
-      <el-dialog  :visible.sync="withdraw">
+      <el-dialog  title="账户提现":visible.sync="withdraw">
         <div class="debitCard">
           <span class="debitCard1">到账银行卡：</span>
           <span class="debitCard2">XXXXX银行（1008）</span>
@@ -463,7 +463,7 @@
         </div>
       </el-dialog>  
     </div>
-    <!--<el-dialog  :visible.sync="nextStep">
+    <!--<el-dialog title="提现卡验证" :visible.sync="nextStep">
       <div class="accountTypeIsInUnits">
         <div class="Precautions">
           <span class="Precautions1">系统已经自动转入一定的金额到您的提现卡，用于验证！</span>
@@ -481,7 +481,7 @@
         </div>
       </div>
     </el-dialog>-->
-    <el-dialog  :visible.sync="nextStep">
+    <el-dialog  title="手机验证码" :visible.sync="nextStep">
       <div class="phoneVerification">
         <div class="Verification">
           系统已经发送一条验证码到您提现卡绑定的手机138*****123，用于验证！
