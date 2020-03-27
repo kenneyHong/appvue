@@ -167,7 +167,7 @@
         label="操作"
         width="150">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+          <el-button  type="text" size="small" @click="lookOver = true">查看</el-button>
           <el-button @click="handleClick(scope.row)" type="text" size="small">审核</el-button>
           <el-button @click="handleClick(scope.row)" type="text" size="small">作废</el-button>
         </template>
@@ -185,7 +185,7 @@
         <el-button>末页</el-button>
       </el-pagination>
     </div>
-    <el-dialog :visible.sync="auditRequirements">
+    <el-dialog  title="审核规则" :visible.sync="auditRequirements">
       <div class="auditRules">
         <div class="documentReviewRules">单据审核规则:</div>
         <div class="smartSelection">
@@ -198,7 +198,7 @@
         </div>
       </div>
     </el-dialog> 
-    <el-dialog :visible.sync="outerVisible">
+    <el-dialog title="审核规则":visible.sync="outerVisible">
       <div class="automaticReview">
         <div class="reviewContent">
           <span class="documentNumber">单据编号：xxxxx00001</span>
@@ -218,6 +218,70 @@
         </div>
       </div>
     </el-dialog>
+    <el-dialog title="查看" :visible.sync="lookOver">
+      <div class="lookOver">
+        <el-form ref="form" :model="look" label-width="118px">
+          <el-form-item label="单据编号">
+            <el-input v-model="look.documentNumber"></el-input>
+          </el-form-item>
+          <el-form-item label="创建时间">
+            <el-input v-model="look.creationTime"></el-input>
+          </el-form-item>
+          <el-form-item label="创建人">
+            <el-input v-model="look.founder"></el-input>
+          </el-form-item>
+          <el-form-item label="商户类型">
+            <el-input v-model="look.region"></el-input>
+          </el-form-item>
+          <el-form-item label="公司编码">
+            <el-input v-model="look.companyCode"></el-input>
+          </el-form-item>
+          <el-form-item label="公司名称">
+            <el-input v-model="look.companyName"></el-input>
+          </el-form-item>
+          <el-form-item label="门店编码">
+            <el-input v-model="look.storeCode"></el-input>
+          </el-form-item>
+          <el-form-item label="门店名称">
+            <el-input v-model="look.storeTitle"></el-input>
+          </el-form-item>
+          <el-form-item label="提现银行名称">
+            <el-input v-model="look.bankName"></el-input>
+          </el-form-item>
+          <el-form-item label="提现账户卡号">
+            <el-input v-model="look.CardNumber"></el-input>
+          </el-form-item>
+          <el-form-item label="提现账户户名">
+            <el-input v-model="look.accountName"></el-input>
+          </el-form-item>
+          <el-form-item label="提现金额">
+            <el-input v-model="look.withdrawalAmount"></el-input>
+          </el-form-item>
+          <el-form-item label="服务费">
+            <el-input v-model="look.serviceFee"></el-input>
+          </el-form-item>
+          <el-form-item label="到账金额">
+            <el-input v-model="look.amountReceived"></el-input>
+          </el-form-item>
+          <el-form-item label="审核时间">
+            <el-input v-model="look.reviewTime"></el-input>
+          </el-form-item>
+          <el-form-item label="审核人">
+            <el-input v-model="look.review"></el-input>
+          </el-form-item>
+          <el-form-item label="支付时间">
+            <el-input v-model="look.paymentTime"></el-input>
+          </el-form-item>
+          <el-form-item label="支付状态">
+            <el-input v-model="look.tradingStatus"></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="submit">
+          <el-button type="primary"class="review" @click="lookOver = false">审核</el-button>
+          <el-button class="Void" @click="lookOver = false">作废</el-button>
+        </div>
+      </div>
+    </el-dialog>  
   </div>
 </template>
 <script>
@@ -225,12 +289,33 @@ export default {
   data() {
     return {
       reset: false,
+      lookOver: false,
       auditRequirements: false,
       outerVisible: false,
       radio: '1',
       searchTitle: '普通搜索',
       voidNote: '',
       input3: '',
+      look: {
+        documentNumber: '',
+        creationTime: '',
+        founder: '',
+        region: '',
+        companyCode: '',
+        companyName: '',
+        storeCode: '',
+        storeTitle: '',
+        bankName: '',
+        CardNumber: '',
+        accountName: '',
+        withdrawalAmount: '',
+        serviceFee: '',
+        amountReceived: '',
+        reviewTime: '',
+        review: '',
+        paymentTime: '',
+        tradingStatus: ''
+      },
       form: {
         documentNumber: '',
         creationTime: '',
@@ -416,6 +501,19 @@ export default {
     border-radius: 3px;
     }
     .reset{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+}
+.lookOver{
+  .submit{
+    margin-top: 15px;
+    .review{
+    width: 100px;
+    border-radius: 3px;
+    }
+    .Void{
       width: 100px;
       border-radius: 3px;
     }
