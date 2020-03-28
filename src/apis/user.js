@@ -1,19 +1,5 @@
 import fetch from '@/utilities/fetch'
 
-export const USERS_API_REGISTERED = parameters => {
-  return fetch({
-    url: '/registered',
-    method: 'post',
-    data: parameters
-  })
-}
-export const USERS_API_LOGIN = parameters => {
-  return fetch({
-    url: '/login',
-    method: 'post',
-    data: parameters
-  })
-}
 export const USERS_API_GETHUPUDATA = parameters => {
   return fetch({
     url: '/getHupuData',
@@ -43,15 +29,31 @@ export const GOODS_API_CREATEFALSEDATA = parameters => {
 */
 export const GOODS_API_GETGOODSDATA = parameters => {
   return fetch({
-    url: '/getGoodsData',
+    url: '/clearing/getGoodsData',
     method: 'get',
     params: parameters
   })
 }
 
+export const USERS_API_REGISTERED = parameters => {
+  return fetch({
+    url: '/user/registered',
+    method: 'post',
+    data: parameters
+  })
+}
+
+export const USERS_API_LOGIN = parameters => {
+  return fetch({
+    url: '/user/login',
+    method: 'post',
+    data: parameters
+  })
+}
+
 export const CLEARING_API_CREATEACCOUNTLIST = parameters => {
   return fetch({
-    url: '/createAccountList',
+    url: '/clearing/createAccountList',
     method: 'get',
     params: parameters
   })
@@ -87,7 +89,7 @@ export const CLEARING_API_CREATEACCOUNTLIST = parameters => {
 */
 export const CLEARING_API_GETACCOUNTLIST = parameters => {
   return fetch({
-    url: '/getAccountList',
+    url: '/clearing/getAccountList',
     method: 'get',
     params: parameters
   })

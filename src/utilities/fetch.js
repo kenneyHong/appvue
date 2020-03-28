@@ -12,7 +12,7 @@ const service = axios.create({
 // request???
 service.interceptors.request.use(
   config => {
-    config.url = 'http://192.168.1.161:3000' + config.url
+    config.url = 'http://192.168.1.115:3000' + config.url
     if (config.method === 'post') {
       config.data = JSON.stringify(config.data)
     }
