@@ -149,7 +149,7 @@
         label="操作"
         width='150'> 
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+          <el-button  type="text" size="small"  @click="lookOver = true">查看</el-button>
           <el-button @click="handleClick(scope.row)" type="text" size="small">审核</el-button>
           <el-button @click="handleClick(scope.row)" type="text" size="small">作废</el-button>
         </template>
@@ -200,6 +200,56 @@
         </div>
       </div>
     </el-dialog>
+    <el-dialog title="查看" :visible.sync="lookOver">
+      <div class="accountType">
+        <div class="typeOfCompany">
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="118px" class="demo-ruleForm" >
+            <!-- <el-form-item label="*账户类型：">
+              <el-input v-model="ruleForm.accountType"></el-input>
+            </el-form-item>
+            <el-form-item label="*户名：">
+              <el-input v-model="ruleForm.accountName"></el-input>
+            </el-form-item>
+            <el-form-item label="*统一社会信用代码：">
+              <el-input v-model="ruleForm.creditCode"></el-input>
+            </el-form-item>
+            <el-form-item label="*法定代表人姓名：">
+              <el-input v-model="ruleForm.legalName"></el-input>
+            </el-form-item>
+            <el-form-item label="*法定代表人身份证：">
+              <el-input v-model="ruleForm.legalIdentityCard"></el-input>
+            </el-form-item>
+            <el-form-item label="*手机号码：">
+              <el-input v-model="ruleForm.mobilePhone"></el-input>
+            </el-form-item>
+            <el-form-item label="*所属区域：">
+              <el-input v-model="ruleForm.districtBelong"></el-input>
+            </el-form-item>
+            <el-form-item label="*详细地址：">
+              <el-input v-model="ruleForm.address"></el-input>
+            </el-form-item>-->
+            <div class= "personalType">
+              <el-form-item label="*账户类型：">
+                <el-input v-model="ruleForm.accountType"></el-input>
+              </el-form-item>
+              <el-form-item label="*户名：">
+                <el-input v-model="ruleForm.accountName"></el-input>
+              </el-form-item>
+              <el-form-item label="*身份证号码：">
+                <el-input v-model="ruleForm.identificationNumber"></el-input>
+              </el-form-item>
+              <el-form-item label="*手机号码：">
+                <el-input v-model="ruleForm.mobilePhone"></el-input>
+              </el-form-item>
+            </div>
+          </el-form>
+        </div>
+        <div class="submit">
+          <el-button type="primary"class="review" @click="lookOver = false">审核</el-button>
+          <el-button class="Void"  @click="lookOver = false">作废</el-button>
+        </div>
+      </div>
+    </el-dialog> 
   </div>
 </template>
 <script>
@@ -207,6 +257,7 @@ export default {
   data() {
     return {
       reset: false,
+      lookOver: false,
       auditRequirements: false,
       searchTitle: '普通搜索',
       radio: '1',
@@ -220,6 +271,17 @@ export default {
         companyName: '',
         storeCode: '',
         storeName: ''
+      },
+      ruleForm: {
+        accountType: '',
+        accountName: '',
+        creditCode: '',
+        legalName: '',
+        legalIdentityCard: '',
+        mobilePhone: '',
+        districtBelong: '',
+        address: '',
+        identificationNumber: ''
       },
       tableData: [{
         documentNumber: '170000',
@@ -388,6 +450,19 @@ export default {
     border-radius: 3px;
     }
     .reset{
+      width: 100px;
+      border-radius: 3px;
+    }
+  }
+}
+.accountType{
+  .submit{
+    margin-top: 15px;
+    .review{
+    width: 100px;
+    border-radius: 3px;
+    }
+    .Void{
       width: 100px;
       border-radius: 3px;
     }
