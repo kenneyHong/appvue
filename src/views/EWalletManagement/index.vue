@@ -49,6 +49,23 @@
         </el-col>
       </el-row>
     </div>
+    <div class="loginLayout">
+      <el-row>
+        <el-col :span="24">
+        <div class="grid-content bg-purple-dark">
+          <span class="inputBox">
+            <i class  ="el-icon-info"></i>
+            <span class="electronicsIsOn" 
+            >电子钱包已开通！</span>
+            <span class="reRegister">
+              （开通后需要重新登录一下系统！）
+            </span>
+            <el-button type="primary" class="logInSystem" @click="logInSystem">重新登录系统</el-button>
+          </span> 
+        </div>
+        </el-col>
+      </el-row>
+    </div>
     <div class="alreadyOpened">
       <el-row>
         <el-col :span="24">
@@ -643,6 +660,9 @@ export default {
     },
     operationAccountFlow() {
       this.$router.push('/operatorsFlow')
+    },
+    logInSystem() {
+      this.$router.push('/login')
     }
   }
 }
@@ -725,6 +745,26 @@ background-color: #f9fafc;
     margin-left: 10px;
     border-radius: 4px;
     margin-left: 57.4%;
+  }
+}
+.loginLayout{
+  margin-top: 20px;
+  line-height: 4em;
+  .inputBox{
+    padding-left: 10px;
+    .electronicsIsOn{
+      padding-left: 10px;
+    }
+    .reRegister{
+      color: #da0000;
+    }
+    .logInSystem{
+      width: 100px;
+      height: 30px;
+      margin-left: 10px;
+      border-radius: 4px;
+      margin-left: 60%;
+    }
   }
 }
 .reopenLayout{
