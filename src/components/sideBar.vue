@@ -8,168 +8,64 @@
       </span>
       <el-scrollbar wrap-class="list" wrap-style="color: red;" class="sidBar-sys">
         <ul>
-          <li class="features" :class="this.$route.path == '/walletAccount' && 'active'" @click="toLinks('/walletAccount')">
+          <li class="features" :class="isSelfLink('/walletAccount/index') && 'active'" @click="toLinks('/walletAccount/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">电子钱包账户列表</span>
           </li>
-          <li class="features" :class="this.$route.path == '/EWalletManagement' && 'active'" @click="toLinks('/EWalletManagement')">
+          <li class="features" :class="isSelfLink('/EWalletManagement/index') && 'active'" @click="toLinks('/EWalletManagement/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">电子钱包管理</span>
           </li>
-          <li class="features" :class="this.$route.path == '/accountApplication' && 'active'" @click="toLinks('/accountApplication')">
+          <li class="features" :class="isSelfLink('/accountApplication/index') && 'active'" @click="toLinks('/accountApplication/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">电子钱包开户申请</span>
           </li>
-          <li class="features" :class="this.$route.path == '/withdrawalApplication' && 'active'" @click="toLinks('/withdrawalApplication')">
+          <li class="features" :class="isSelfLink('/withdrawalApplication/index') && 'active'" @click="toLinks('/withdrawalApplication/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">电子钱包提现申请</span>
           </li>
-          <li class="features" :class="this.$route.path == '/reconciliationStatement' && 'active'" @click="toLinks('/reconciliationStatement')">
+          <li class="features" :class="isSelfLink('/reconciliationStatement/index') && 'active'" @click="toLinks('/reconciliationStatement/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">基本户对账报表</span>
           </li>
-          <li class="features" :class="this.$route.path == '/basicHousehold' && 'active'" @click="toLinks('/basicHousehold')">
+          <li class="features" :class="isSelfLink('/basicHousehold/index') && 'active'" @click="toLinks('/basicHousehold/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">基本户流水</span>
           </li>
-          <li class="features" :class="this.$route.path == '/personalRechargeHistory' && 'active'" @click="toLinks('/personalRechargeHistory')">
+          <li class="features" :class="isSelfLink('/personalRechargeHistory/index') && 'active'" @click="toLinks('/personalRechargeHistory/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">基本户充值记录</span>
           </li>
-          <li class="features" :class="this.$route.path == '/operatorManagement' && 'active'" @click="toLinks('/operatorManagement')">
+          <li class="features" :class="isSelfLink('/operatorManagement/index') && 'active'" @click="toLinks('/operatorManagement/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">运营户管理</span>
           </li>
-          <li class="features" :class="this.$route.path == '/operatorsFlow' && 'active'" @click="toLinks('/operatorsFlow')">
+          <li class="features" :class="isSelfLink('/operatorsFlow/index') && 'active'" @click="toLinks('/operatorsFlow/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">运营户流水</span>
           </li>
-          <li class="features" :class="this.$route.path == '/operatingAccount' && 'active'" @click="toLinks('/operatingAccount')">
+          <li class="features" :class="isSelfLink('/operatingAccount/index') && 'active'" @click="toLinks('/operatingAccount/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">运营户对账报表</span>
           </li>
-          <li class="features" :class="this.$route.path == '/EwalletrechargeReport' && 'active'" @click="toLinks('/EwalletrechargeReport')">
+          <li class="features" :class="isSelfLink('/ewalletrechargeReport/index') && 'active'" @click="toLinks('/ewalletrechargeReport/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">运营户充值报表</span>
           </li>
-          <li class="features" :class="this.$route.path == '/depositData' && 'active'" @click="toLinks('/depositData')">
+          <li class="features" :class="isSelfLink('/depositData/index') && 'active'" @click="toLinks('/depositData/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">入金单</span>
           </li>
-          <li class="features" :class="this.$route.path == '/withdrawal' && 'active'" @click="toLinks('/withdrawal')">
+          <li class="features" :class="isSelfLink('/withdrawal/index') && 'active'" @click="toLinks('/withdrawal/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">出金单</span>
           </li>
-          <li class="features" :class="this.$route.path == '/lnPlatformTransferBill' && 'active'" @click="toLinks('/lnPlatformTransferBill')">
+          <li class="features" :class="isSelfLink('/lnPlatformTransferBill/index') && 'active'" @click="toLinks('/lnPlatformTransferBill/index')">
             <img class="Icon" src="../assets/images/giftShop.png" alt="img">
             <span class="functions">平台内转账单</span>
           </li>
         </ul>
       </el-scrollbar>
-      <!-- <span class="features">
-        <img class="Icon" src="../assets/images/functions.png" alt="img">
-        <span class="functions">常用系统</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/erpsystemsystm.png" alt="img">
-        <span class="functions">ERP管理系统</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/wechatMarketing.png" alt="img">
-        <span class="functions">微信营销</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/salaryPerformance.png" alt="img">
-        <span class="functions">薪酬绩效系统</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/marketingActivities.png" alt="img">
-        <span class="functions">营销活动</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/jamSystem.png" alt="img">
-        <span class="functions">卡券系统系统系统</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/CRM.png" alt="img">
-        <span class="functions">SCRM系统</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/SMSsystem.png" alt="img">
-        <span class="functions">短信系统</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/catCat.png" alt="img">
-        <span class="functions">抓财猫</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/controlCenter.png" alt="img">
-        <span class="functions">管控中心</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/customerService.png" alt="img">
-        <span class="functions">专属客服</span>
-      </span>
-      <span class="features">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">礼品商城</span>
-      </span> -->
-      <!-- <span class="features" :class="this.$route.path == '/walletAccount' && 'active'" @click="toLinks('/walletAccount')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">电子钱包账户列表</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/EWalletManagement' && 'active'" @click="toLinks('/EWalletManagement')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">电子钱包管理</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/accountApplication' && 'active'" @click="toLinks('/accountApplication')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">电子钱包开户申请</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/withdrawalApplication' && 'active'" @click="toLinks('/withdrawalApplication')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">电子钱包提现申请</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/reconciliationStatement' && 'active'" @click="toLinks('/reconciliationStatement')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">基本户对账报表</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/basicHousehold' && 'active'" @click="toLinks('/basicHousehold')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">基本户流水</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/personalRechargeHistory' && 'active'" @click="toLinks('/personalRechargeHistory')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">基本户充值记录</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/operatorManagement' && 'active'" @click="toLinks('/operatorManagement')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">运营户管理</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/operatorsFlow' && 'active'" @click="toLinks('/operatorsFlow')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">运营户流水</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/operatingAccount' && 'active'" @click="toLinks('/operatingAccount')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">运营户对账报表</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/EwalletrechargeReport' && 'active'" @click="toLinks('/EwalletrechargeReport')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">运营户充值报表</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/depositData' && 'active'" @click="toLinks('/depositData')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">入金单</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/withdrawal' && 'active'" @click="toLinks('/withdrawal')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">出金单</span>
-      </span>
-      <span class="features" :class="this.$route.path == '/lnPlatformTransferBill' && 'active'" @click="toLinks('/lnPlatformTransferBill')">
-        <img class="Icon" src="../assets/images/giftShop.png" alt="img">
-        <span class="functions">平台内转账单</span>
-      </span> -->
     </div>
   </div>
 </template>
@@ -190,6 +86,9 @@ export default {
       if (this.$route.path != str) {
         this.$router.push(str)
       }
+    },
+    isSelfLink(link) {
+      return this.$route.path == link
     }
   },
   mounted () {},

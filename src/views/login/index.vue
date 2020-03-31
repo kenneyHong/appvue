@@ -94,7 +94,7 @@ export default {
                 message: '登录成功'
               })
               this.$store.commit('userName', res.data.Data.Name)
-              this.$router.push('/home')
+              this.$router.push('/walletAccount/index')
             }
           })
         }

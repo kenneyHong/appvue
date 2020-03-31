@@ -47,105 +47,105 @@ export default new Router({
       }
     },
     {
-      path: '/walletAccount',
+      path: '/walletAccount/index',
       component: walletAccount,
       meta: {
         name: '电子钱包账户列表'
       }
     },
     {
-      path: '/EWalletManagement',
+      path: '/EWalletManagement/index',
       component: EWalletManagement,
       meta: {
         name: '电子钱包管理'
       }
     },
     {
-      path: '/withdrawalApplication',
+      path: '/withdrawalApplication/index',
       component: withdrawalApplication,
       meta: {
         name: '电子钱包提现申请'
       }
     },
     {
-      path: '/accountApplication',
+      path: '/accountApplication/index',
       component: accountApplication,
       meta: {
         name: '电子钱包开户申请'
       }
     },
     {
-      path: '/personalRechargeHistory',
+      path: '/personalRechargeHistory/index',
       component: personalRechargeHistory,
       meta: {
         name: '电子钱包（基本户）充值记录'
       }
     },
     {
-      path: '/reconciliationStatement',
+      path: '/reconciliationStatement/index',
       component: reconciliationStatement,
       meta: {
         name: '电子钱包（基本户）对账报表'
       }
     },
     {
-      path: '/basicHousehold',
+      path: '/basicHousehold/index',
       component: basicHousehold,
       meta: {
         name: '电子钱包（基本户）流水'
       }
     },
     {
-      path: '/operatorManagement',
+      path: '/operatorManagement/index',
       component: operatorManagement,
       meta: {
         name: '电子钱包(运营户)管理'
       }
     },
     {
-      path: '/operatorsFlow',
+      path: '/operatorsFlow/index',
       component: operatorsFlow,
       meta: {
         name: '电子钱包(运营户)流水'
       }
     },
     {
-      path: '/operatingAccount',
+      path: '/operatingAccount/index',
       component: operatingAccount,
       meta: {
         name: '电子钱包(运营户)对账报表'
       }
     },
     {
-      path: '/EwalletrechargeReport',
+      path: '/ewalletrechargeReport/index',
       component: EwalletrechargeReport,
       meta: {
         name: '电子钱包(运营户)充值报表'
       }
     },
     {
-      path: '/withdrawal',
+      path: '/withdrawal/index',
       component: withdrawal,
       meta: {
         name: '出金单'
       }
     },
     {
-      path: '/depositData',
+      path: '/depositData/index',
       component: depositData,
       meta: {
         name: '入金单'
       }
     },
     {
-      path: '/lnPlatformTransferBill',
+      path: '/lnPlatformTransferBill/index',
       component: lnPlatformTransferBill,
       meta: {
         name: '平台内转账单'
       }
     },
     {
-      path: '/createData',
+      path: '/createData/index',
       component: createData,
       meta: {
         name: '测试页'

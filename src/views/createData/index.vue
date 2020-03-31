@@ -1,7 +1,15 @@
 <template>
   <div class="login">
-    <el-button @click="createAccountData">创建</el-button>
-    <el-button @click="getAccountData">获取</el-button>
+    <div>
+      <span>账户列表</span>
+      <el-button @click="createAccountData">创建</el-button>
+      <el-button @click="getAccountData">获取</el-button>
+    </div>
+    <div>
+      <span>账户列表</span>
+      <el-button @click="createAccountData">创建</el-button>
+      <el-button @click="getAccountData">获取</el-button>
+    </div>
   </div>
 </template>
 <script>
