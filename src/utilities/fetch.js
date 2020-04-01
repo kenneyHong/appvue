@@ -12,6 +12,7 @@ const service = axios.create({
 // request???
 service.interceptors.request.use(
   config => {
+    console.log(config.url)
     config.url = 'http://192.168.1.115:3000' + config.url
     if (config.method === 'post') {
       config.data = JSON.stringify(config.data)
@@ -31,7 +32,7 @@ service.interceptors.response.use(
   response => {
     const code = response.data.Code
     if (code == 'ERROR') {
-      if (response.data.Command) {
+      if (code == 'SIGNATURE') {
         router.replace({
           path: '/login'
         })

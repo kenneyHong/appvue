@@ -10,6 +10,11 @@
       <el-button @click="createAccountData">创建</el-button>
       <el-button @click="getAccountData">获取</el-button>
     </div>
+    <div>
+      <span>电子钱包</span>
+      <el-button @click="openWallet">创建</el-button>
+      <el-button @click="getAccountData">获取</el-button>
+    </div>
   </div>
 </template>
 <script>
@@ -17,7 +22,8 @@ import {
   GOODS_API_CREATEFALSEDATA,
   GOODS_API_GETGOODSDATA,
   CLEARING_API_CREATEACCOUNTLIST,
-  CLEARING_API_GETACCOUNTLIST
+  CLEARING_API_GETACCOUNTLIST,
+  CLEARING_API_OPENACCOUNTWALLET
 } from '@/apis/user.js'
 export default {
   data () {
@@ -53,6 +59,13 @@ export default {
         PageIndex: 1,
         PageSize: 10
       }).then(res => {
+        if (res.data.Code == 'CORRECT') {
+          console.log(res)
+        }
+      })
+    },
+    openWallet() {
+      CLEARING_API_OPENACCOUNTWALLET().then(res => {
         if (res.data.Code == 'CORRECT') {
           console.log(res)
         }

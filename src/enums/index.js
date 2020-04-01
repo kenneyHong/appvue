@@ -149,8 +149,121 @@ export const FundCasheOrderBasicState = {
     '9': '已作废'
   },
   'TypeArray': [
-    {'KeyId': '3', 'Value': '待审核'},
-    {'KeyId': '5', 'Value': '审核通过'},
-    {'KeyId': '9', 'Value': '已作废'}
+    { 'KeyId': '3', 'Value': '待审核' },
+    { 'KeyId': '5', 'Value': '审核通过' },
+    { 'KeyId': '9', 'Value': '已作废' }
+  ]
+}
+// 审核规则;
+export const SettingFlowSwitchType = {
+  'Auto': 1,
+  'Manual': 3,
+  'Types': {
+    '1': '自动审核',
+    '3': '手工审核'
+  },
+  'TypeArray': [
+    { 'KeyId': '1', 'Value': '自动审核' },
+    { 'KeyId': '3', 'Value': '手工审核' }
+  ]
+}
+// 电子钱包的流水日志的收支类型;
+export const EwalletLogIOType = {
+  'Inn': 1,
+  'Out': 3,
+  'Types': {
+    '1': '收入',
+    '3': '支出'
+  },
+  'TypeArray': [
+    { 'KeyId': '1', 'Value': '收入' },
+    { 'KeyId': '3', 'Value': '支出' }
+  ]
+}
+// 电子钱包的流水日志的来源单据类型;
+export const EwalletLogSourceType = {
+  'OrderCloudOrderCpackBasic': 1001,
+  'OrderCloudRetailOrderSellBasic': 1003,
+  'GiftingCloudSupplierSettle': 2005,
+  'MessageCloudOrderRecharge': 2007,
+  'CollegeCloudPackOrderBasic': 4001,
+  'ClearingCloudFundCasheOrderBasic': 4005,
+  'ClearingCloudFundRechargeOrderBasic': 4007,
+  'ClearingCloudFundSelfieOrderBasic': 4009,
+  'Types': {
+    '1001': 'SaaS系统续费',
+    '1003': '门店零售单',
+    '2005': '供应商结算',
+    '2007': '短信充值单',
+    '4001': '科技院套餐订单',
+    '4005': '提现单',
+    '4007': '充值单',
+    '4009': '自转单'
+  },
+  'TypeArray': [
+    { 'KeyId': '1001', 'Value': 'SaaS系统续费' },
+    { 'KeyId': '1003', 'Value': '门店零售单' },
+    { 'KeyId': '2005', 'Value': '供应商结算' },
+    { 'KeyId': '2007', 'Value': '短信充值单' },
+    { 'KeyId': '4001', 'Value': '科技院套餐订单' },
+    { 'KeyId': '4005', 'Value': '提现单' },
+    { 'KeyId': '4007', 'Value': '充值单' },
+    { 'KeyId': '4009', 'Value': '自转单' }
+  ]
+}
+// 支付方式;
+export const PaymentType = {
+  'BankPay': 1,
+  'AliPay': 3,
+  'WechatPay': 5,
+  'UnionPay': 7,
+  'CashPay': 9,
+  'CreditPay': 11,
+  'Eebank': 13,
+  'Pebank': 15,
+  'EwalletBase': 17,
+  'EwalletOp': 19,
+  'SysPay': 99,
+  'Types': {
+    '1': '银行转账',
+    '3': '支付宝',
+    '5': '微信',
+    '7': '银联',
+    '9': '现金',
+    '11': '花呗分期',
+    '13': '企业网银',
+    '15': '个人网银',
+    '17': '电子钱包(基本户)',
+    '19': '电子钱包(运营户)',
+    '99': '系统'
+  },
+  'TypeArray': [
+    { 'KeyId': 1, 'Value': '银行转账' },
+    { 'KeyId': 3, 'Value': '支付宝' },
+    { 'KeyId': 5, 'Value': '微信' },
+    { 'KeyId': 7, 'Value': '银联' },
+    { 'KeyId': 9, 'Value': '现金' },
+    { 'KeyId': 11, 'Value': '花呗分期' },
+    { 'KeyId': 13, 'Value': '企业网银' },
+    { 'KeyId': 15, 'Value': '个人网银' },
+    { 'KeyId': 17, 'Value': '电子钱包(基本户)' },
+    { 'KeyId': 19, 'Value': '电子钱包(运营户)' },
+    { 'KeyId': 99, 'Value': '系统' }
+  ]
+}
+// 交易状态;
+export const CbackIsOK = {
+  'Waiting': 1,
+  'Failed': 3,
+  'Finish': 5,
+  'Types': {
+    '1': '等待交易',
+    '3': '交易失败',
+    '5': '交易完成'
+  },
+  'TypeArray': [
+    { 'KeyId': 1, 'Value': '等待交易' },
+    { 'KeyId': 3, 'Value': '交易失败' },
+    { 'KeyId': 5, 'Value': '交易完成' }
   ]
 }
