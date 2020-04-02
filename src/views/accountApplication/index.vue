@@ -1,21 +1,25 @@
 <template>
   <div class="content">
     <el-row>
-      <el-button type="primary" class='export'>导出</el-button>
-      <el-button type="primary" class='auditRequirements' @click="auditRequirements = true">审核规定</el-button>
-      <el-dropdown>
-        <el-button type="primary">
-          所有状态<i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>待审核</el-dropdown-item>
-          <el-dropdown-item>审核通过</el-dropdown-item>
-          <el-dropdown-item>已作废</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
-      </el-input>
-      <span class="generalSearch"  @click="btn">{{searchTitle}}</span>
+      <el-col :span="18">
+        <el-button type="primary" class='export'>导出</el-button>
+        <el-button type="primary" class='auditRequirements' @click="auditRequirements = true">审核规定</el-button>
+      </el-col>
+      <el-col :span="6">
+        <el-dropdown>
+          <el-button type="primary">
+            所有状态<i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>待审核</el-dropdown-item>
+            <el-dropdown-item>审核通过</el-dropdown-item>
+            <el-dropdown-item>已作废</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+        </el-input>
+        <span class="generalSearch"  @click="btn">{{searchTitle}}</span>
+      </el-col>    
     </el-row>
     <div class="middleBorder" v-if="searchTitle == '高级搜索'">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
@@ -167,7 +171,7 @@
         <el-button>末页</el-button>
       </el-pagination>
     </div>
-    <el-dialog :visible.sync="auditRequirements">
+    <el-dialog  title="审核规则" :visible.sync="auditRequirements">
       <div class="auditRules">
         <div class="documentReviewRules">单据审核规则:</div>
         <div class="smartSelection">
@@ -363,13 +367,11 @@ export default {
 .export{
   width: 100px;
   height: 30px;
-  margin-left: 10px;
   border-radius: 4px;
 }
 .auditRequirements{
   width: 100px;
   height: 30px;
-  margin-left: 10px;
   border-radius: 4px;
 }
 .status{
@@ -378,9 +380,6 @@ export default {
 .input-with-select{
   width: 160px;
 }
-.el-dropdown{
-  margin-left: 49%;
-}
 .generalSearch{
   font-size: 12px;
   color: #1f91df;
@@ -388,10 +387,6 @@ export default {
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   overflow: hidden;
   .demo-form-inline{
     float: left;
@@ -401,9 +396,6 @@ export default {
   .el-date-editor{
     width: 178px;
   }
-}
-.el-table{
-  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

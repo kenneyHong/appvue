@@ -326,10 +326,6 @@ export default {
 }
 .middleBorder{
   min-height: 92px;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   overflow: hidden;
   .el-row{
     margin-bottom: 10px;
@@ -341,7 +337,6 @@ export default {
   }
 }
 .lowerLayout{
-  margin-left: 10px;
   background-color: #e5e9f2;
   overflow: hidden;
   .demo-form-inline{
@@ -397,7 +392,6 @@ export default {
   }
 }
 .el-table{
-  margin-left: 10px;
   margin-top: 10px;
 }
 /deep/.el-table th{

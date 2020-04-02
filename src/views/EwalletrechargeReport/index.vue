@@ -315,7 +315,6 @@ el-row {
   }
 }
 .lowerLayout{
-  margin-left: 10px;
   background-color: #e5e9f2;
   overflow: hidden;
   .demo-form-inline{
@@ -363,10 +362,6 @@ el-row {
   }
 }
 .el-table {
-  padding-top: 20px;
-  margin-left: 10px;
-}
-.el-table--border{
-  border: none;
+  margin-top: 10px;
 }
 </style>

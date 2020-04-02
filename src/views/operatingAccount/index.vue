@@ -132,7 +132,7 @@
         <div class="accountFlow">
           <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-row :gutter="20">
-              <el-col :span="15">
+              <el-col :span="20">
                 <el-form-item label="时间：" label-width="118px">
                   <el-date-picker
                     v-model="formInline.time"
@@ -299,10 +299,6 @@ el-row {
 }
 .middleBorder{
   min-height: 92px;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   overflow: hidden;
   .demo-form-inline{
     float: left;
@@ -312,10 +308,6 @@ el-row {
   .el-date-editor{
     width: 178px;
   }
-}
-.el-table{
-  margin-left: 10px;
-  border: none;
 }
 /deep/.el-table th{
   background: #F5F7FA;

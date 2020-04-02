@@ -1,10 +1,14 @@
 <template>
  <div class="content">
     <el-row>
-      <el-button type="primary" class="export">导出</el-button>
-      <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
-      </el-input>
-      <span class="generalSearch" @click="btn">{{searchTitle}}</span>
+      <el-col :span="18">
+        <el-button type="primary" class="export">导出</el-button>
+      </el-col>
+      <el-col :span="6">
+        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+        </el-input>
+        <span class="generalSearch" @click="btn">{{searchTitle}}</span>
+      </el-col>
     </el-row>
     <div class="middleBorder" v-if="searchTitle == '高级搜索'">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
@@ -261,7 +265,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .el-row {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   &:last-child {
     margin-bottom: 0;
   }
@@ -282,16 +286,9 @@ min-height: 36px;
 padding: 0;
 background-color: #f9fafc;
 }
-.operatorManagement{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
 .export{
   width: 100px;
   height: 30px;
-  margin-left: 10px;
   border-radius: 4px;
 }
 .status{
@@ -299,7 +296,6 @@ background-color: #f9fafc;
 }
 .input-with-select{
   width: 160px;
-  margin-left: 59%;
 }
 .generalSearch{
   font-size: 12px;
@@ -308,10 +304,6 @@ background-color: #f9fafc;
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
   overflow: hidden;
   .demo-form-inline{
     float: left;
@@ -323,7 +315,7 @@ background-color: #f9fafc;
   }
 }
 .el-table{
-  margin-left: 10px;
+  margin-top: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

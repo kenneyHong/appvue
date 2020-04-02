@@ -1,22 +1,26 @@
 <template>
   <div class="content">
     <el-row>
-      <el-button type="primary" class='export'>导出</el-button>
-      <el-dropdown>
-        <el-button type="primary" class='status'>
-          所有状态<i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>开户中</el-dropdown-item>
-          <el-dropdown-item>已开户</el-dropdown-item>
-          <el-dropdown-item>已销户</el-dropdown-item>
-          <el-dropdown-item>冻结</el-dropdown-item>
-          <el-dropdown-item>开户失败</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
-      </el-input>
-      <span class="generalSearch" @click="btn">{{searchTitle}}</span>
+      <el-col :span="17">
+        <el-button type="primary" class='export'>导出</el-button>
+      </el-col>
+      <el-col :span="7">
+        <el-dropdown>
+          <el-button type="primary" class='status'>
+            所有状态<i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>开户中</el-dropdown-item>
+            <el-dropdown-item>已开户</el-dropdown-item>
+            <el-dropdown-item>已销户</el-dropdown-item>
+            <el-dropdown-item>冻结</el-dropdown-item>
+            <el-dropdown-item>开户失败</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+        </el-input>
+        <span class="generalSearch" @click="btn">{{searchTitle}}</span>
+      </el-col>
     </el-row>
     <div class="middleBorder"  v-if="searchTitle == '高级搜索'">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
@@ -62,7 +66,7 @@
             <el-form-item label="门店名称：">
               <el-input v-model="form.storeName"></el-input>
             </el-form-item>
-            <el-form-item label="账户">
+            <el-form-item label="账户:">
               <el-col :span="5">
                 <el-input v-model="sizeForm.name"></el-input>
               </el-col>
@@ -211,102 +215,122 @@
     <div class="tableView">
       <el-dialog title="查看" :visible.sync="View">
         <div class="basicMaterial" >
-          <el-button class="BasicInformation" type="primary"  @click="basicMaterial">基本资料</el-button>
-          <el-button  class="openLog" type="primary"  @click="openLog">开通日志</el-button>
-        </div>
-       <!-- <div class="companyBasicInformation">
-          <el-form ref="form" :model="checkingData" label-width="118px">
-            <el-form-item label="资金账号：">
-              <el-input v-model="checkingData.fundAccount"></el-input>
-            </el-form-item>
-            <el-form-item label="账户类型：">
-              <el-input v-model="checkingData.accountType"></el-input>
-            </el-form-item>
-            <el-form-item label="户名：">
-              <el-input v-model="checkingData.accountName"></el-input>
-            </el-form-item>
-            <el-form-item label="银行电子账户：">
-              <el-input v-model="checkingData.electronicAccount"></el-input>
-            </el-form-item>
-            <el-form-item label="开户时间：">
-              <el-input v-model="checkingData.accountOpeningtime"></el-input>
-            </el-form-item>
-            <el-form-item label="统一社会信用代码：">
-              <el-input v-model="checkingData.socialCredit"></el-input>
-            </el-form-item>
-            <el-form-item label="法定代表人姓名：">
-              <el-input v-model="checkingData.representativeName"></el-input>
-            </el-form-item>
-            <el-form-item label="法定代表人身份证：">
-              <el-input v-model="checkingData.representativeID"></el-input>
-            </el-form-item>
-            <el-form-item label="手机号码：">
-              <el-input v-model="checkingData.mobilePhoneNumber"></el-input>
-            </el-form-item>
-            <el-form-item label="所属区域：">
-              <el-input v-model="checkingData.Area"></el-input>
-            </el-form-item>
-            <el-form-item label="详细地址：">
-              <el-input v-model="checkingData.address"></el-input>
-            </el-form-item>
-          </el-form>
-        </div>-->
-        <div class="PersonalBasicInformation" v-if="Switch == '基本资料'">
-          <el-form ref="form" :model="formation" label-width="118px">
-            <el-form-item label="资金账号：">
-              <el-input v-model="formation.fundAccount"></el-input>
-            </el-form-item>
-            <el-form-item label="账户类型：">
-              <el-input v-model="formation.accountType"></el-input>
-            </el-form-item>
-            <el-form-item label="户名：">
-              <el-input v-model="formation.accountName"></el-input>
-            </el-form-item>
-            <el-form-item label="银行电子账户：">
-              <el-input v-model="formation.electronicAccount"></el-input>
-            </el-form-item>
-            <el-form-item label="开户时间：">
-              <el-input v-model="formation.accountOpeningtime"></el-input>
-            </el-form-item>
-            <el-form-item label="身份证号码：">
-              <el-input v-model="formation.identificationNumber"></el-input>
-            </el-form-item>
-            <el-form-item label="手机号码：">
-              <el-input v-model="formation.mobilePhoneNumber"></el-input>
-            </el-form-item>
-          </el-form>
-        </div>
-        <div class="openLog" v-if="Switch == '开通日志'">
-          <el-table
-            :data="openLogtableData"
-            border
-            style="width: 100%">
-            <el-table-column
-              prop="operatingTime"
-              label="操作时间"
-              min-width="130">
-            </el-table-column>
-            <el-table-column
-              prop="operationType"
-              label="操作类型"
-              min-width="120">
-            </el-table-column>
-            <el-table-column
-              prop="entrance"
-              label="入口"
-              min-width="120">
-            </el-table-column>
-            <el-table-column
-              prop="operator"
-              label="操作人"
-              min-width="120">
-            </el-table-column>
-            <el-table-column
-              prop="Note"
-              label="备注"
-              min-width="180">
-            </el-table-column>
-          </el-table>
+          <el-radio-group v-model="Switch" style="margin-bottom: 30px;">
+            <el-radio-button label="基本资料" @click="basicMaterial">基本资料</el-radio-button>
+            <el-radio-button label="开通日志" @click="openLog">开通日志</el-radio-button>
+          </el-radio-group>
+          <div class="openLog" v-if="Switch == '开通日志'">
+            <el-table
+              :data="openLogtableData"
+              border
+              style="width: 100%">
+              <el-table-column
+                prop="operatingTime"
+                label="操作时间"
+                min-width="130">
+              </el-table-column>
+              <el-table-column
+                prop="operationType"
+                label="操作类型"
+                min-width="120">
+              </el-table-column>
+              <el-table-column
+                prop="entrance"
+                label="入口"
+                min-width="120">
+              </el-table-column>
+              <el-table-column
+                prop="operator"
+                label="操作人"
+                min-width="120">
+              </el-table-column>
+              <el-table-column
+                prop="Note"
+                label="备注"
+                min-width="180">
+              </el-table-column>
+            </el-table>
+          </div>
+          <!-- <div class="companyBasicInformation">
+            <table border="1"  cellpadding="0" cellspacing="0">
+              <tr>
+                <th>资金账号：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>账户类型：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>户名：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>银行电子账户：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>开户时间：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>统一社会信用代码：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>法定代表人姓名：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>法定代表人身份证：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>手机号码：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>所属区域：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>详细地址：</th>
+                <td>Savings</td>
+              </tr>
+            </table>  
+          </div> -->
+          <div class="PersonalBasicInformation" v-if="Switch == '基本资料'">
+            <table border="1"  cellpadding="0" cellspacing="0">
+              <tr>
+                <th>资金账号：</th>
+                <td>Savings</td>
+              </tr>
+              <tr>
+                <th>账户类型：</th>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <th>户名：</th>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <th>银行电子账户：</th>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <th>开户时间：</th>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <th>身份证号码：</th>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <th>手机号码：</th>
+                <td>$100</td>
+              </tr>
+            </table>  
+          </div>
         </div>
       </el-dialog>
     </div>
@@ -432,6 +456,7 @@ export default {
       View: false,
       Switch: '基本资料',
       accountFlow: false,
+      tabPosition: 'left',
       form: {
         fundAccount: '',
         accountName: '',
@@ -658,16 +683,9 @@ min-height: 36px;
 padding: 0;
 background-color: #f9fafc;
 }
-.walletlistAccount{
-  padding-top: 10px;
-  padding-left: 10px;
-  display: inline-block;
-  width: 77%;
-}
 .export{
   width: 100px;
   height: 30px;
-  margin-left: 10px;
   border-radius: 4px;
 }
 .status{
@@ -676,9 +694,6 @@ background-color: #f9fafc;
 .input-with-select{
   width: 160px;
 }
-.el-dropdown{
-  margin-left: 59%;
-}
 .generalSearch{
   font-size: 12px;
   color: #1f91df;
@@ -686,11 +701,10 @@ background-color: #f9fafc;
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   overflow: hidden;
+  .line{
+    margin-left: 10px;
+  }
   .demo-form-inline{
     float: left;
     margin-left: 10px;
@@ -700,26 +714,8 @@ background-color: #f9fafc;
     width: 178px;
   }
 }
-.el-table--border{
-  margin-left: 10px;
-  margin-top: 10px;
-}
 .tableView{
-  .basicMaterial{
-    .el-button{
-      border: none;
-      width: 100px;
-      height: 40px;
-    }
-    .el-button--primary{
-      color: #409eff;
-      background: #ffffff;
-    }
-  }
   .companyBasicInformation{
-    margin-top: 20px;
-  }
-  .PersonalBasicInformation{
     margin-top: 20px;
   }
 }
@@ -727,5 +723,20 @@ background-color: #f9fafc;
   .el-col{
     margin-left: 10px;
   }
+}
+th{
+  border: 1px solid #cccccc;
+  width: 150px;
+  border-bottom: none;
+  background-color: #dddddd;
+}
+td{
+  border: 1px solid #cccccc;
+  border-bottom: none;
+  border-left: none;
+}
+tr:last-child th,
+tr:last-child td {
+  border-bottom: 1px solid #cccccc;
 }
 </style>

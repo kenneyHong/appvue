@@ -1,7 +1,10 @@
 <template>
   <div class="content">
     <el-row>
-      <el-button type="primary" class="export">导出</el-button>
+      <el-col :span="17">
+        <el-button type="primary" class="export">导出</el-button>
+      </el-col>
+    <el-col :span="7">
       <el-dropdown>
         <el-button type="primary" class='status'>
           所有状态<i class="el-icon-arrow-down el-icon--right"></i>
@@ -15,6 +18,7 @@
       <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
       </el-input>
       <span class="generalSearch" @click="btn">{{searchTitle}}</span>
+    </el-col>
     </el-row>
     <div class="middleBorder" v-if="searchTitle == '高级搜索'">
       <el-form ref="form" :inline="true" class="demo-form-inline" :model="form" label-width="118px">
@@ -265,9 +269,6 @@ export default {
 .input-with-select{
   width: 160px;
 }
-.el-dropdown{
-  margin-left: 59%;
-}
 .generalSearch{
   font-size: 12px;
   color: #1f91df;
@@ -275,10 +276,6 @@ export default {
 .middleBorder{
   min-height: 92px;
   border: 1px solid #e5e5e5;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   overflow: hidden;
   .demo-form-inline{
     float: left;
@@ -288,9 +285,6 @@ export default {
   .el-date-editor{
     width: 178px;
   }
-}
-.el-table{
-  margin-left: 10px;
 }
 /deep/.el-table th{
   background: #F5F7FA;

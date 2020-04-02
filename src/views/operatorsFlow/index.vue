@@ -255,10 +255,6 @@ el-row {
 }
 .middleBorder{
   min-height: 92px;
-  margin-left: 10px;
-  margin-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 10px;
   overflow: hidden;
   .demo-form-inline{
     float: left;
@@ -267,7 +263,6 @@ el-row {
   }
 }
 .lowerLayout{
-  margin-left: 10px;
   background-color: #e5e9f2;
   overflow: hidden;
   .demo-form-inline{
@@ -323,7 +318,6 @@ el-row {
   }
 }
 .el-table--border{
-  margin-left: 10px;
   margin-top: 10px;
 }
 /deep/.el-table th{

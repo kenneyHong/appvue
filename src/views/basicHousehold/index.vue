@@ -324,7 +324,6 @@ export default {
   }
 }
 .lowerLayout{
-  margin-left: 10px;
   background-color: #e5e9f2;
   overflow: hidden;
   .demo-form-inline{
@@ -378,7 +377,6 @@ export default {
   }
 }
 .el-table{
-  margin-left: 10px;
   margin-top: 10px;
 }
 /deep/.el-table th{
