@@ -193,12 +193,12 @@
           <el-radio v-model="radio" label="2">人工审核</el-radio>
         </div>
         <div slot="footer" class="submit">
-          <el-button type="primary"class="searchFor"  @click="outerVisible = true">确定</el-button>
-          <el-button class="reset"  @click="auditRequirements = false">取消</el-button>
+          <el-button type="primary" class="searchFor"  @click="outerVisible = true">确定</el-button>
+          <el-button class="reset" @click="auditRequirements = false">取消</el-button>
         </div>
       </div>
     </el-dialog> 
-    <el-dialog title="审核规则":visible.sync="outerVisible">
+    <el-dialog title="审核规则" :visible.sync="outerVisible">
       <div class="automaticReview">
         <div class="reviewContent">
           <span class="documentNumber">单据编号：xxxxx00001</span>
@@ -213,8 +213,8 @@
           </div>
         </div>
         <div class="submit">
-          <el-button type="primary"class="searchFor">确定</el-button>
-          <el-button class="reset"   @click="outerVisible = false">取消</el-button>
+          <el-button type="primary" class="searchFor">确定</el-button>
+          <el-button class="reset" @click="outerVisible = false">取消</el-button>
         </div>
       </div>
     </el-dialog>
@@ -277,7 +277,7 @@
           </el-form-item>
         </el-form>
         <div class="submit">
-          <el-button type="primary"class="review" @click="lookOver = false">审核</el-button>
+          <el-button type="primary" class="review" @click="lookOver = false">审核</el-button>
           <el-button class="Void" @click="lookOver = false">作废</el-button>
         </div>
       </div>

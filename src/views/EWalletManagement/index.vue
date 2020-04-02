@@ -1,84 +1,74 @@
 <template>
  <div class="content">
-    <div class="nonactivated">
-      <el-row>
-        <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="inputBox">
-            <i class="el-icon-info"></i>
-            <span class="unopenedWallet"> 您尚未开通电子钱包！</span>
-            <span class="supportCollectionCommentary">
-              （开通后支持微信和支付宝收款，服务费低至0.5%，支持提现、礼品商城充值、系统续费等）
-            </span>
-            <el-button type="primary" class="openEWallet" @click="dialogTableVisible = true">开通电子钱包</el-button>
-          </span> 
-        </div>
+    <div class="nonactivated bg-purple-dark">
+      <el-row :gutter="20">
+        <el-col :span="21">
+          <i class="el-icon-info"></i>
+          <span class="unopenedWallet"> 您尚未开通电子钱包！</span>
+          <span class="pendingReviewAfterOpening">
+            （开通后支持微信和支付宝收款，服务费低至0.5%，支持提现、礼品商城充值、系统续费等）
+          </span>
+        </el-col>
+        <el-col :span="3">
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet" @click="dialogTableVisible = true">开通电子钱包</el-button></div>
         </el-col>
       </el-row>
     </div>
-    <div class="opening">
-      <el-row>
-        <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="inputBox">
-            <i class  ="el-icon-info"></i>
-            <span class="EwalletOpening" 
-            >电子钱包开通中！</span>
-            <span class="pendingReviewAfterOpening">
-              （正在开通，请稍候刷新重试或联系客服）
-            </span>
-            <el-button type="primary" class="refresh">刷新</el-button>
-          </span> 
-        </div>
+    <div class="nonactivated bg-purple-dark">
+      <el-row :gutter="20">
+        <el-col :span="21">
+          <i class  ="el-icon-info"></i>
+          <span class="EwalletOpening" 
+          >电子钱包开通中！</span>
+          <span class="pendingReviewAfterOpening">
+            （正在开通，请稍候刷新重试或联系客服）
+          </span>
+        </el-col>
+        <el-col :span="3">
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet">刷新</el-button></div>
         </el-col>
       </el-row>
     </div>
-    <div class="reopenLayout">
-      <el-row>
-        <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="inputBox">
-            <i class="el-icon-info"></i>
-            <span class="walletFailedToOpen">电子钱包开通失败！</span>
-            <span class="causeOfFailure">
-              （失败原因失败原因失败原因...）
-            </span>
-            <el-button type="primary" class="reopen"  @click="dialogTableVisible = true">重新开通</el-button>
-          </span> 
-        </div>
+    <div class="nonactivated bg-purple-dark">
+      <el-row :gutter="20">
+        <el-col :span="21">
+          <i class="el-icon-info"></i>
+          <span class="walletFailedToOpen">电子钱包开通失败！</span>
+          <span class="pendingReviewAfterOpening">
+            （失败原因失败原因失败原因...）
+          </span>
+        </el-col>
+        <el-col :span="3">
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet"  @click="dialogTableVisible = true">重新开通</el-button></div>
         </el-col>
       </el-row>
     </div>
-    <div class="loginLayout">
-      <el-row>
-        <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="inputBox">
-            <i class  ="el-icon-info"></i>
-            <span class="electronicsIsOn" 
-            >电子钱包已开通！</span>
-            <span class="reRegister">
-              （开通后需要重新登录一下系统！）
-            </span>
-            <el-button type="primary" class="logInSystem" @click="logInSystem">重新登录系统</el-button>
-          </span> 
-        </div>
+    <div class="nonactivated bg-purple-dark">
+      <el-row :gutter="20">
+        <el-col :span="21">
+          <i class  ="el-icon-info"></i>
+          <span class="electronicsIsOn" 
+          >电子钱包已开通！</span>
+          <span class="reRegister">
+            （开通后需要重新登录一下系统！）
+          </span>
+        </el-col>
+        <el-col :span="3">
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet" @click="logInSystem">重新登录系统</el-button></div>
         </el-col>
       </el-row>
     </div>
-    <div class="alreadyOpened">
-      <el-row>
-        <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
-          <span class="inputBox">
-            <i class="el-icon-info"></i>
-            <span class="supportDirectDeposit">电子钱包账户支持柜台转账、网银、支付宝等直接存入！</span>
-            <span class="delayedRefresh">
-              （存入后余额显示可能会有延迟，请手工刷新余额）
-            </span>
-            <el-button type="primary" class="refreshBalance">刷新余额</el-button>
-          </span> 
-        </div>
+    <div class="nonactivated bg-purple-dark">
+      <el-row :gutter="20">
+        <el-col :span="21">
+          <i class="el-icon-info"></i>
+          <span class="supportDirectDeposit">电子钱包账户支持柜台转账、网银、支付宝等直接存入！</span>
+          <span class="pendingReviewAfterOpening">
+            （存入后余额显示可能会有延迟，请手工刷新余额）
+          </span>
+        </el-col>
+        <el-col :span="3">
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet">刷新余额</el-button></div>
         </el-col>
       </el-row>
     </div>
@@ -163,70 +153,71 @@
       </div>
     </div>
     <div class="poPupWindow"> 
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="118px" class="demo-ruleForm" >
         <el-dialog title="开通电子钱包" :visible.sync="dialogTableVisible">
-          <el-form-item label="*账户类型：">
-            <el-radio-group v-model="ruleForm.accountType">
-              <el-radio class="personalInformation"  label="公司"></el-radio>
-              <el-radio class="personalInformation"  label="个人"></el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <div class="the company" v-if="ruleForm.accountType == '公司'">
-            <el-form-item label="*户名：">
-              <el-input v-model="ruleForm.accountName"></el-input>
-              <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="118px" class="demo-ruleForm" >
+            <el-form-item label="*账户类型：">
+              <el-radio-group v-model="ruleForm.accountType">
+                <el-radio class="personalInformation"  label="公司"></el-radio>
+                <el-radio class="personalInformation"  label="个人"></el-radio>
+              </el-radio-group>
             </el-form-item>
-            <el-form-item label="*统一社会信用代码：">
-              <el-input v-model="ruleForm.creditCode"></el-input>
-            </el-form-item>
-            <el-form-item label="*法定代表人姓名：">
-              <el-input v-model="ruleForm.legalName"></el-input>
-            </el-form-item>
-            <el-form-item label="*法定代表人身份证：">
-              <el-input v-model="ruleForm.legalIdentityCard"></el-input>
-            </el-form-item>
-            <el-form-item label="*手机号码：">
-              <el-input v-model="ruleForm.mobilePhone"></el-input>
-            </el-form-item>
-            <el-form-item label="*邮箱：">
-              <el-input v-model="ruleForm.mailbox"></el-input>
-            </el-form-item>
-            <el-form-item label="*所属区域：">
-              <el-cascader
-                :options="options"
-                :props="{ multiple: true,checkStrictly: true }"
-                clearable>
-              </el-cascader>
-            </el-form-item>
-            <el-form-item label="*详细地址：">
-              <el-input v-model="ruleForm.address"></el-input>
-            </el-form-item>
-          </div>
-          <div class="personal" v-if="ruleForm.accountType == '个人'" >
-            <el-form-item label="*户名：">
-              <el-input v-model="ruleForm.accountName1"></el-input>
-              <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
-            </el-form-item>
-            <el-form-item label="*身份证号码：">
-              <el-input v-model="ruleForm.identityCard1"></el-input>
-            </el-form-item>
-            <el-form-item label="*手机号码：">
-              <el-input v-model="ruleForm.mobilePhone1"></el-input>
-              <span class="reservedNumber">（必须为提现银行卡预留的手机，否则无法提现）</span>
-            </el-form-item>
-            <el-form-item label="*邮箱：">
-              <el-input v-model="ruleForm.mailbox1"></el-input>
-            </el-form-item>
-          </div>
-          <div class="submit">
-            <el-button type="primary"class="searchFor" >确定</el-button>
+            <div class="the company" v-if="ruleForm.accountType == '公司'">
+              <el-form-item label="*户名：">
+                <el-input v-model="ruleForm.accountName"></el-input>
+                <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
+              </el-form-item>
+              <el-form-item label="*统一社会信用代码：">
+                <el-input v-model="ruleForm.creditCode"></el-input>
+              </el-form-item>
+              <el-form-item label="*法定代表人姓名：">
+                <el-input v-model="ruleForm.legalName"></el-input>
+              </el-form-item>
+              <el-form-item label="*法定代表人身份证：">
+                <el-input v-model="ruleForm.legalIdentityCard"></el-input>
+              </el-form-item>
+              <el-form-item label="*手机号码：">
+                <el-input v-model="ruleForm.mobilePhone"></el-input>
+              </el-form-item>
+              <el-form-item label="*邮箱：">
+                <el-input v-model="ruleForm.mailbox"></el-input>
+              </el-form-item>
+              <el-form-item label="*所属区域：">
+                <el-cascader
+                  :options="options"
+                  :props="{ multiple: true,checkStrictly: true }"
+                  clearable>
+                </el-cascader>
+              </el-form-item>
+              <el-form-item label="*详细地址：">
+                <el-input v-model="ruleForm.address"></el-input>
+              </el-form-item>
+            </div>
+            <div class="personal" v-if="ruleForm.accountType == '个人'" >
+              <el-form-item label="*户名：">
+                <el-input v-model="ruleForm.accountName1"></el-input>
+                <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
+              </el-form-item>
+              <el-form-item label="*身份证号码：">
+                <el-input v-model="ruleForm.identityCard1"></el-input>
+              </el-form-item>
+              <el-form-item label="*手机号码：">
+                <el-input v-model="ruleForm.mobilePhone1"></el-input>
+                <span class="reservedNumber">（必须为提现银行卡预留的手机，否则无法提现）</span>
+              </el-form-item>
+              <el-form-item label="*邮箱：">
+                <el-input v-model="ruleForm.mailbox1"></el-input>
+              </el-form-item>
+            </div>
+          </el-form>
+          <div  slot="footer" class="submit">
+            <el-button type="primary" class="searchFor" >确定</el-button>
             <el-button class="reset"  @click="dialogTableVisible = false">取消</el-button>
           </div>
         </el-dialog>
-      </el-form>
+      
     </div>
     <div class="economy">
-      <el-dialog  title="充值":visible.sync="RechargePopup">
+      <el-dialog  title="充值" :visible.sync="RechargePopup">
         <div class="OfflineTransfer">
           <el-button class="transfer" @click="Offline">
             <div class="Offline" >线下转账</div>
@@ -283,7 +274,7 @@
       </el-dialog>  
     </div>
     <div class= "accountFlowPopups">
-      <el-dialog title="账户流水":visible.sync="accountFlow" width="80%">
+      <el-dialog title="账户流水" :visible.sync="accountFlow" width="80%">
         <div class="AccountFlow">
           <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-form-item label="时间：" label-width="120px">
@@ -386,7 +377,7 @@
       </el-dialog>
     </div>
     <div class="operationTopUp">
-      <el-dialog  title="充值":visible.sync="operationTopUp">
+      <el-dialog  title="充值" :visible.sync="operationTopUp">
         <div class="whole">
           <span class="amount">充值金额：</span>
           <el-input class="amount1" v-model="input"></el-input>
@@ -404,12 +395,12 @@
           <el-radio v-model="radios" label="1">电子钱包（基本户）</el-radio>
           <div class="available">可用金额<span class="countOff">￥10000.00</span></div>
           <el-button type="primary" class="immediately">立即支付</el-button>
-          <el-button class="cancel"@click="operationTopUp = false">取消</el-button>
+          <el-button class="cancel" @click="operationTopUp = false">取消</el-button>
         </div>
       </el-dialog>  
     </div>
     <div class="changePopupLayout">
-      <el-dialog title="未绑定提现卡":visible.sync="replace">
+      <el-dialog title="未绑定提现卡" :visible.sync="replace">
         <el-form ref="form" :model="form" label-width="120px">
           <el-form-item label="*开户名称：">
             <el-input placeholder="xxxxxxxxxx公司" v-model="form.mosquitoNet" :disabled="true"></el-input>
@@ -441,25 +432,25 @@
         </el-form>
         <div class="description">注：每天最多只能提交3次</div>
         <div class="submit">
-          <el-button type="primary"class="nextStep" @click="nextStep = true" >下一步</el-button>
+          <el-button type="primary" class="nextStep" @click="nextStep = true" >下一步</el-button>
           <el-button class="reset"  @click="replace = false" >取消</el-button>
         </div>
       </el-dialog>  
     </div>
     <!--<div class="untiedCashCard">
-      <el-dialog  title="未绑定银行卡":visible.sync="withdraw">
+      <el-dialog  title="未绑定银行卡" :visible.sync="withdraw">
         <div class="bindWithdrawal">
           <i class="el-icon-info"></i>
           <div class="unboundCard">您尚未绑定提现卡，请先绑定后再提现！</div>
         </div>
         <div class="untiedsubmit">
-          <el-button type="primary"class="tiedCardNow"  @click="replace = true">立即绑卡</el-button>
+          <el-button type="primary" class="tiedCardNow"  @click="replace = true">立即绑卡</el-button>
           <el-button class="untiedCashCardreset" @click="withdraw = false">取消</el-button>
         </div>
       </el-dialog>
     </div>-->
     <div class="cardTied">
-      <el-dialog  title="账户提现":visible.sync="withdraw">
+      <el-dialog  title="账户提现" :visible.sync="withdraw">
         <div class="debitCard">
           <span class="debitCard1">到账银行卡：</span>
           <span class="debitCard2">XXXXX银行（1008）</span>
@@ -590,7 +581,7 @@ export default {
       replace: false,
       amountReceived: '',
       ruleForm: {
-        accountType: '',
+        accountType: '公司',
         accountName: '',
         creditCode: '',
         legalName: '',
@@ -702,6 +693,8 @@ background-color: #f9fafc;
 .nonactivated{
   margin-top: 20px;
   line-height: 4em;
+  padding-left: 10px;
+  padding-right: 10px;
   .inputBox{
     padding-left: 10px;
     .unopenedWallet{
@@ -713,106 +706,17 @@ background-color: #f9fafc;
     }
   }
   .openEWallet{
-    width: 100px;
     height: 30px;
-    margin-left: 10px;
     border-radius: 4px;
-    margin-left: 32%;
   }
   .grid-content {
-  min-height: 50px;
+    min-height: 50px;
   }
-}
-.opening{
-  margin-top: 20px;
-  line-height: 4em;
-  .inputBox{
-    padding-left: 10px;
-    .EwalletOpening{
-      color:  #333333;
-      padding-left: 10px;
-    }
-    .pendingReviewAfterOpening{
-      color: #999999; 
-    }
+  .pendingReviewAfterOpening{
+    color: #999999; 
   }
-  .grid-content {
-  min-height: 50px;
-  }
-  .refresh{
-    width: 100px;
-    height: 30px;
-    margin-left: 10px;
-    border-radius: 4px;
-    margin-left: 57.4%;
-  }
-}
-.loginLayout{
-  margin-top: 20px;
-  line-height: 4em;
-  .inputBox{
-    padding-left: 10px;
-    .electronicsIsOn{
-      padding-left: 10px;
-    }
-    .reRegister{
-      color: #da0000;
-    }
-    .logInSystem{
-      width: 100px;
-      height: 30px;
-      margin-left: 10px;
-      border-radius: 4px;
-      margin-left: 60%;
-    }
-  }
-}
-.reopenLayout{
-  margin-top: 20px;
-  line-height: 4em;
-  .inputBox{
-    padding-left: 10px;
-    .walletFailedToOpen{
-       padding-left: 10px;
-      color: #333333;
-    }
-    .causeOfFailure{
-      color: #999999;
-    }
-  }
-  .grid-content {
-  min-height: 50px;
-  }
-  .reopen{
-    width: 100px;
-    height: 30px;
-    margin-left: 10px;
-    border-radius: 4px;
-    margin-left: 60.9%;
-  }
-}
-.alreadyOpened{
-  margin-top: 20px;
-  line-height: 4em;
-  .inputBox{
-    padding-left: 10px;
-    .supportDirectDeposit{
-      padding-left: 10px;
-      color: #333333;
-    }
-    .delayedRefresh{
-      color: #999999;
-    }
-  }
-  .grid-content {
-  min-height: 50px;
-  }
-  .refreshBalance{
-    width: 100px;
-    height: 30px;
-    margin-left: 10px;
-    border-radius: 4px;
-    margin-left: 35.7%;
+  .reRegister{
+    color: #da0000;
   }
 }
 .leftAndRightLayout{

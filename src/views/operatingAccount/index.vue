@@ -110,8 +110,8 @@
       <el-table-column
         prop="operating"
         label="操作"> 
-        <template slot-scope="scope">
-          <el-button  type="text" size="small"@click="accountFlow = true">账户流水</el-button>
+        <template>
+          <el-button  type="text" size="small" @click="accountFlow = true">账户流水</el-button>
         </template>
       </el-table-column>
     </el-table>

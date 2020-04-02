@@ -3,7 +3,7 @@
     <div class="formHeader">
       <el-row>
         <el-button class="rechargeStatistics"  @click="statistics">充值统计</el-button>
-        <el-button  class="rechargeStatement"@click="tj">充值对账单</el-button>
+        <el-button  class="rechargeStatement" @click="tj">充值对账单</el-button>
       </el-row>
     </div>
     <div class="middleBorder">
@@ -33,12 +33,10 @@
               <el-form-item label="公司名称：">
                 <el-input v-model="form.companyName"></el-input>
               </el-form-item>
-              </el-form-item>
-                <el-form-item label="门店编码：">
+              <el-form-item label="门店编码：">
                 <el-input v-model="form.storeCode"></el-input>
               </el-form-item>
-              </el-form-item>
-                <el-form-item label="门店名称：">
+              <el-form-item label="门店名称：">
                 <el-input v-model="form.storeName"></el-input>
               </el-form-item> 
               <el-form-item label="状态：">
