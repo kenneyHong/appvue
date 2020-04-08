@@ -1,23 +1,20 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="17">
+      <el-col :span="16">
         <el-button type="primary" class='export'>导出</el-button>
       </el-col>
-      <el-col :span="7">
-        <el-dropdown>
-          <el-button type="primary" class='status'>
-            所有状态<i class="el-icon-arrow-down el-icon--right"></i>
-          </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>开户中</el-dropdown-item>
-            <el-dropdown-item>已开户</el-dropdown-item>
-            <el-dropdown-item>已销户</el-dropdown-item>
-            <el-dropdown-item>冻结</el-dropdown-item>
-            <el-dropdown-item>开户失败</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+      <el-col :span="8">
+        <el-select v-model="value" placeholder="所有状态">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="公司编码" v-model="input3" class="input-with-select">
+          <el-button slot="append" class="el-icon-search"></el-button>
         </el-input>
         <span class="generalSearch" @click="btn">{{searchTitle}}</span>
       </el-col>
@@ -45,7 +42,7 @@
               </el-date-picker>
             </el-form-item>
             <el-form-item label="商户类型：">
-              <el-select v-model="formInline.region" placeholder="全部">
+              <el-select v-model="form.region" placeholder="全部">
                 <el-option label="全部" value="all"></el-option>
                 <el-option label="珠宝门店" value="jewelryStore"></el-option>
                 <el-option label="珠宝公司" value="jewelryCompany"></el-option>
@@ -196,7 +193,7 @@
         width="150">
         <template>
           <el-button type="text" size="small" @click="View = true">查看</el-button>
-          <el-button  type="text" size="small" @click="accountFlow = true">账户流水</el-button>
+          <el-button  type="text" size="small" @click="text = true">账户流水</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -334,123 +331,35 @@
         </div>
       </el-dialog>
     </div>
-    <el-dialog title="账户流水" :visible.sync="accountFlow" width="80%">
-      <div class="accountFlowPopups">
-        <div class="accountFlow">
-          <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-row :gutter="20">
-              <el-col :span="15">
-                <el-form-item label="时间：" label-width="118px">
-                  <el-date-picker
-                    v-model="form.time"
-                    type="daterange"
-                    range-separator="-"
-                    start-placeholder="2016/01/01"
-                    end-placeholder="2016/01/01">
-                  </el-date-picker>
-                </el-form-item>
-                <el-form-item label="来源：">
-                  <el-select v-model="formInline.source" placeholder="全部">
-                    <el-option label="全部" value="all1"></el-option>
-                    <el-option label="提现" value="withdraw"></el-option>
-                    <el-option label="零售单" value="retailOrder"></el-option>
-                    <el-option label="充值" value="recharge"></el-option>
-                    <el-option label="SaaS订单" value="SaaSOrders"></el-option>
-                    <el-option label="短信充值" value="SMSTopup"></el-option>
-                    <el-option label="科技院订单" value="academyOrder"></el-option>
-                    <el-option label="定制单" value="customOrder"></el-option>
-                    <el-option label="转账" value="transfer"></el-option>
-                    <el-option label="零售退货单" value="retailReturn"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="4">
-                <el-button type="primary">搜索</el-button>
-                <el-button>重置</el-button>
-              </el-col>
-            </el-row>
-          </el-form>  
-        </div>
-        <el-table
-        :data="accountFlowTableData"
-        border>
-          <el-table-column
-            prop="serialNumber"
-            label="流水号"
-            min-width="150">
-          </el-table-column>
-          <el-table-column
-            prop="operatingTime"
-            sortable
-            label="操作时间"
-            width="140">
-          </el-table-column>
-          <el-table-column
-            prop="incomeAndExpenses"
-            label="收入/支出"
-            width="120">
-          </el-table-column>
-          <el-table-column
-            prop="Amount"
-            label="金额"
-            width="120">
-          </el-table-column>
-          <el-table-column
-            prop="accountBalance"
-            label="帐户余额"
-            width="130">
-          </el-table-column>
-          <el-table-column
-            prop="source"
-            label="来源"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="relatedDocuments"
-            label="相关单据"
-            width="130">
-          </el-table-column>
-          <el-table-column
-            prop="transactionAmount"
-            label="交易金额"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="serviceFee"
-            label="服务费"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="operator"
-            label="操作人"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="Note"
-            label="备注"
-            width="100">
-          </el-table-column>
-        </el-table>
-        <div class="block">
-          <el-pagination
-            layout="slot, prev, pager, next "
-            :page-size="20"
-            :total="200"
-            style="display: inline-block;padding-right: 0px;">
-            <el-button>首页</el-button>
-          </el-pagination>
-          <el-pagination layout="slot" style="display: inline-block;padding-right: 0px;">
-            <el-button>末页</el-button>
-          </el-pagination>
-        </div>
-      </div>
-    </el-dialog>  
+    <accountFlow :accountFlows="text" @closeDia="shutDown"></accountFlow>
   </div>
 </template>
 <script>
+import accountFlow from '@/components/accountFlow.vue'
 export default {
   data () {
     return {
+      text: false,
+      options: [{
+        value: '选项1',
+        label: '所有状态'
+      }, {
+        value: '选项2',
+        label: '开户中'
+      }, {
+        value: '选项3',
+        label: '已开户'
+      }, {
+        value: '选项4',
+        label: '已销户'
+      }, {
+        value: '选项5',
+        label: '冻结'
+      }, {
+        value: '选项6',
+        label: '开户失败'
+      }],
+      value: '',
       searchTitle: '普通搜索',
       input3: '',
       View: false,
@@ -465,15 +374,8 @@ export default {
         companyCode: '',
         companyName: '',
         storeCode: '',
-        storeName: ''
-      },
-      formInline: {
-        all: '',
-        ewelryStore: '',
-        jewelryCompany: '',
-        jewelleryGroup: '',
-        giftSupplier: '',
-        gift: ''
+        storeName: '',
+        region: ''
       },
       sizeForm: {
         name: ''
@@ -599,43 +501,6 @@ export default {
         entrance: '',
         operator: '',
         Note: ''
-      }],
-      accountFlowTableData: [{
-        serialNumber: '',
-        operatingTime: '',
-        incomeAndExpenses: '',
-        Amount: '',
-        accountBalance: '',
-        source: '',
-        relatedDocuments: '',
-        transactionAmount: '',
-        serviceFee: '',
-        operator: '',
-        Note: ''
-      }, {
-        serialNumber: '',
-        operatingTime: '',
-        incomeAndExpenses: '',
-        Amount: '',
-        accountBalance: '',
-        source: '',
-        relatedDocuments: '',
-        transactionAmount: '',
-        serviceFee: '',
-        operator: '',
-        Note: ''
-      }, {
-        serialNumber: '',
-        operatingTime: '',
-        incomeAndExpenses: '',
-        Amount: '',
-        accountBalance: '',
-        source: '',
-        relatedDocuments: '',
-        transactionAmount: '',
-        serviceFee: '',
-        operator: '',
-        Note: ''
       }]
     }
   },
@@ -656,7 +521,13 @@ export default {
       if (this.Switch == '基本资料') {
         this.Switch = '开通日志'
       }
+    },
+    shutDown() {
+      this.text = false
     }
+  },
+  components: {
+    accountFlow
   }
 }
 </script>
@@ -666,6 +537,12 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
+}
+.el-select{
+  width: 150px;
+}
+/deep/ .el-input-group__append{
+  padding: 0 12px;
 }
 .el-col {
   border-radius: 4px;
@@ -729,14 +606,26 @@ th{
   width: 150px;
   border-bottom: none;
   background-color: #dddddd;
+  height: 32px;
+  text-align: center;
+  line-height: 3em;
 }
 td{
   border: 1px solid #cccccc;
   border-bottom: none;
   border-left: none;
+  height: 32px;
+  line-height: 3em;
 }
-tr:last-child th,
 tr:last-child td {
   border-bottom: 1px solid #cccccc;
+  height: 32px;
+  line-height: 3em;
+}
+tr:last-child th{
+  border-bottom: 1px solid #cccccc;
+  height: 32px;
+  text-align: center;
+  line-height: 3em;
 }
 </style>

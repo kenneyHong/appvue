@@ -57,28 +57,36 @@
         <div class="number1">￥300,000.00</div>
         <div class="accountBalance">
           期初账户余额
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="所选时间之前的账户余额" placement="bottom-start">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>
       <div class="grid-content bg-purple-light">
         <div class="number2">￥100,000.00</div>
         <div class="currentIncome">
           本期收入
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="所选时间范围内的收入" placement="bottom-start">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>
       <div class="grid-content bg-purple1">
         <div class="number3">￥200,000.00</div>
         <div class="currentExpenditure">
           本期支出
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="所选时间范围内的支出" placement="bottom-start">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>
       <div class="grid-content bg-purple2">
         <div class="number4">￥200,000.00</div>
         <div class="endingAccountbalance">
           期末账户余额
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="截止所选时间的账户余额" placement="bottom-end">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>
     </div>      

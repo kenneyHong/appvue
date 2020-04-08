@@ -5,18 +5,17 @@
           <el-button type="primary" class='export'>导出</el-button>
           <el-button type="primary" class='auditRequirements' @click="auditRequirements = true">审核规定</el-button>
        </el-col>
-      <el-col :span="7">   
-        <el-dropdown>
-          <el-button type="primary">
-            所有状态<i class="el-icon-arrow-down el-icon--right"></i>
-          </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>待审核</el-dropdown-item>
-            <el-dropdown-item>审核通过</el-dropdown-item>
-            <el-dropdown-item>已作废</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+      <el-col :span="7">
+        <el-select v-model="value" placeholder="所有状态">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" >
+          <el-button slot="append" class="el-icon-search"></el-button>
         </el-input>
         <span class="generalSearch" @click="btn">{{searchTitle}}</span>
       </el-col>
@@ -197,90 +196,88 @@
           <el-radio v-model="radio" label="2">人工审核</el-radio>
         </div>
         <div slot="footer" class="submit">
-          <el-button type="primary" class="searchFor"  @click="outerVisible = true">确定</el-button>
+          <el-button type="primary" class="searchFor"  @click="auditRequirements = false">确定</el-button>
           <el-button class="reset" @click="auditRequirements = false">取消</el-button>
         </div>
       </div>
     </el-dialog> 
-    <el-dialog title="审核规则" :visible.sync="outerVisible">
-      <div class="automaticReview">
-        <div class="reviewContent">
-          <span class="documentNumber">单据编号：xxxxx00001</span>
-          <span class="founder">创建人：张三 2016-01-01</span>
-        </div>
-        <div class="auditResults">
-          <span class="auditResults1">审核结果：</span>
-          <span class="examinationPassed"><el-radio v-model="radio" label="1">审核通过</el-radio></span>
-          <div class= "void">
-            <el-radio v-model="radio" label="2">作废</el-radio>
-            <el-input  class="void1" v-model="voidNote" placeholder="作废原因备注"></el-input>
-          </div>
-        </div>
-        <div class="submit">
-          <el-button type="primary" class="searchFor">确定</el-button>
-          <el-button class="reset" @click="outerVisible = false">取消</el-button>
-        </div>
-      </div>
-    </el-dialog>
     <el-dialog title="查看" :visible.sync="lookOver">
       <div class="lookOver">
-        <el-form ref="form" :model="look" label-width="118px">
-          <el-form-item label="单据编号">
-            <el-input v-model="look.documentNumber"></el-input>
-          </el-form-item>
-          <el-form-item label="创建时间">
-            <el-input v-model="look.creationTime"></el-input>
-          </el-form-item>
-          <el-form-item label="创建人">
-            <el-input v-model="look.founder"></el-input>
-          </el-form-item>
-          <el-form-item label="商户类型">
-            <el-input v-model="look.region"></el-input>
-          </el-form-item>
-          <el-form-item label="公司编码">
-            <el-input v-model="look.companyCode"></el-input>
-          </el-form-item>
-          <el-form-item label="公司名称">
-            <el-input v-model="look.companyName"></el-input>
-          </el-form-item>
-          <el-form-item label="门店编码">
-            <el-input v-model="look.storeCode"></el-input>
-          </el-form-item>
-          <el-form-item label="门店名称">
-            <el-input v-model="look.storeTitle"></el-input>
-          </el-form-item>
-          <el-form-item label="提现银行名称">
-            <el-input v-model="look.bankName"></el-input>
-          </el-form-item>
-          <el-form-item label="提现账户卡号">
-            <el-input v-model="look.CardNumber"></el-input>
-          </el-form-item>
-          <el-form-item label="提现账户户名">
-            <el-input v-model="look.accountName"></el-input>
-          </el-form-item>
-          <el-form-item label="提现金额">
-            <el-input v-model="look.withdrawalAmount"></el-input>
-          </el-form-item>
-          <el-form-item label="服务费">
-            <el-input v-model="look.serviceFee"></el-input>
-          </el-form-item>
-          <el-form-item label="到账金额">
-            <el-input v-model="look.amountReceived"></el-input>
-          </el-form-item>
-          <el-form-item label="审核时间">
-            <el-input v-model="look.reviewTime"></el-input>
-          </el-form-item>
-          <el-form-item label="审核人">
-            <el-input v-model="look.review"></el-input>
-          </el-form-item>
-          <el-form-item label="支付时间">
-            <el-input v-model="look.paymentTime"></el-input>
-          </el-form-item>
-          <el-form-item label="支付状态">
-            <el-input v-model="look.tradingStatus"></el-input>
-          </el-form-item>
-        </el-form>
-        <div class="submit">
+        <table border="1"  cellpadding="0" cellspacing="0">
+          <tr>
+            <th>单据编号：</th>
+            <td>Savings</td>
+          </tr>
+          <tr>
+            <th>创建时间：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>创建人：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>商户类型：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>公司编码：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>公司名称：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>门店编码：</th>
+            <td>$100</td>
+          </tr>
+           <tr>
+            <th>门店名称：</th>
+            <td>$100</td>
+          </tr>
+           <tr>
+            <th>提现银行名称：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>提现账户卡号：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>提现账户户名：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>提现金额：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>服务费：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>到账金额：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>审核时间：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>审核人：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>支付时间：</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th>支付状态：</th>
+            <td>$100</td>
+          </tr>
+        </table>  
+        <div slot="footer" class="submit">
           <el-button type="primary" class="review" @click="lookOver = false">审核</el-button>
           <el-button class="Void" @click="lookOver = false">作废</el-button>
         </div>
@@ -292,34 +289,27 @@
 export default {
   data() {
     return {
+      options: [{
+        value: '选项1',
+        label: '所有状态'
+      }, {
+        value: '选项2',
+        label: '待审核'
+      }, {
+        value: '选项3',
+        label: '审核通过'
+      }, {
+        value: '选项4',
+        label: '已作废'
+      }],
+      value: '',
       reset: false,
       lookOver: false,
       auditRequirements: false,
-      outerVisible: false,
       radio: '1',
       searchTitle: '普通搜索',
       voidNote: '',
       input3: '',
-      look: {
-        documentNumber: '',
-        creationTime: '',
-        founder: '',
-        region: '',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        storeTitle: '',
-        bankName: '',
-        CardNumber: '',
-        accountName: '',
-        withdrawalAmount: '',
-        serviceFee: '',
-        amountReceived: '',
-        reviewTime: '',
-        review: '',
-        paymentTime: '',
-        tradingStatus: ''
-      },
       form: {
         documentNumber: '',
         creationTime: '',
@@ -415,6 +405,15 @@ export default {
     margin-bottom: 0;
   }
 }
+.el-select{
+  width: 150px;
+}
+.el-input-group__append{
+  padding: 0 12px !important;
+}
+/deep/ .el-input-group__append{
+  padding: 0 12px;
+}
 .export{
   width: 100px;
   height: 30px;
@@ -509,6 +508,33 @@ export default {
       width: 100px;
       border-radius: 3px;
     }
+  }
+  th{
+    border: 1px solid #cccccc;
+    width: 150px;
+    border-bottom: none;
+    background-color: #dddddd;
+    height: 32px;
+    text-align: center;
+    line-height: 3em;
+  }
+  td{
+    border: 1px solid #cccccc;
+    border-bottom: none;
+    border-left: none;
+    height: 32px;
+    line-height: 3em;
+  }
+  tr:last-child td {
+    border-bottom: 1px solid #cccccc;
+    height: 32px;
+    line-height: 3em;
+  }
+  tr:last-child th{
+    border-bottom: 1px solid #cccccc;
+    height: 32px;
+    text-align: center;
+    line-height: 3em;
   }
 }
 </style>

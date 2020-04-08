@@ -1,11 +1,12 @@
 <template>
  <div class="content">
     <el-row>
-      <el-col :span="18">
+      <el-col :span="16">
         <el-button type="primary" class="export">导出</el-button>
       </el-col>
-      <el-col :span="6">
-        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+      <el-col :span="8">
+        <el-input placeholder="公司编码" v-model="input3" class="input-with-select">
+          <el-button slot="append" class="el-icon-search"></el-button>
         </el-input>
         <span class="generalSearch" @click="btn">{{searchTitle}}</span>
       </el-col>
@@ -269,6 +270,9 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
+}
+/deep/ .el-input-group__append{
+  padding: 0 12px;
 }
 .el-col {
   border-radius: 4px;

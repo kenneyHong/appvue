@@ -73,28 +73,36 @@
         <div class="number1">￥0,00</div>
         <div class="documentAmount">
           单据金额
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="查询结果交易金额" placement="bottom-start">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>          
       <div class="grid-content bg-purple-light">
         <div class="number2">￥0,00</div>
         <div class="amountReceived">
           到账金额
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="单据金额-平台服务费" placement="bottom-start">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>
       <div class="grid-content bg-purple1">
         <div class="number3">￥0.00</div>
         <div class="platformServiceFee">
           平台服务费
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="平台应收取商户的服务费" placement="bottom-start">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>
       <div class="grid-content bg-purple2">
         <div class="number3">￥0.00</div>
         <div class="PayagencyServiceFee">
           支付机构服务费
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="支付给支付机构（中金）的服务费" placement="bottom-end">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div> 
     </div>      

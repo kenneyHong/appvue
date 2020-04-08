@@ -10,7 +10,7 @@
           </span>
         </el-col>
         <el-col :span="3">
-          <div style="text-align: right;"><el-button type="primary" class="openEWallet" @click="dialogTableVisible = true">开通电子钱包</el-button></div>
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet" @click="turnOff = true">开通电子钱包</el-button></div>
         </el-col>
       </el-row>
     </div>
@@ -39,7 +39,7 @@
           </span>
         </el-col>
         <el-col :span="3">
-          <div style="text-align: right;"><el-button type="primary" class="openEWallet"  @click="dialogTableVisible = true">重新开通</el-button></div>
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet"  @click="turnOff = true">重新开通</el-button></div>
         </el-col>
       </el-row>
     </div>
@@ -73,205 +73,96 @@
       </el-row>
     </div>
     <div class="leftAndRightLayout">
-      <div class="leftLayout">
-        <div class="availableNumber">
-          <div class="number">￥50,000.00</div>
-          <div class="balance">基本户余额</div>
-          <div class="available">    
-            <span class="basicallyAvailable">可用：￥50000.00</span>
-            <span class="LockBalance">锁定：￥3000.00</span>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <div class="leftLayout">
+            <div class="availableNumber">
+              <div class="number">￥50,000.00</div>
+              <div class="balance">基本户余额</div>
+              <div class="available">    
+                <span class="basicallyAvailable">可用：￥50000.00</span>
+                <span class="LockBalance">锁定：￥3000.00</span>
+              </div>
+            </div>
+            <div class="rechargeSystem">
+              <div class="recharge"><el-button type="warning" @click="RechargePopup = true">充值</el-button></div>
+              <div class="withdraw" @click="withdraw = true"><el-button>提现</el-button></div>
+              <div class="accountFlow" @click="accountFlow = true"><el-button >账户流水</el-button></div>
+            </div>       
           </div>
-        </div>
-        <div class="rechargeSystem">
-          <div class="recharge"><el-button type="warning" @click="RechargePopup = true">充值</el-button></div>
-          <div class="withdraw" @click="withdraw = true"><el-button>提现</el-button></div>
-          <div class="accountFlow" @click="accountFlow = true"><el-button >账户流水</el-button></div>
-        </div>       
-      </div>
-      <div class="rightLayout">
-        <div class="operationBorder">
-          <div class="NumberOfOperations">￥80,000.00</div>
-          <div class="operatingAccount">运营户余额</div>
-          <div class="consumerBill">    
-            <span class="available1">可用：￥50000.00</span>
-            <span class="lockedAmount">锁定：￥30000.00</span>
-            <span class="averageConsumption"> 近30天日均消费：￥1000.00</span>
+        </el-col>
+        <el-col :span="12">
+          <div class="rightLayout">
+            <div class="operationBorder">
+              <div class="NumberOfOperations">￥80,000.00</div>
+              <div class="operatingAccount">运营户余额</div>
+              <div class="consumerBill">    
+                <span class="available1">可用：￥50000.00</span>
+                <span class="lockedAmount">锁定：￥30000.00</span>
+                <span class="averageConsumption"> 近30天日均消费：￥1000.00</span>
+              </div>
+              <div class="sufficientBalance">(用于与礼品供应商结算等，请保证余额充足)</div>
+            </div>
+            <div class="operationRechargeSystem">
+              <div class="operationRecharge" @click="operationTopUp = true"><el-button type="warning">充值</el-button></div>
+              <div class="operationAccountFlow" @click="operationAccountFlow"><el-button>账户流水</el-button></div>
+            </div>        
           </div>
-          <div class="sufficientBalance">(用于与礼品供应商结算等，请保证余额充足)</div>
-        </div>
-        <div class="operationRechargeSystem">
-          <div class="operationRecharge" @click="operationTopUp = true"><el-button type="warning">充值</el-button></div>
-          <div class="operationAccountFlow" @click="operationAccountFlow"><el-button>账户流水</el-button></div>
-        </div>        
-      </div>
+        </el-col>
+      </el-row>
     </div>
     <div class="bankCardLayout">
-      <div class="bankAccounts">
-        <div class="walletAccount">电子钱包账户</div>
-        <div class="accountName">
-          <span class="accountName1">户名：</span>
-          <span class="accountName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
-        </div>
-        <div class="accountNumber">
-          <span class="accountNumber1">银行电子账号：</span>
-          <span class="accountNumber2">1234 5678 1234 5678</span>
-        </div>
-        <div class="branchNumber">
-          <span class="branchNumber1">归属支行号：</span>
-          <span class="branchNumber2">304100040018</span>
-        </div>
-        <div class="branchName">
-          <span class="branchName1">归属支行名称：</span>
-          <span class="branchName2">华夏银行北京和平门支行</span>
-        </div>
-      </div>
-      <div class="withdrawalBankAccount">
-        <div class="withdrawal">
-          <span class="withdrawalBank">提现银行钱包账户</span>
-          <span class="replace" @click="replace = true">更换</span>
-        </div>
-        <div class="withdrawName">
-          <span class="withdrawName1">户名：</span>
-          <span class="withdrawName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
-        </div>
-        <div class="withdrawNumber">
-          <span class="withdrawNumber1">银行：</span>
-          <span class="withdrawNumber2">1234 5678 1234 5678</span>
-        </div>
-        <div class="cardNumber">
-          <span class="cardNumber1">卡号：</span>
-          <span class="cardNumber2">304100040018</span>
-        </div>
-        <div class="accountOpening">
-          <span class="accountOpening1">开户网点：</span>
-          <span class="accountOpening2">华夏银行北京和平门支行</span>
-        </div>
-      </div>
-      <div class="addBankAccount">
-        <div class="addWithdrawalBank">提现银行账户</div>
-        <div class="addTo"  @click="replace = true"><i class="el-icon-plus"></i>添加提现银行卡</div>
-      </div>
-    </div>
-    <div class="poPupWindow"> 
-        <el-dialog title="开通电子钱包" :visible.sync="dialogTableVisible">
-          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="118px" class="demo-ruleForm" >
-            <el-form-item label="*账户类型：">
-              <el-radio-group v-model="ruleForm.accountType">
-                <el-radio class="personalInformation"  label="公司"></el-radio>
-                <el-radio class="personalInformation"  label="个人"></el-radio>
-              </el-radio-group>
-            </el-form-item>
-            <div class="the company" v-if="ruleForm.accountType == '公司'">
-              <el-form-item label="*户名：">
-                <el-input v-model="ruleForm.accountName"></el-input>
-                <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
-              </el-form-item>
-              <el-form-item label="*统一社会信用代码：">
-                <el-input v-model="ruleForm.creditCode"></el-input>
-              </el-form-item>
-              <el-form-item label="*法定代表人姓名：">
-                <el-input v-model="ruleForm.legalName"></el-input>
-              </el-form-item>
-              <el-form-item label="*法定代表人身份证：">
-                <el-input v-model="ruleForm.legalIdentityCard"></el-input>
-              </el-form-item>
-              <el-form-item label="*手机号码：">
-                <el-input v-model="ruleForm.mobilePhone"></el-input>
-              </el-form-item>
-              <el-form-item label="*邮箱：">
-                <el-input v-model="ruleForm.mailbox"></el-input>
-              </el-form-item>
-              <el-form-item label="*所属区域：">
-                <el-cascader
-                  :options="options"
-                  :props="{ multiple: true,checkStrictly: true }"
-                  clearable>
-                </el-cascader>
-              </el-form-item>
-              <el-form-item label="*详细地址：">
-                <el-input v-model="ruleForm.address"></el-input>
-              </el-form-item>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <div class="bankAccounts">
+            <div class="walletAccount">电子钱包账户</div>
+            <div class="accountName">
+              <span class="accountName1">户名：</span>
+              <span class="accountName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
             </div>
-            <div class="personal" v-if="ruleForm.accountType == '个人'" >
-              <el-form-item label="*户名：">
-                <el-input v-model="ruleForm.accountName1"></el-input>
-                <span class="relatedInformation">（提现时必须为同名账户，填填写完整名称）</span>
-              </el-form-item>
-              <el-form-item label="*身份证号码：">
-                <el-input v-model="ruleForm.identityCard1"></el-input>
-              </el-form-item>
-              <el-form-item label="*手机号码：">
-                <el-input v-model="ruleForm.mobilePhone1"></el-input>
-                <span class="reservedNumber">（必须为提现银行卡预留的手机，否则无法提现）</span>
-              </el-form-item>
-              <el-form-item label="*邮箱：">
-                <el-input v-model="ruleForm.mailbox1"></el-input>
-              </el-form-item>
+            <div class="accountNumber">
+              <span class="accountNumber1">银行电子账号：</span>
+              <span class="accountNumber2">1234 5678 1234 5678</span>
             </div>
-          </el-form>
-          <div  slot="footer" class="submit">
-            <el-button type="primary" class="searchFor" >确定</el-button>
-            <el-button class="reset"  @click="dialogTableVisible = false">取消</el-button>
-          </div>
-        </el-dialog>
-      
-    </div>
-    <div class="economy">
-      <el-dialog  title="充值" :visible.sync="RechargePopup">
-        <div class="OfflineTransfer">
-          <el-button class="transfer" @click="Offline">
-            <div class="Offline" >线下转账</div>
-            <div class= "Offline1">(推荐，无服务费)</div>
-          </el-button>
-          <el-button class="pay" @click="amount">在线支付</el-button>
-        </div>
-        <div class="rechargePopup"  v-if="transfer == '线下转账'">
-          <div class="DepositInto">
-            您可以通过柜台转账、网银、支付宝等直接存入您的电子账户中！
-          </div>
-          <div class="accountName">
-            <span class="accountName1">户名：</span>
-            <span class="accountName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
-          </div>
-          <div class="accountNumber">
-            <span class="accountNumber1">银行电子账号：</span>
-            <span class="accountNumber2">1234 5678 1234 5678</span>
-          </div>
-          <div class="branchNumber">
-            <span class="branchNumber1">归属支行号：</span>
-            <span class="branchNumber2">304100040018</span>
-          </div>
-          <div class="branchName">
-            <span class="branchName1">归属支行名称：</span>
-            <span class="branchName2">华夏银行北京和平门支行</span>
-          </div>
-        </div>
-        <div class="onlineTransaction" v-if="transfer == '在线支付'">
-          <div class="aggregate">
-            <div class="whole">
-              <span class="amount">充值金额：</span>
-              <el-input class="amount1" v-model="input"></el-input>
-              <span class="amount2">元，只能充值整数，最低充值2000元</span>
+            <div class="branchNumber">
+              <span class="branchNumber1">归属支行号：</span>
+              <span class="branchNumber2">304100040018</span>
             </div>
-            <div class="money">
-              <el-radio v-model="radio" label="1">5000</el-radio>
-              <el-radio v-model="radio" label="2">10000</el-radio>
-              <el-radio v-model="radio" label="3">20000</el-radio>
-              <el-radio v-model="radio" label="4">50000</el-radio>
-              <el-radio v-model="radio" label="5">100000</el-radio>
-            </div>
-            <div class="paymentMethod">
-              <span class="Method">支付方式：</span>
-              <el-radio v-model="radios" label="1">微信</el-radio>
-              <el-radio v-model="radios" label="2">支付宝</el-radio>
-              <el-radio v-model="radios" label="3">企业网银</el-radio>
-              <el-radio v-model="radios" label="4">个人网银</el-radio>
-              <div class="serviceFee">额外扣除<span class="countOff">￥50.00</span> 服务费（费率0.5%）</div>
-              <el-button type="primary" class="immediately">立即支付</el-button>
+            <div class="branchName">
+              <span class="branchName1">归属支行名称：</span>
+              <span class="branchName2">华夏银行北京和平门支行</span>
             </div>
           </div>
-        </div>
-      </el-dialog>  
+        </el-col>
+        <el-col :span="12">
+          <!-- <div class="withdrawalBankAccount">
+            <div class="withdrawal">
+              <span class="withdrawalBank">提现银行钱包账户</span>
+              <span class="replace" @click="replace = true">更换</span>
+            </div>
+            <div class="withdrawName">
+              <span class="withdrawName1">户名：</span>
+              <span class="withdrawName2">xxxxxxxxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="withdrawNumber">
+              <span class="withdrawNumber1">银行：</span>
+              <span class="withdrawNumber2">1234 5678 1234 5678</span>
+            </div>
+            <div class="cardNumber">
+              <span class="cardNumber1">卡号：</span>
+              <span class="cardNumber2">304100040018</span>
+            </div>
+            <div class="accountOpening">
+              <span class="accountOpening1">开户网点：</span>
+              <span class="accountOpening2">华夏银行北京和平门支行</span>
+            </div>
+          </div> -->
+          <div class="addBankAccount">
+            <div class="addWithdrawalBank">提现银行账户</div>
+            <div class="addTo"  @click="replace = true"><i class="el-icon-plus"></i>添加提现银行卡</div>
+          </div>
+        </el-col>
+      </el-row>
     </div>
     <div class= "accountFlowPopups">
       <el-dialog title="账户流水" :visible.sync="accountFlow" width="80%">
@@ -504,18 +395,24 @@
         </div>
       </div>
     </el-dialog>
+    <openWallet :openEwallet="turnOff" @open="open" @openEwallet="cancel" @identify="determine"></openWallet>
   </div>
 </template>
 <script>
+import openWallet from '@/components/openWallet.vue'
+import rechargeClose from '@/components/rechargeClose.vue'
 export default {
   data() {
     return {
+      turnOff: false,
+      topUp: false,
       form: {
         time: '',
         mosquitoNet: '',
         cardNumber: '',
         reservePhone: ''
       },
+      operatio: '',
       formInline: {
         all1: '',
         withdraw: '',
@@ -573,88 +470,33 @@ export default {
       radio: '1',
       radios: '1',
       input: '',
-      transfer: '线下转账',
       dialogTableVisible: false,
       RechargePopup: false,
       accountFlow: false,
       operationTopUp: false,
       replace: false,
-      amountReceived: '',
-      ruleForm: {
-        accountType: '公司',
-        accountName: '',
-        creditCode: '',
-        legalName: '',
-        legalIdentityCard: '',
-        mobilePhone: '',
-        mailbox: '',
-        address: '',
-        accountName1: '',
-        identityCard1: '',
-        mobilePhone1: '',
-        mailbox1: ''
-      },
-      options: [{
-        value: 'shen',
-        label: '省',
-        children: [{
-          value: 'guangdongshen',
-          label: '广东省'
-        }]
-      }, {
-        value: 'shi',
-        label: '市',
-        children: [{
-          value: 'shentoushi',
-          label: '汕头市'
-        }]
-      }, {
-        value: 'quexian',
-        label: '区/县',
-        children: [{
-          value: 'chaoyang',
-          label: '潮阳区'
-        }]
-      }],
-      operatio: [{
-        value: 'shen',
-        label: '省',
-        children: [{
-          value: 'guangdongshen',
-          label: '广东省'
-        }]
-      }, {
-        value: 'shi',
-        label: '市',
-        children: [{
-          value: 'shentoushi',
-          label: '汕头市'
-        }]
-      }],
-      rules: {
-        accountType: [
-          { accountType: true, message: '请选择活动资源', trigger: 'change' }
-        ]
-      }
+      amountReceived: ''
     }
   },
   methods: {
-    Offline() {
-      if (this.transfer == '在线支付') {
-        this.transfer = '线下转账'
-      }
-    },
-    amount() {
-      if (this.transfer == '线下转账') {
-        this.transfer = '在线支付'
-      }
-    },
     operationAccountFlow() {
-      this.$router.push('/operatorsFlow')
+      this.$router.push('/operatorsFlow/index')
     },
     logInSystem() {
       this.$router.push('/login')
+    },
+    open() {
+      this.turnOff = false
+    },
+    cancel() {
+      this.turnOff = false
+    },
+    determine() {
+      this.turnOff = false
     }
+  },
+  components: {
+    openWallet
   }
 }
 </script>
@@ -721,7 +563,7 @@ background-color: #f9fafc;
 }
 .leftAndRightLayout{
   .leftLayout{
-  width: 501px;
+  width: 100%;
   height: 195px;
   background-color: #5873ff;
   margin-top: 10px;
@@ -747,7 +589,7 @@ background-color: #f9fafc;
     .rechargeSystem{
       margin-top: 34px;
       .recharge{
-        width: 166px;
+        width: 33.2%;
         height: 48px;
         float: left;
         background-color: #4a61d6;
@@ -758,7 +600,7 @@ background-color: #f9fafc;
         }
       }
       .withdraw{
-        width: 166px;
+        width: 33.1%;
         height: 48px;
         float: left;
         background-color: #4a61d6;
@@ -767,7 +609,7 @@ background-color: #f9fafc;
         margin-left: 1px;
       }
       .accountFlow{
-        width: 166px;
+        width: 33.2%;
         height: 48px;
         float: left;
         background-color: #4a61d6;
@@ -778,7 +620,7 @@ background-color: #f9fafc;
     }
   }
   .rightLayout{
-    width: 501px;
+    width: 100%;
     height: 195px;
     background-color: #e79300;
     margin-top: 10px;
@@ -786,7 +628,6 @@ background-color: #f9fafc;
     float: left;
     line-height: 28px;
     padding-top: 28px;
-    margin-left: 61px;
     .operationBorder{
       color: #FFFFFF;
     }
@@ -811,7 +652,7 @@ background-color: #f9fafc;
     .operationRechargeSystem{
       margin-top: 6px;
       .operationRecharge{
-        width: 249px;
+        width: 49.7%;
         height: 48px;
         float: left;
         background-color: #c57d00;
@@ -822,7 +663,7 @@ background-color: #f9fafc;
         }
       }
       .operationAccountFlow{
-        width: 249px;
+        width: 49.8%;
         height: 48px;
         float: left;
         background-color: #c57d00;
@@ -834,76 +675,87 @@ background-color: #f9fafc;
   }
 }
 .bankCardLayout{
-  float: left;
   margin-top: 10px;
   .bankAccounts{
-    float: left;
-    width: 320px;
-    height: 180px;
+    width: 100%;
+    height: 195px;
     border: 1px solid #e5e5e5;
     .walletAccount{
       height: 32px;
       color: #333333;
-      font-size: 12px;
+      font-size: 14px;
+      font-weight: 600;
       background-color: #f5f5f5;
       border-bottom: 1px solid #e5e5e5;
       padding-left: 20px;
       line-height: 2.5em;
     }
-    .accountName{
+    .accountName1{
       color: #777777;
       padding-left: 20px;
       padding-top: 15px;
-      .accountName2{
-        color: #333333;
-        margin-left: 20%;
-      }
+      font-size: 14px;
+      width: 200px;
+      display: inline-block;
     }
-    .accountNumber{
+    .accountName2{
+      color: #333333;
+      font-size: 14px;
+    }
+    .accountNumber1{
+      width: 200px;
+      display: inline-block;
+      font-size: 14px;
       color: #777777;
       padding-left: 20px;
       padding-top: 10px;
-      .accountNumber2{
-        color: #333333;
-        margin-left: 4%;
-      }
     }
-    .branchNumber{
+    .accountNumber2{
+      font-size: 14px;
+      color: #333333;
+    }
+    .branchNumber1{
+      width: 200px;
+      display: inline-block;
+      font-size: 14px;
       color: #777777;
       padding-left: 20px;
       padding-top: 10px;
-      .branchNumber2{
-        color: #333333;
-        margin-left: 8%;
-      }
     }
-    .branchName{
+    .branchNumber2{
+      font-size: 14px;
+      color: #333333;
+    }
+    .branchName1{
+      width: 200px;
+      display: inline-block;
+      font-size: 14px;
       color: #777777;
       padding-left: 20px;
       padding-top: 10px;
-      .branchName2{
-        color: #333333;
-        margin-left: 4%;
-      }
+    }
+    .branchName2{
+      color: #333333;
+      font-size: 14px;
     }
   }
   .withdrawalBankAccount{
-    float: left;
-    margin-left: 10px;
-    width: 320px;
-    height: 180px;
+    width: 100%;
+    height: 195px;
     border: 1px solid #e5e5e5;
     .withdrawal{
       border-bottom: 1px solid #e5e5e5;
       .withdrawalBank{
       height: 32px;
       color: #333333;
-      font-size: 12px;
+      font-size: 14px;
+      font-weight: 600;
       background-color: #f5f5f5;
       padding-left: 20px;
       line-height: 2.5em;
       }
      .replace{
+      font-size: 14px;
       color: #169BD5;
       float: right;
       line-height: 2.5em;
@@ -911,47 +763,56 @@ background-color: #f9fafc;
       }
     }
     .withdrawName{
+      font-size: 14px;
       color: #777777;
       padding-left: 20px;
       padding-top: 15px;
-      .withdrawName2{
-        color: #333333;
-        margin-left: 10%;
-      }
+      width: 200px;
+      display: inline-block;
+    }
+    .withdrawName2{
+      color: #333333;
+      font-size: 14px;
     }
     .withdrawNumber{
+      font-size: 14px;
       color: #777777;
       padding-left: 20px;
       padding-top: 10px;
-      .withdrawNumber2{
-        color: #333333;
-        margin-left: 10%;
-      }
+      width: 200px;
+      display: inline-block;
+    }
+    .withdrawNumber2{
+      color: #333333;
+      font-size: 14px;
     }
     .cardNumber{
+      font-size: 14px;
       color: #777777;
       padding-left: 20px;
       padding-top: 10px;
-      .cardNumber2{
-        color: #333333;
-        margin-left: 10%;
-      }
+      width: 200px;
+      display: inline-block;
+    }
+    .cardNumber2{
+      color: #333333;
+      font-size: 14px;
     }
     .accountOpening{
       color: #777777;
       padding-left: 20px;
       padding-top: 10px;
-      .accountOpening2{
-        color: #333333;
-        margin-left: 2%;
-      }
+      width: 200px;
+      display: inline-block;
+    }
+    .accountOpening2{
+      color: #333333;
+      font-size: 14px;
     }
   }
   .addBankAccount{
-    float: left;
-    margin-left: 10px;
-    width: 320px;
-    height: 180px;
+    width: 100%;
+    height: 195px;
     border: 1px solid #e5e5e5;
     .addWithdrawalBank{
       height: 32px;

@@ -14,7 +14,7 @@
               </el-date-picker>
             </el-form-item>
             <el-form-item label="商户类型：">
-              <el-select v-model="formInline.region" placeholder="全部">
+              <el-select v-model="form.region" placeholder="全部">
                 <el-option label="全部" value="all"></el-option>
                 <el-option label="珠宝公司" value="jewelryCompany"></el-option>
                 <el-option label="珠宝门店" value="jewelryStore"></el-option>
@@ -76,7 +76,9 @@
         <template slot='header'>
           <span>
             期初账户余额
-            <i class="el-icon-question"></i>
+            <el-tooltip class="item" effect="dark" content="所选时间之前的账户余额" placement="bottom-start">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
           </span>
         </template>  
       </el-table-column>
@@ -85,7 +87,9 @@
         <template slot='header'>
           <span>
             本期收入
-            <i class="el-icon-question"></i>
+            <el-tooltip class="item" effect="dark" content="所选时间范围内的收入" placement="bottom-start">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
           </span>
         </template>  
       </el-table-column>
@@ -94,7 +98,9 @@
         <template slot='header'>
           <span>
             本期支出
-            <i class="el-icon-question"></i>
+            <el-tooltip class="item" effect="dark" content="所选时间范围内的支出" placement="bottom-start">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
           </span>
         </template>  
       </el-table-column>
@@ -103,7 +109,9 @@
         <template slot='header'>
           <span>
             期末账户余额
-            <i class="el-icon-question"></i>
+            <el-tooltip class="item" effect="dark" content="截止所选时间的账户余额" placement="bottom-end">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
           </span>
         </template>  
       </el-table-column>
@@ -111,7 +119,7 @@
         prop="operating"
         label="操作"> 
         <template>
-          <el-button  type="text" size="small" @click="accountFlow = true">账户流水</el-button>
+          <el-button  type="text" size="small" @click="turnOff = true">账户流水</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -127,123 +135,25 @@
         <el-button>末页</el-button>
       </el-pagination>
     </div>
-    <el-dialog title="账户流水" :visible.sync="accountFlow" width="80%">
-      <div class="accountFlowPopups">
-        <div class="accountFlow">
-          <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-row :gutter="20">
-              <el-col :span="20">
-                <el-form-item label="时间：" label-width="118px">
-                  <el-date-picker
-                    v-model="formInline.time"
-                    type="daterange"
-                    range-separator="-"
-                    start-placeholder="2016/01/01"
-                    end-placeholder="2016/01/01">
-                  </el-date-picker>
-                </el-form-item>
-                <el-form-item label="来源：">
-                  <el-select v-model="formInline.source" placeholder="全部">
-                    <el-option label="全部" value="all1"></el-option>
-                    <el-option label="礼品订单" value="withdraw"></el-option>
-                    <el-option label="充值" value="recharge"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="4">
-                <el-button type="primary">搜索</el-button>
-                <el-button>重置</el-button>
-              </el-col>
-            </el-row>
-          </el-form>  
-        </div>
-        <el-table
-        :data="accountFlowTableData"
-        border>
-          <el-table-column
-            prop="operatingTime"
-            sortable
-            label="操作时间"
-            min-width="140">
-          </el-table-column>
-          <el-table-column
-            prop="incomeAndExpenses"
-            label="收入/支出"
-            width="120">
-          </el-table-column>
-          <el-table-column
-            prop="Amount"
-            label="金额"
-            width="120">
-          </el-table-column>
-          <el-table-column
-            prop="accountBalance"
-            label="礼品账户余额"
-            width="130">
-          </el-table-column>
-          <el-table-column
-            prop="source"
-            label="来源"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="ticketNumber"
-            label="来源单号"
-            width="130">
-          </el-table-column>
-          <el-table-column
-            prop="operator"
-            label="操作人"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="Note"
-            label="备注"
-            width="100">
-          </el-table-column>
-        </el-table>
-        <div class="block">
-          <el-pagination
-            layout="slot, prev, pager, next "
-            :page-size="20"
-            :total="200"
-            style="display: inline-block;padding-right: 0px;">
-            <el-button>首页</el-button>
-          </el-pagination>
-          <el-pagination layout="slot" style="display: inline-block;padding-right: 0px;">
-            <el-button>末页</el-button>
-          </el-pagination>
-        </div>
-      </div>
-    </el-dialog>  
+    <accountFlow :accountFlows="turnOff" @closeDia="shutDown"></accountFlow>
  </div>
 </template>
 <script>
+import accountFlow from '@/components/accountFlow.vue'
 export default {
   data() {
     return {
-      accountFlow: false,
-      accountFlowTableData: [{
-        operatingTime: '',
-        incomeAndExpenses: '',
-        Amount: '',
-        accountBalance: '',
-        source: '',
-        ticketNumber: '',
-        operator: '',
-        Note: ''
-      }],
-      formInline: {
-        all: '',
-        jewelryCompany: '',
-        jewelryStore: ''
-      },
+      turnOff: false,
       form: {
         time: '',
         companyCode: '',
         companyName: '',
         storeCode: '',
-        storeName: ''
+        storeName: '',
+        region: '',
+        all: '',
+        jewelryCompany: '',
+        jewelryStore: ''
       },
       tableData: [{
         region: '',
@@ -287,6 +197,14 @@ export default {
         endingAccountBalance: ''
       }]
     }
+  },
+  methods: {
+    shutDown() {
+      this.turnOff = false
+    }
+  },
+  components: {
+    accountFlow
   }
 }
 </script>

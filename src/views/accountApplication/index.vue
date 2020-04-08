@@ -1,22 +1,21 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="18">
+      <el-col :span="16">
         <el-button type="primary" class='export'>导出</el-button>
         <el-button type="primary" class='auditRequirements' @click="auditRequirements = true">审核规定</el-button>
       </el-col>
-      <el-col :span="6">
-        <el-dropdown>
-          <el-button type="primary">
-            所有状态<i class="el-icon-arrow-down el-icon--right"></i>
-          </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>待审核</el-dropdown-item>
-            <el-dropdown-item>审核通过</el-dropdown-item>
-            <el-dropdown-item>已作废</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+      <el-col :span="8">
+        <el-select v-model="value" placeholder="所有状态">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="公司编码" v-model="input3" class="input-with-select">
+          <el-button slot="append" class="el-icon-search"></el-button>
         </el-input>
         <span class="generalSearch"  @click="btn">{{searchTitle}}</span>
       </el-col>    
@@ -179,74 +178,68 @@
           <el-radio v-model="radio" label="2">人工审核</el-radio>
         </div>
         <div slot="footer" class="submit">
-          <el-button type="primary" class="searchFor"  @click="outerVisible = true">确定</el-button>
+          <el-button type="primary" class="searchFor"  @click="auditRequirements = false">确定</el-button>
           <el-button class="reset"  @click="auditRequirements = false">取消</el-button>
         </div>
       </div>
     </el-dialog> 
-    <el-dialog :visible.sync="outerVisible">
-      <div class="automaticReview">
-        <div class="reviewContent">
-          <span class="documentNumber">单据编号：xxxxx00001</span>
-          <span class="founder">创建人：张三 2016-01-01</span>
-        </div>
-        <div class="auditResults">
-          <span class="auditResults1">审核结果：</span>
-          <span class="examinationPassed"><el-radio v-model="radio" label="1">审核通过</el-radio></span>
-          <div class= "void">
-            <el-radio v-model="radio" label="2">作废</el-radio>
-            <el-input  class="void1" v-model="voidNote" placeholder="作废原因备注"></el-input>
-          </div>
-        </div>
-        <div class="submit">
-          <el-button type="primary" class="searchFor">确定</el-button>
-          <el-button class="reset"   @click="outerVisible = false">取消</el-button>
-        </div>
-      </div>
-    </el-dialog>
     <el-dialog title="查看" :visible.sync="lookOver">
       <div class="accountType">
-        <div class="typeOfCompany">
-          <el-form :model="ruleForm" ref="ruleForm" label-width="118px" class="demo-ruleForm" >
-            <!-- <el-form-item label="*账户类型：">
-              <el-input v-model="ruleForm.accountType"></el-input>
-            </el-form-item>
-            <el-form-item label="*户名：">
-              <el-input v-model="ruleForm.accountName"></el-input>
-            </el-form-item>
-            <el-form-item label="*统一社会信用代码：">
-              <el-input v-model="ruleForm.creditCode"></el-input>
-            </el-form-item>
-            <el-form-item label="*法定代表人姓名：">
-              <el-input v-model="ruleForm.legalName"></el-input>
-            </el-form-item>
-            <el-form-item label="*法定代表人身份证：">
-              <el-input v-model="ruleForm.legalIdentityCard"></el-input>
-            </el-form-item>
-            <el-form-item label="*手机号码：">
-              <el-input v-model="ruleForm.mobilePhone"></el-input>
-            </el-form-item>
-            <el-form-item label="*所属区域：">
-              <el-input v-model="ruleForm.districtBelong"></el-input>
-            </el-form-item>
-            <el-form-item label="*详细地址：">
-              <el-input v-model="ruleForm.address"></el-input>
-            </el-form-item>-->
-            <div class= "personalType">
-              <el-form-item label="*账户类型：">
-                <el-input v-model="ruleForm.accountType"></el-input>
-              </el-form-item>
-              <el-form-item label="*户名：">
-                <el-input v-model="ruleForm.accountName"></el-input>
-              </el-form-item>
-              <el-form-item label="*身份证号码：">
-                <el-input v-model="ruleForm.identificationNumber"></el-input>
-              </el-form-item>
-              <el-form-item label="*手机号码：">
-                <el-input v-model="ruleForm.mobilePhone"></el-input>
-              </el-form-item>
-            </div>
-          </el-form>
+        <!-- <div class="typeOfCompany">
+            <table border="1"  cellpadding="0" cellspacing="0"> 
+            <tr>
+              <th>*账户类型：</th>
+              <td>Savings</td>
+            </tr>
+            <tr>
+              <th>*户名：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*统一社会信用代码：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*法定代表人姓名：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*法定代表人身份证：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*手机号码：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*所属区域：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*详细地址：</th>
+              <td>$100</td>
+            </tr>
+          </table>
+        </div>   -->
+        <div class= "personalType">
+          <table border="1"  cellpadding="0" cellspacing="0">
+            <tr>
+              <th>*账户类型：</th>
+              <td>Savings</td>
+            </tr>
+            <tr>
+              <th>*户名：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*身份证号码：</th>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <th>*手机号码：</th>
+              <td>$100</td>
+            </tr>
+          </table>
         </div>
         <div class="submit">
           <el-button type="primary" class="review" @click="lookOver = false">审核</el-button>
@@ -260,12 +253,25 @@
 export default {
   data() {
     return {
+      options: [{
+        value: '选项1',
+        label: '所有状态'
+      }, {
+        value: '选项2',
+        label: '待审核'
+      }, {
+        value: '选项3',
+        label: '审核通过'
+      }, {
+        value: '选项4',
+        label: '已作废'
+      }],
+      value: '',
       reset: false,
       lookOver: false,
       auditRequirements: false,
       searchTitle: '普通搜索',
       radio: '1',
-      outerVisible: false,
       voidNote: '',
       form: {
         documentNumber: '',
@@ -275,17 +281,6 @@ export default {
         companyName: '',
         storeCode: '',
         storeName: ''
-      },
-      ruleForm: {
-        accountType: '',
-        accountName: '',
-        creditCode: '',
-        legalName: '',
-        legalIdentityCard: '',
-        mobilePhone: '',
-        districtBelong: '',
-        address: '',
-        identificationNumber: ''
       },
       tableData: [{
         documentNumber: '170000',
@@ -363,6 +358,12 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
+}
+.el-select{
+  width: 150px;
+}
+/deep/ .el-input-group__append{
+  padding: 0 12px;
 }
 .export{
   width: 100px;
@@ -458,6 +459,33 @@ export default {
       width: 100px;
       border-radius: 3px;
     }
+  }
+  th{
+    border: 1px solid #cccccc;
+    width: 150px;
+    border-bottom: none;
+    background-color: #dddddd;
+    height: 32px;
+    text-align: center;
+    line-height: 3em;
+  }
+  td{
+    border: 1px solid #cccccc;
+    border-bottom: none;
+    border-left: none;
+    height: 32px;
+    line-height: 3em;
+  }
+  tr:last-child td {
+    border-bottom: 1px solid #cccccc;
+    height: 32px;
+    line-height: 3em;
+  }
+  tr:last-child th{
+    border-bottom: 1px solid #cccccc;
+    height: 32px;
+    text-align: center;
+    line-height: 3em;
   }
 }
 </style>

@@ -1,21 +1,20 @@
 <template>
   <div class="content">
     <el-row>
-      <el-col :span="17">
+      <el-col :span="16">
         <el-button type="primary" class="export">导出</el-button>
       </el-col>
-    <el-col :span="7">
-      <el-dropdown>
-        <el-button type="primary" class='status'>
-          所有状态<i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>支付中</el-dropdown-item>
-          <el-dropdown-item>支付成功</el-dropdown-item>
-          <el-dropdown-item>支付失败</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <el-input placeholder="公司编码" v-model="input3" class="input-with-select" suffix-icon="el-icon-search">
+    <el-col :span="8">
+      <el-select v-model="value" placeholder="所有状态">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-input placeholder="公司编码" v-model="input3" class="input-with-select">
+        <el-button slot="append" class="el-icon-search"></el-button>
       </el-input>
       <span class="generalSearch" @click="btn">{{searchTitle}}</span>
     </el-col>
@@ -162,6 +161,26 @@
 export default {
   data() {
     return {
+      options: [{
+        value: '选项1',
+        label: '所有状态'
+      }, {
+        value: '选项2',
+        label: '开户中'
+      }, {
+        value: '选项3',
+        label: '已开户'
+      }, {
+        value: '选项4',
+        label: '已销户'
+      }, {
+        value: '选项5',
+        label: '冻结'
+      }, {
+        value: '选项6',
+        label: '开户失败'
+      }],
+      value: '',
       searchTitle: '普通搜索',
       form: {
         time: '',
@@ -256,6 +275,12 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
+}
+.el-select{
+  width: 150px;
+}
+/deep/ .el-input-group__append{
+  padding: 0 12px;
 }
 .export{
   width: 100px;

@@ -72,14 +72,19 @@
         <div class="number1">￥300,000.00</div>
         <div class="accountBalance">
           期初账户余额
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="所选时间之前的账户余额" placement="bottom-start">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div>
       <div class="grid-content bg-purple-light">
         <div class="number2">￥99,000.00</div>
         <div class="currentIncome">
           本期收入
-          <i class="el-icon-question"></i>
+          <el-tooltip placement="bottom-start">
+            <div slot="content">所选时间范围内的收入，<br/>收入金额-服务费</div>
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
         <div class="transactionAmount">交易金额￥100,000.00，服务费￥1,000.00</div>
       </div>
@@ -87,7 +92,10 @@
         <div class="number3">￥201,000.00</div>
         <div class="currentExpenditure">
           本期支出
-          <i class="el-icon-question"></i>
+          <el-tooltip placement="bottom-start">
+            <div slot="content">所选时间范围内的支出，<br/>支出金额-服务费</div>
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
         <div class="transactionAmount1">交易金额￥200,000.00，服务费￥1,000.00</div>
       </div>
@@ -95,7 +103,9 @@
         <div class="number4">￥￥198,000.00</div>
         <div class="endingAccountbalance">
           期末账户余额
-          <i class="el-icon-question"></i>
+          <el-tooltip class="item" effect="dark" content="截止所选时间的账户余额" placement="bottom-end">
+            <i class="el-icon-question"></i>
+          </el-tooltip>
         </div>
       </div> 
     </div>      
@@ -382,4 +392,7 @@ export default {
 /deep/.el-table th{
   background: #F5F7FA;
 } 
+.right .el-tooltip__popper {
+  padding: 8px 10px;
+}
 </style>
