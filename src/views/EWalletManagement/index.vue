@@ -85,7 +85,7 @@
               </div>
             </div>
             <div class="rechargeSystem">
-              <div class="recharge"><el-button type="warning" @click="RechargePopup = true">充值</el-button></div>
+              <div class="recharge"><el-button type="warning" @click="basic = true">充值</el-button></div>
               <div class="withdraw" @click="withdraw = true"><el-button>提现</el-button></div>
               <div class="accountFlow" @click="accountFlow = true"><el-button >账户流水</el-button></div>
             </div>       
@@ -396,6 +396,7 @@
       </div>
     </el-dialog>
     <openWallet :openEwallet="turnOff" @open="open" @openEwallet="cancel" @identify="determine"></openWallet>
+    <rechargeClose @rechargeCl="pass" :basic="basic"></rechargeClose>
   </div>
 </template>
 <script>
@@ -405,7 +406,7 @@ export default {
   data() {
     return {
       turnOff: false,
-      topUp: false,
+      basic: false,
       form: {
         time: '',
         mosquitoNet: '',
@@ -493,10 +494,14 @@ export default {
     },
     determine() {
       this.turnOff = false
+    },
+    pass() {
+      this.basic = false
     }
   },
   components: {
-    openWallet
+    openWallet,
+    rechargeClose
   }
 }
 </script>
