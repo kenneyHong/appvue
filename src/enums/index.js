@@ -40,7 +40,7 @@ export const GoodsStatus = {
   ]
 }
 
-// 电子钱包账户状态;
+// 电子钱包开通账户状态;
 export const EwalletMasterState = {
   Waiting: 1,
   Opening: 3,
@@ -213,42 +213,24 @@ export const EwalletLogSourceType = {
 }
 // 支付方式;
 export const PaymentType = {
-  'BankPay': 1,
   'AliPay': 3,
   'WechatPay': 5,
-  'UnionPay': 7,
-  'CashPay': 9,
-  'CreditPay': 11,
   'Eebank': 13,
   'Pebank': 15,
   'EwalletBase': 17,
-  'EwalletOp': 19,
-  'SysPay': 99,
   'Types': {
-    '1': '银行转账',
     '3': '支付宝',
     '5': '微信',
-    '7': '银联',
-    '9': '现金',
-    '11': '花呗分期',
     '13': '企业网银',
     '15': '个人网银',
-    '17': '电子钱包(基本户)',
-    '19': '电子钱包(运营户)',
-    '99': '系统'
+    '17': '电子钱包(基本户)'
   },
   'TypeArray': [
-    { 'KeyId': 1, 'Value': '银行转账' },
     { 'KeyId': 3, 'Value': '支付宝' },
     { 'KeyId': 5, 'Value': '微信' },
-    { 'KeyId': 7, 'Value': '银联' },
-    { 'KeyId': 9, 'Value': '现金' },
-    { 'KeyId': 11, 'Value': '花呗分期' },
     { 'KeyId': 13, 'Value': '企业网银' },
     { 'KeyId': 15, 'Value': '个人网银' },
-    { 'KeyId': 17, 'Value': '电子钱包(基本户)' },
-    { 'KeyId': 19, 'Value': '电子钱包(运营户)' },
-    { 'KeyId': 99, 'Value': '系统' }
+    { 'KeyId': 17, 'Value': '电子钱包(基本户)' }
   ]
 }
 // 交易状态;
