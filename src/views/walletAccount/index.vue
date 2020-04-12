@@ -75,7 +75,7 @@
           </el-col>
           <el-col :span="4">
             <el-form-item>
-              <el-button type="primary">搜索</el-button>
+              <el-button type="primary" @click="getData">搜索</el-button>
               <el-button>重置</el-button>
             </el-form-item>
           </el-col>
@@ -336,6 +336,7 @@
 </template>
 <script>
 import accountFlow from '@/components/accountFlow.vue'
+import { CLEARING_API_GETACCOUNTLIST } from '@/apis/user.js'
 export default {
   data () {
     return {
@@ -524,6 +525,11 @@ export default {
     },
     shutDown() {
       this.text = false
+    },
+    getData() {
+      CLEARING_API_GETACCOUNTLIST().then(res => {
+        console.log(res)
+      })
     }
   },
   components: {
