@@ -267,119 +267,6 @@
         </div>
       </el-dialog>
     </div>
-    <div class="operationTopUp">
-      <el-dialog  title="充值" :visible.sync="operationTopUp">
-        <div class="whole">
-          <span class="amount">充值金额：</span>
-          <el-input class="amount1" v-model="input"></el-input>
-          <span class="amount2">元，只能充值整数，最低充值2000元</span>
-        </div>
-        <div class="money">
-          <el-radio v-model="radio" label="1">5000</el-radio>
-          <el-radio v-model="radio" label="2">10000</el-radio>
-          <el-radio v-model="radio" label="3">20000</el-radio>
-          <el-radio v-model="radio" label="4">50000</el-radio>
-          <el-radio v-model="radio" label="5">100000</el-radio>
-        </div>
-        <div class="paymentMethod">
-          <span class="Method">支付方式：</span>
-          <el-radio v-model="radios" label="1">电子钱包（基本户）</el-radio>
-          <div class="available">可用金额<span class="countOff">￥10000.00</span></div>
-          <el-button type="primary" class="immediately">立即支付</el-button>
-          <el-button class="cancel" @click="operationTopUp = false">取消</el-button>
-        </div>
-      </el-dialog>  
-    </div>
-    <div class="changePopupLayout">
-      <el-dialog title="未绑定提现卡" :visible.sync="replace">
-        <el-form ref="form" :model="form" label-width="120px">
-          <el-form-item label="*开户名称：">
-            <el-input placeholder="xxxxxxxxxx公司" v-model="form.mosquitoNet" :disabled="true"></el-input>
-            <span class="sameName">（提现卡必须为开通资金账户的同名账户）</span>
-          </el-form-item>
-          <el-form-item label="*银行：">
-            <el-select v-model="formInline.bank" placeholder="请选择">
-              <el-option label="请选择" value="pleaseChoose"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="*卡号：">
-            <el-input v-model="form.cardNumber"></el-input>
-          </el-form-item>
-          <el-form-item label="*开户地区：">
-            <el-cascader
-              :options="operatio"
-              :props="{ multiple: true,checkStrictly: true }"
-              clearable>
-            </el-cascader>
-          </el-form-item>
-          <el-form-item label="*开户网点：">
-            <el-select v-model="formInline.accountOpening" placeholder="请选择网点">
-              <el-option label="请选择网点" value="PleaseSelectBranch"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="*银行预留手机：">
-            <el-input v-model="form.reservePhone"></el-input>
-          </el-form-item>
-        </el-form>
-        <div class="description">注：每天最多只能提交3次</div>
-        <div class="submit">
-          <el-button type="primary" class="nextStep" @click="nextStep = true" >下一步</el-button>
-          <el-button class="reset"  @click="replace = false" >取消</el-button>
-        </div>
-      </el-dialog>  
-    </div>
-    <!--<div class="untiedCashCard">
-      <el-dialog  title="未绑定银行卡" :visible.sync="withdraw">
-        <div class="bindWithdrawal">
-          <i class="el-icon-info"></i>
-          <div class="unboundCard">您尚未绑定提现卡，请先绑定后再提现！</div>
-        </div>
-        <div class="untiedsubmit">
-          <el-button type="primary" class="tiedCardNow"  @click="replace = true">立即绑卡</el-button>
-          <el-button class="untiedCashCardreset" @click="withdraw = false">取消</el-button>
-        </div>
-      </el-dialog>
-    </div>-->
-    <div class="cardTied">
-      <el-dialog  title="账户提现" :visible.sync="withdraw">
-        <div class="debitCard">
-          <span class="debitCard1">到账银行卡：</span>
-          <span class="debitCard2">XXXXX银行（1008）</span>
-          <span class="replace" @click="replace = true">更换</span>
-        </div>
-        <div class="arrivalTime">
-          <span class="arrivalTime1">到账时间：</span>
-          <span class="nextWorkingDay">下一工作日14:00-15:00</span>
-        </div>
-        <div class="withdrawalAmount">
-          <span class="withdrawalAmount1">提现金额：</span>
-          <span class="yuan"><el-input  class="quota" v-model="withdrawalAmount"></el-input> 元</span>
-        </div>
-        <div class="amountAvailable">账户可用金额 <span class="quotaColor">￥10000.00</span></div>
-        <div class="serviceFee">额外扣除<span class="quotaColor"> ￥10.00 </span>服务费（5万以内每笔10元，5万以上每笔20元）</div>
-        <div class="withdrawSubmission">
-          <el-button type="primary" class="confirmWithdrawal" @click="withdraw = false">确定提现</el-button>
-        </div>
-      </el-dialog>  
-    </div>
-    <!--<el-dialog title="提现卡验证" :visible.sync="nextStep">
-      <div class="accountTypeIsInUnits">
-        <div class="Precautions">
-          <span class="Precautions1">系统已经自动转入一定的金额到您的提现卡，用于验证！</span>
-          <span class="Precautions2">到账时间可能有延迟，可以稍候录入，3天内录入有效！</span>
-        </div>
-        <div class="entryAmount">
-          <span class="amountReceived">请录入收到的金额：</span>
-          <el-input  class="quota" v-model="amountReceived"></el-input> 
-        </div>
-        <div class="reTieTheCard">3次错误需要重新绑卡</div>
-        <div class="submit">
-          <el-button type="primary" class="submit1" @click="nextStep = false">提交</el-button>
-          <el-button  class="unbindCard" @click="nextStep = false">取消绑卡</el-button>
-          <el-button class="processLater" @click="nextStep = false">稍后处理</el-button>
-        </div>
-      </div>
-    </el-dialog>-->
     <el-dialog  title="手机验证码" :visible.sync="nextStep">
       <div class="phoneVerification">
         <div class="Verification">
@@ -397,23 +284,31 @@
     </el-dialog>
     <openWallet :openEwallet="turnOff" @open="open" @openEwallet="cancel" @identify="determine"></openWallet>
     <rechargeClose @rechargeCl="pass" :basic="basic"></rechargeClose>
+    <withdrawPopup :withdraw="withdraw" @recharge="shutDown" @withdraw="confirmWithdrawal"></withdrawPopup>
+    <operationRecharge :operationTopUp="operationTopUp" @recharge="rechargeClosed" @rechargeCancellation="recharge" @payImmediately="immediately"></operationRecharge>
+    <withdrawBankPopup :replace="replace" @Card="withdrawalCard" @doAwayWith="abolish" @pace="nextStep"></withdrawBankPopup>
   </div>
 </template>
 <script>
 import openWallet from '@/components/openWallet.vue'
 import rechargeClose from '@/components/rechargeClose.vue'
+import withdrawPopup from '@/components/withdrawPopup.vue'
+import operationRecharge from '@/components/operationRecharge.vue'
+import withdrawBankPopup from '@/components/withdrawBankPopup.vue'
 export default {
   data() {
     return {
       turnOff: false,
       basic: false,
+      withdraw: false,
       form: {
         time: '',
         mosquitoNet: '',
         cardNumber: '',
-        reservePhone: ''
+        reservePhone: '',
+        accountOpening: '',
+        bank: ''
       },
-      operatio: '',
       formInline: {
         all1: '',
         withdraw: '',
@@ -465,12 +360,7 @@ export default {
         Note: ''
       }],
       verificationCode: '',
-      withdrawalAmount: '',
       nextStep: false,
-      withdraw: false,
-      radio: '1',
-      radios: '1',
-      input: '',
       dialogTableVisible: false,
       RechargePopup: false,
       accountFlow: false,
@@ -497,11 +387,35 @@ export default {
     },
     pass() {
       this.basic = false
+    },
+    shutDown() {
+      this.withdraw = false
+    },
+    confirmWithdrawal() {
+      this.withdraw = false
+    },
+    rechargeClosed() {
+      this.operationTopUp = false
+    },
+    recharge() {
+      this.operationTopUp = false
+    },
+    immediately() {
+      this.operationTopUp = false
+    },
+    withdrawalCard() {
+      this.replace = false
+    },
+    abolish() {
+      this.replace = false
     }
   },
   components: {
     openWallet,
-    rechargeClose
+    rechargeClose,
+    withdrawPopup,
+    operationRecharge,
+    withdrawBankPopup
   }
 }
 </script>
@@ -842,53 +756,6 @@ background-color: #f9fafc;
     font-size: 12px;
   }
 }
-.economy{
-  margin-left: 30px;
-  .rechargePopup{
-    width: 428px;
-    height: 300px;
-  }
-  .transfer{
-    float: left;
-    width: 214px;
-    height: 56px;
-  }
-  .pay{
-    float: left;
-    margin: 0px;
-    border-left: none;
-    width: 214px;
-    height: 56px;
-  }
-  .rechargePopup{
-    border: 1px solid #e5e5e5;
-  }
-  .DepositInto{
-    float: left;
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-  .accountName{
-    float: left;
-    margin-left: 103px;
-    margin-top: 38px;
-  }
-  .accountNumber{
-    float: left;
-    margin-top: 10px;
-    margin-left: 47px;
-  }
-  .branchNumber{
-    float: left;
-    margin-top: 10px;
-    margin-left: 60px;
-  }
-  .branchName{
-    float: left;
-    margin-top: 10px;
-    margin-left: 45px;
-  }
-}
 .onlineTransaction{
   width: 428px;
   height: 300px;
@@ -920,165 +787,6 @@ background-color: #f9fafc;
         margin-top: 20px;
       }
     }
-  }
-}
-.operationTopUp{
-  float: left;
-  margin-top: 30px;
-  margin-left: 10px;
-  .amount1{
-    width: 100px;
-  }
-  .money{
-    margin-left: 72px;
-    margin-top: 10px;
-  }
-  .paymentMethod{
-    margin-top: 10px;
-    .serviceFee{
-      margin-top: 5px;
-      text-align: center;
-      .countOff{
-        color: #00cc00;
-      }
-    }
-    .immediately{
-      width: 100px;
-      border-radius: 3px;
-      margin-left: 88px;
-      margin-top: 20px;
-    }
-    .cancel{
-      width: 100px;
-      border-radius: 3px;
-    }
-  }
-}
-.changePopupLayout{
-  .description{
-    color: #ff0000;
-  }
-  .sameName{
-    color: #999999;
-  }
-  .submit{
-    margin-top: 10px;
-    margin-left: 70px;
-    .nextStep{
-      width: 100px;
-      border-radius: 3px;
-    }
-    .reset{
-      width: 100px;
-      border-radius: 3px;
-    }
-  }
-}
-.untiedCashCard{
-  .bindWithdrawal{
-    .el-icon-info{
-      color: #333333;
-      font-size: 36px;
-      float: left;
-      margin-right: 20px;
-    }
-    .unboundCard{
-      font-size: 16px;
-      line-height: 2.5em;
-    }
-  }
-  .untiedsubmit{
-    margin-top: 20px;
-    .tiedCardNow{
-      width: 100px;
-      border-radius: 3px;
-    }
-    .untiedCashCardreset{
-      width: 100px;
-      border-radius: 3px;
-    }
-  }
-}
-.cardTied{
-  font-size: 15px;
-  .replace{
-    color: #169BD5;
-  }
-  .debitCard2{
-    margin-left: 20px;
-  }
-  .replace{
-    margin-left: 10px;
-  }
-  .arrivalTime{
-    margin-top: 10px;
-  }
-  .nextWorkingDay{
-    margin-left: 30px;
-  }
-  .quota{
-    width: 150px;
-  }
-  .quotaColor{
-    color: #00cc00;
-  }
-  .withdrawalAmount{
-    margin-top: 10px;
-    .yuan{
-      margin-left: 30px;
-    }
-  }
-  .withdrawSubmission{
-    margin-top: 20px;
-    margin-left: 100px;
-    .confirmWithdrawal{
-      width: 100px;
-      border-radius: 3px;
-    }
-  }
-  .amountAvailable{
-    margin-top: 10px;
-    margin-left: 103px;
-    font-size: 12px;
-  }
-  .serviceFee{
-    margin-left: 102px;
-    font-size: 12px;
-  }
-}
-.accountTypeIsInUnits{
-  .entryAmount{
-    .quota{
-      width: 180px;
-    }
-  }
-  .reTieTheCard{
-    color: #ff0000;
-    margin-left: 138px;
-    font-size: 12px;
-  }
-  .submit{
-    margin-top: 20px;
-    margin-left: 10px;
-    .submit1{
-      width: 100px;
-      border-radius: 3px;
-    }
-    .unbindCard{
-      width: 100px;
-      border-radius: 3px;
-    }
-    .processLater{
-      width: 100px;
-      border-radius: 3px;
-    }
-  }
-  .Precautions{
-    margin-left: 10px;
-  }
-  .entryAmount{
-    margin-left: 10px;
-    margin-top: 10px;
   }
 }
 .phoneVerification{
