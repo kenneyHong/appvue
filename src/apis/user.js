@@ -76,3 +76,27 @@ export const CLEARING_API_OPENACCOUNTWALLET = parameters => {
   })
 }
 
+/* 绑定银行卡 */
+export const CLEARING_API_BINDBANKCARD = parameters => {
+  return fetch({
+    url: '/clearing/bindBankCard',
+    method: 'post',
+    params: parameters
+  })
+}
+/* 获取银行卡信息 */
+export const CLEARING_API_GETBANKCARD = parameters => {
+  return fetch({
+    url: '/clearing/getBankCard',
+    method: 'post',
+    params: parameters
+  })
+}
+/* 更改绑定银行卡 */
+export const CLEARING_API_UPDATEBANKCARD = parameters => {
+  return fetch({
+    url: '/clearing/updateBankCard',
+    method: 'post',
+    params: parameters
+  })
+}
