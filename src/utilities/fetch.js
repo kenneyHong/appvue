@@ -18,7 +18,8 @@ service.interceptors.request.use(
       config.data = JSON.stringify(config.data)
     }
     config.headers.common = {
-      'access-token': cookies.get('access-token')
+      'access-token': cookies.get('access-token'),
+      'name:': cookies.get('name')
     }
     return config
   },

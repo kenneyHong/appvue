@@ -88,12 +88,13 @@ export default {
           encryptor.setPublicKey(pulickKey) // 设置公钥
           USERS_API_LOGIN({ name: username, password: encryptor.encrypt(password) }).then(res => {
             if (res.data.Code == 'CORRECT') {
-              cookies.set('access-token', res.data.Data.token)
+              cookies.set('access-token', res.Data.token)
+              cookies.set('name', res.Data.name)
               this.$message({
                 type: 'success',
                 message: '登录成功'
               })
-              this.$store.commit('userName', res.data.Data.Name)
+              this.$store.commit('userName', res.Data.Name)
               this.$router.push('/walletAccount/index')
             }
           })
@@ -110,12 +111,13 @@ export default {
             password: encryptor.encrypt(this.userInfo.password)
           }).then(res => {
             if (res.data.Code == 'CORRECT') {
-              cookies.set('access-token', res.data.Data.token)
+              cookies.set('access-token', res.Data.token)
+              cookies.set('name', res.Data.name)
               this.$message({
                 type: 'success',
                 message: '注册成功'
               })
-              this.$store.commit('userName', res.data.Data.Name)
+              this.$store.commit('userName', res.Data.Name)
               this.$router.push('/home')
             }
           })
