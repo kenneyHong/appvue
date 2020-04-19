@@ -87,13 +87,13 @@ export default {
           const encryptor = new JSEncrypt() // 新建JSEncrypt对象
           encryptor.setPublicKey(pulickKey) // 设置公钥
           USERS_API_LOGIN({ name: username, password: encryptor.encrypt(password) }).then(res => {
-            if (res.data.Code == 'CORRECT') {
-              cookies.set('access-token', res.data.Data.token)
+            if (res.Code == 'CORRECT') {
+              cookies.set('access-token', res.Data.token)
               this.$message({
                 type: 'success',
                 message: '登录成功'
               })
-              this.$store.commit('userName', res.data.Data.Name)
+              this.$store.commit('userName', res.Data.Name)
               this.$router.push('/walletAccount/index')
             }
           })
@@ -109,13 +109,13 @@ export default {
             name: this.userInfo.username,
             password: encryptor.encrypt(this.userInfo.password)
           }).then(res => {
-            if (res.data.Code == 'CORRECT') {
-              cookies.set('access-token', res.data.Data.token)
+            if (res.Code == 'CORRECT') {
+              cookies.set('access-token', res.Data.token)
               this.$message({
                 type: 'success',
                 message: '注册成功'
               })
-              this.$store.commit('userName', res.data.Data.Name)
+              this.$store.commit('userName', res.Data.Name)
               this.$router.push('/home')
             }
           })

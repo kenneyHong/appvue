@@ -3,31 +3,44 @@
     <el-dialog title="未绑定提现卡" :visible="replace" :before-close="withdrawalCard">
       <el-form ref="form" :model="form" label-width="120px">
         <el-form-item label="*开户名称：">
-          <el-input placeholder="xxxxxxxxxx公司" v-model="form.mosquitoNet" :disabled="true"></el-input>
+          <el-input v-model="form.AccountName"></el-input>
           <span class="sameName">（提现卡必须为开通资金账户的同名账户）</span>
         </el-form-item>
         <el-form-item label="*银行：">
-          <el-select v-model="form.bank" placeholder="请选择">
-            <el-option label="请选择" value="pleaseChoose"></el-option>
+          <el-select v-model="BankId" placeholder="请选择">
+            <el-option
+              v-for="item in optiond"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="*卡号：">
-          <el-input v-model="form.cardNumber"></el-input>
+          <el-input v-model="form.AccountCode"></el-input>
         </el-form-item>
         <el-form-item label="*开户地区：">
           <el-cascader
-            :options="operatio"
-            :props="{ multiple: true,checkStrictly: true }"
-            clearable>
+            v-model="ProvId"
+            :options="options"
+            @change="handleChange">
           </el-cascader>
         </el-form-item>
         <el-form-item label="*开户网点：">
-          <el-select v-model="form.accountOpening" placeholder="请选择网点">
+          <!-- <el-select v-model="form.accountOpening" placeholder="请选择网点">
             <el-option label="请选择网点" value="PleaseSelectBranch"></el-option>
+          </el-select> -->
+          <el-select v-model="Fqhho" placeholder="请选择网点">
+            <el-option
+              v-for="item in option"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="*银行预留手机：">
-          <el-input v-model="form.reservePhone"></el-input>
+          <el-input v-model="form.Mobile"></el-input>
         </el-form-item>
       </el-form>
       <div class="description">注：每天最多只能提交3次</div>
@@ -61,48 +74,34 @@ export default {
   data() {
     return {
       form: {
-        time: '',
-        mosquitoNet: '',
-        cardNumber: '',
-        reservePhone: '',
-        accountOpening: '',
-        bank: ''
+        AccountName: '',
+        BankId: '',
+        AccountCode: '',
+        ProvId: '',
+        Fqhho: '',
+        Mobile: ''
       },
-      options: [{
-        value: 'shen',
-        label: '省',
-        children: [{
-          value: 'guangdongshen',
-          label: '广东省'
-        }]
-      }, {
-        value: 'shi',
-        label: '市',
-        children: [{
-          value: 'shentoushi',
-          label: '汕头市'
-        }]
-      }, {
-        value: 'quexian',
-        label: '区/县',
-        children: [{
-          value: 'chaoyang',
-          label: '潮阳区'
-        }]
+      optiond: [{
+        value: '选项1',
+        label: '农业银行'
       }],
-      operatio: [{
-        value: 'shen',
-        label: '省',
-        children: [{
-          value: 'guangdongshen',
-          label: '广东省'
-        }]
-      }, {
-        value: 'shi',
-        label: '市',
+      option: [{
+        value: '选项1',
+        label: '潮阳支行'
+      }],
+      Fqhho: '',
+      ProvId: '',
+      BankId: '',
+      options: [{
+        value: 'guangdongshen',
+        label: '广东省',
         children: [{
           value: 'shentoushi',
-          label: '汕头市'
+          label: '汕头市',
+          children: [{
+            value: 'chaoyang',
+            label: '潮阳区'
+          }]
         }]
       }]
     }
@@ -115,7 +114,9 @@ export default {
       this.$emit('doAwayWith', false)
     },
     nextStep() {
-      this.$emit('pace', false)
+      this.$emit('pace', false, this.form)
+    },
+    handleChange(value) {
     }
   }
 }

@@ -14,19 +14,6 @@ export const GOODS_API_CREATEFALSEDATA = parameters => {
     params: parameters
   })
 }
-/*
-  BillNumber 单据编号
-  Supplier  供应商
-  SourceType  来源
-  CreateTime  创建时间
-  PurchaseUser  采购员
-  PurchaseNumber  采购数量(Number)
-  PurchaseCost  采购成本(Number)
-  CheckTime  最后操作时间
-  State  状态(Number)
-  PageSize  *分页条数(Number)
-  PageIndex  *分页索引(Number)
-*/
 export const GOODS_API_GETGOODSDATA = parameters => {
   return fetch({
     url: '/clearing/getGoodsData',
@@ -54,6 +41,14 @@ export const USERS_API_LOGIN = parameters => {
 export const CLEARING_API_CREATEACCOUNTLIST = parameters => {
   return fetch({
     url: '/clearing/createAccountList',
+    method: 'get',
+    params: parameters
+  })
+}
+/* 获取用户状态 */
+export const USERS_API_GETSTATE = parameters => {
+  return fetch({
+    url: '/user/getState',
     method: 'get',
     params: parameters
   })
@@ -97,6 +92,14 @@ export const CLEARING_API_UPDATEBANKCARD = parameters => {
   return fetch({
     url: '/clearing/updateBankCard',
     method: 'post',
+    params: parameters
+  })
+}
+/* 电子钱包开户申请 */
+export const CLEARING_API_GETOPENLIST = parameters => {
+  return fetch({
+    url: '/clearing/getOpenList',
+    method: 'get',
     params: parameters
   })
 }

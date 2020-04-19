@@ -24,17 +24,17 @@
         <el-row :gutter="20">
           <el-col :span="20">
             <el-form-item label="资金账号：">
-              <el-input v-model="form.fundAccount"></el-input>
+              <el-input v-model="form.CapitalCode"></el-input>
             </el-form-item>
             <el-form-item label="户名：">
-              <el-input v-model="form.accountName"></el-input>
+              <el-input v-model="form.AccountName"></el-input>
             </el-form-item>
             <el-form-item label="银行电子账号：">
-              <el-input v-model="form.electronicAccount"></el-input>
+              <el-input v-model="form.BankEcode"></el-input>
             </el-form-item>
             <el-form-item label="开户时间：" label-width="120px">
               <el-date-picker
-                v-model="form.accountOpeningtime"
+                v-model="form.LastOpenTime	"
                 type="daterange"
                 range-separator="-"
                 start-placeholder="2016/01/01"
@@ -42,7 +42,7 @@
               </el-date-picker>
             </el-form-item>
             <el-form-item label="商户类型：">
-              <el-select v-model="form.region" placeholder="全部">
+              <el-select v-model="form.CharacterType" placeholder="全部">
                 <el-option label="全部" value="all"></el-option>
                 <el-option label="珠宝门店" value="jewelryStore"></el-option>
                 <el-option label="珠宝公司" value="jewelryCompany"></el-option>
@@ -52,31 +52,33 @@
               </el-select>
             </el-form-item>
             <el-form-item label="公司编码：">
-              <el-input v-model="form.companyCode"></el-input>
+              <el-input v-model="form.CompanyCode"></el-input>
             </el-form-item>
             <el-form-item label="公司名称：">
-              <el-input v-model="form.companyName"></el-input>
+              <el-input v-model="form.CompanyName"></el-input>
             </el-form-item>
             <el-form-item label="门店编码：">
-              <el-input v-model="form.storeCode"></el-input>
+              <el-input v-model="form.StoreCode"></el-input>
             </el-form-item>
             <el-form-item label="门店名称：">
-              <el-input v-model="form.storeName"></el-input>
+              <el-input v-model="form.StoreName"></el-input>
             </el-form-item>
-            <el-form-item label="账户:">
-              <el-col :span="5">
-                <el-input v-model="sizeForm.name"></el-input>
-              </el-col>
-              <el-col class="line" :span="2">~</el-col>
-              <el-col :span="5">
-               <el-input v-model="sizeForm.name"></el-input>
-              </el-col>
-            </el-form-item>
+            <!-- <el-form-item label="账户:">
+              <el-row :gutter="20">
+                <el-col :span="10">
+                  <el-input v-model="form.name"></el-input>
+                </el-col>
+                <el-col class="line" :span="3">~</el-col>
+                <el-col :span="10">
+                <el-input v-model="form.name"></el-input>
+                </el-col>
+              </el-row>
+            </el-form-item> -->
           </el-col>
           <el-col :span="4">
             <el-form-item>
               <el-button type="primary" @click="getData">搜索</el-button>
-              <el-button>重置</el-button>
+              <el-button @click="reset">重置</el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -85,107 +87,110 @@
     <el-table
     :data="tableData">
       <el-table-column
-        prop="fundAccount"
+        prop="CapitalCode"
         sortable
         label="资金账号"
         min-width="150">
       </el-table-column>
       <el-table-column
-        prop="accountName"
+        prop="AccountName"
         label="户名"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="electronicAccount"
+        prop="BankEcode"
         label="银行电子账号"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="accountOpeningtime"
+        prop="LastOpenTime"
         sortable
         label="开户时间"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="region"
+        prop="CharacterType"
         label="商户类型"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="companyCode"
+        prop="CompanyCode"
         label="公司编码"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="companyName"
+        prop="CompanyName"
         label="公司名称"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="storeCode"
+        prop="StoreCode"
         label="门店编码"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="StoreName"
         label="门店名称"
         width="120">
       </el-table-column>
       <el-table-column label="账户余额"  >
         <el-table-column
-          prop="totalAmount"
+          prop="SubSumed"
           label="总金额"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="basicAccount"
+          prop="BaseSumed"
           label="基本账户"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="operatingAccount"
+          prop="OpSumed"
           label="运营账户"
           width="100">
         </el-table-column>
       </el-table-column>
       <el-table-column label="可用金额">
         <el-table-column
-          prop="totalAmount1"
+          prop="SubValid"
           label="总金额"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="basicAccount1"
+          prop="BaseValid"
           label="基本账户"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="operatingAccount1"
+          prop="OpValid"
           label="运营账户"
           width="100">
         </el-table-column>
       </el-table-column>
       <el-table-column label="锁定金额">
         <el-table-column
-          prop="totalAmount2"
+          prop="SubLock"
           label="总金额"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="basicAccount2"
+          prop="BaseLock"
           label="基本账户"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="operatingAccount2"
+          prop="OpLock"
           label="运营账户"
           width="100">
         </el-table-column>
       </el-table-column>
       <el-table-column
-        prop="accountstatus"
+        prop="State"
         label="账户状态"
         width="100">
+        <template slot-scope="scope">
+          {{EwalletMasterStates.Types[scope.row.State]}}
+        </template>
       </el-table-column>
       <el-table-column
         prop="operating"
@@ -337,9 +342,11 @@
 <script>
 import accountFlow from '@/components/accountFlow.vue'
 import { CLEARING_API_GETACCOUNTLIST } from '@/apis/user.js'
+import { EwalletMasterState } from '@/enums/index.js'
 export default {
   data () {
     return {
+      EwalletMasterStates: EwalletMasterState,
       text: false,
       options: [{
         value: '选项1',
@@ -368,141 +375,24 @@ export default {
       accountFlow: false,
       tabPosition: 'left',
       form: {
-        fundAccount: '',
-        accountName: '',
-        electronicAccount: '',
-        accountOpeningtime: '',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        storeName: '',
-        region: ''
+        CapitalCode: '',
+        AccountName: '',
+        BankEcode: '',
+        LastOpenTime: '',
+        CharacterType: '',
+        CompanyCode: '',
+        CompanyName: '',
+        StoreCode: '',
+        StoreName: '',
+        PageSize: 10,
+        PageIndex: 1,
+        OrderBy: 1,
+        IsAsced: 3
       },
       sizeForm: {
         name: ''
       },
-      tableData: [{
-        fundAccount: '2016-05-01',
-        accountName: '王小虎',
-        electronicAccount: '上海市普陀区金沙江路 1518 弄',
-        accountOpeningtime: '2',
-        region: '4',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        totalAmount: '',
-        basicAccount: '',
-        operatingAccount: '',
-        totalAmount1: '',
-        basicAccount1: '',
-        operatingAccount1: '',
-        totalAmount2: '',
-        basicAccount2: '',
-        operatingAccount2: '',
-        accountstatus: '',
-        operating: ''
-      }, {
-        fundAccount: '2016-05-02',
-        accountName: '王小虎',
-        electronicAccount: '上海市普陀区金沙江路 1517 弄',
-        accountOpeningtime: '2',
-        region: '4',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        totalAmount: '',
-        basicAccount: '',
-        operatingAccount: '',
-        totalAmount1: '',
-        basicAccount1: '',
-        operatingAccount1: '',
-        totalAmount2: '',
-        basicAccount2: '',
-        operatingAccount2: '',
-        accountstatus: '',
-        operating: ''
-      }, {
-        fundAccount: '2016-05-03',
-        accountName: '王小虎',
-        electronicAccount: '上海市普陀区金沙江路 1519 弄',
-        accountOpeningtime: '2',
-        region: '4',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        totalAmount: '',
-        basicAccount: '',
-        operatingAccount: '',
-        totalAmount1: '',
-        basicAccount1: '',
-        operatingAccount1: '',
-        totalAmount2: '',
-        basicAccount2: '',
-        operatingAccount2: '',
-        accountstatus: '',
-        operating: ''
-      }, {
-        fundAccount: '2016-05-04',
-        accountName: '王小虎',
-        electronicAccount: '上海市普陀区金沙江路 1516 弄',
-        accountOpeningtime: '2',
-        region: '4',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        totalAmount: '',
-        basicAccount: '',
-        operatingAccount: '',
-        totalAmount1: '',
-        basicAccount1: '',
-        operatingAccount1: '',
-        totalAmount2: '',
-        basicAccount2: '',
-        operatingAccount2: '',
-        accountstatus: '',
-        operating: ''
-      }],
-      checkingData: {
-        fundAccount: '',
-        accountType: '',
-        accountName: '',
-        electronicAccount: '',
-        accountOpeningtime: '',
-        socialCredit: '',
-        representativeName: '',
-        representativeID: '',
-        mobilePhoneNumber: '',
-        Area: '',
-        address: ''
-      },
-      formation: {
-        fundAccount: '',
-        accountType: '',
-        accountName: '',
-        electronicAccount: '',
-        accountOpeningtime: '',
-        identificationNumber: '',
-        mobilePhoneNumber: ''
-      },
-      openLogtableData: [{
-        operatingTime: '',
-        operationType: '',
-        entrance: '',
-        operator: '',
-        Note: ''
-      }, {
-        operatingTime: '',
-        operationType: '',
-        entrance: '',
-        operator: '',
-        Note: ''
-      }, {
-        operatingTime: '',
-        operationType: '',
-        entrance: '',
-        operator: '',
-        Note: ''
-      }]
+      tableData: []
     }
   },
   methods: {
@@ -527,10 +417,31 @@ export default {
       this.text = false
     },
     getData() {
-      CLEARING_API_GETACCOUNTLIST().then(res => {
-        console.log(res)
+      CLEARING_API_GETACCOUNTLIST(this.form).then(res => {
+        this.tableData = res.Data.Subset
       })
+    },
+    reset() {
+      this.form = {
+        CapitalCode: '',
+        AccountName: '',
+        BankEcode: '',
+        LastOpenTime: '',
+        CharacterType: '',
+        CompanyCode: '',
+        CompanyName: '',
+        StoreCode: '',
+        StoreName: '',
+        PageSize: 10,
+        PageIndex: 1,
+        OrderBy: 1,
+        IsAsced: 3
+      }
+      this.getData()
     }
+  },
+  mounted() {
+    this.getData()
   },
   components: {
     accountFlow
@@ -586,7 +497,8 @@ background-color: #f9fafc;
   border: 1px solid #e5e5e5;
   overflow: hidden;
   .line{
-    margin-left: 10px;
+    // margin-left: 10px;
+    text-align: center;
   }
   .demo-form-inline{
     float: left;
