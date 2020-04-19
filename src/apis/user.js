@@ -103,3 +103,12 @@ export const CLEARING_API_GETOPENLIST = parameters => {
     params: parameters
   })
 }
+
+/* 电子钱包开户申请审核 */
+export const CLEARING_API_OPENACCOUNTAUDIT = parameters => {
+  return fetch({
+    url: '/clearing/openAccountAudit',
+    method: 'get',
+    params: parameters
+  })
+}
