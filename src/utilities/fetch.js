@@ -12,13 +12,13 @@ const service = axios.create({
 // request???
 service.interceptors.request.use(
   config => {
-    config.url = 'http://192.168.31.121:3000' + config.url
+    config.url = 'http://192.168.31.45:3000' + config.url
     if (config.method === 'post') {
       config.data = JSON.stringify(config.data)
     }
     config.headers.common = {
       'access-token': cookies.get('access-token'),
-      'name:': cookies.get('name')
+      'name': localStorage.getItem('username') || ''
     }
     return config
   },
@@ -40,7 +40,6 @@ service.interceptors.response.use(
     if (code == 'ERROR') {
       Message.error(response.data.Message)
     }
-    Message.success(response.data.Message)
     return response.data
   },
   error => {
