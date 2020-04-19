@@ -1,6 +1,6 @@
 <template>
  <div class="content">
-    <div class="nonactivated bg-purple-dark">
+    <div class="nonactivated bg-purple-dark" v-if="status.WalletState == 1">
       <el-row :gutter="20">
         <el-col :span="21">
           <i class="el-icon-info"></i>
@@ -14,7 +14,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="nonactivated bg-purple-dark">
+    <div class="nonactivated bg-purple-dark" v-if="status.WalletState == 3">
       <el-row :gutter="20">
         <el-col :span="21">
           <i class  ="el-icon-info"></i>
@@ -25,11 +25,11 @@
           </span>
         </el-col>
         <el-col :span="3">
-          <div style="text-align: right;"><el-button type="primary" class="openEWallet">刷新</el-button></div>
+          <div style="text-align: right;"><el-button type="primary" class="openEWallet" @click="getStatus">刷新</el-button></div>
         </el-col>
       </el-row>
     </div>
-    <div class="nonactivated bg-purple-dark">
+    <div class="nonactivated bg-purple-dark" v-if="status.WalletState == 9">
       <el-row :gutter="20">
         <el-col :span="21">
           <i class="el-icon-info"></i>
@@ -43,7 +43,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="nonactivated bg-purple-dark">
+    <!-- <div class="nonactivated bg-purple-dark">
       <el-row :gutter="20">
         <el-col :span="21">
           <i class  ="el-icon-info"></i>
@@ -57,8 +57,8 @@
           <div style="text-align: right;"><el-button type="primary" class="openEWallet" @click="logInSystem">重新登录系统</el-button></div>
         </el-col>
       </el-row>
-    </div>
-    <div class="nonactivated bg-purple-dark">
+    </div> -->
+    <div class="nonactivated bg-purple-dark" v-if="status.WalletState == 5">
       <el-row :gutter="20">
         <el-col :span="21">
           <i class="el-icon-info"></i>
@@ -72,7 +72,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="leftAndRightLayout">
+    <div class="leftAndRightLayout" v-if="status.WalletState == 5">
       <el-row :gutter="20">
         <el-col :span="12">
           <div class="leftLayout">
@@ -111,7 +111,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="bankCardLayout">
+    <div class="bankCardLayout" v-if="status.WalletState == 5">
       <el-row :gutter="20">
         <el-col :span="12">
           <div class="bankAccounts">
@@ -135,7 +135,7 @@
           </div>
         </el-col>
         <el-col :span="12">
-          <!-- <div class="withdrawalBankAccount">
+         <div class="withdrawalBankAccount" v-if="status.EwalletCashbindState == 3">
             <div class="withdrawal">
               <span class="withdrawalBank">提现银行钱包账户</span>
               <span class="replace" @click="replace = true">更换</span>
@@ -156,8 +156,8 @@
               <span class="accountOpening1">开户网点：</span>
               <span class="accountOpening2">华夏银行北京和平门支行</span>
             </div>
-          </div> -->
-          <div class="addBankAccount">
+          </div>
+          <div class="addBankAccount" v-if="status.EwalletCashbindState == 1">
             <div class="addWithdrawalBank">提现银行账户</div>
             <div class="addTo"  @click="replace = true"><i class="el-icon-plus"></i>添加提现银行卡</div>
           </div>
@@ -286,7 +286,7 @@
     <rechargeClose @rechargeCl="pass" :basic="basic"></rechargeClose>
     <withdrawPopup :withdraw="withdraw" @recharge="shutDown" @withdraw="confirmWithdrawal"></withdrawPopup>
     <operationRecharge :operationTopUp="operationTopUp" @recharge="rechargeClosed" @rechargeCancellation="recharge" @payImmediately="immediately"></operationRecharge>
-    <withdrawBankPopup :replace="replace" @Card="withdrawalCard" @doAwayWith="abolish" @pace="nextStep"></withdrawBankPopup>
+    <withdrawBankPopup :replace="replace" @Card="withdrawalCard" @doAwayWith="abolish" @pace="nextSteps"></withdrawBankPopup>
   </div>
 </template>
 <script>
@@ -295,9 +295,13 @@ import rechargeClose from '@/components/rechargeClose.vue'
 import withdrawPopup from '@/components/withdrawPopup.vue'
 import operationRecharge from '@/components/operationRecharge.vue'
 import withdrawBankPopup from '@/components/withdrawBankPopup.vue'
+import { EwalletMasterState, EwalletCashbindState } from '@/enums/index.js'
+import { USERS_API_GETSTATE, CLEARING_API_OPENACCOUNTWALLET, CLEARING_API_BINDBANKCARD } from '@/apis/user.js'
 export default {
   data() {
     return {
+      EwalletMasterStates: EwalletMasterState,
+      EwalletCashbindState: EwalletCashbindState,
       turnOff: false,
       basic: false,
       withdraw: false,
@@ -366,7 +370,8 @@ export default {
       accountFlow: false,
       operationTopUp: false,
       replace: false,
-      amountReceived: ''
+      amountReceived: '',
+      status: {}
     }
   },
   methods: {
@@ -382,7 +387,9 @@ export default {
     cancel() {
       this.turnOff = false
     },
-    determine() {
+    determine(receive, gain) {
+      this.ruleForm = gain
+      this.openWallet()
       this.turnOff = false
     },
     pass() {
@@ -406,9 +413,33 @@ export default {
     withdrawalCard() {
       this.replace = false
     },
+    nextSteps(letter, envelope) {
+      this.replace = false
+      this.CardStatus()
+      this.form = envelope
+      console.log(envelope)
+    },
     abolish() {
       this.replace = false
+    },
+    getStatus() {
+      USERS_API_GETSTATE().then(res => {
+        this.status = res.Data
+      })
+    },
+    openWallet() {
+      CLEARING_API_OPENACCOUNTWALLET(this.ruleForm).then(res => {
+        this.getStatus()
+      })
+    },
+    CardStatus() {
+      CLEARING_API_BINDBANKCARD(this.form).then(res => {
+
+      })
     }
+  },
+  mounted() {
+    this.getStatus()
   },
   components: {
     openWallet,

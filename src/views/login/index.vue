@@ -87,7 +87,7 @@ export default {
           const encryptor = new JSEncrypt() // 新建JSEncrypt对象
           encryptor.setPublicKey(pulickKey) // 设置公钥
           USERS_API_LOGIN({ name: username, password: encryptor.encrypt(password) }).then(res => {
-            if (res.data.Code == 'CORRECT') {
+            if (res.Code == 'CORRECT') {
               cookies.set('access-token', res.Data.token)
               cookies.set('name', res.Data.name)
               this.$message({

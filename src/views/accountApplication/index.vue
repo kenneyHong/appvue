@@ -25,21 +25,21 @@
         <el-row :gutter="20">
           <el-col :span="20">
             <el-form-item label="单据编号：">
-              <el-input v-model="form.documentNumber"></el-input>
+              <el-input v-model="form.PetitionCode"></el-input>
             </el-form-item>
             <el-form-item label="账户类型">
-              <el-select v-model="formInline.accountType" placeholder="全部">
+              <el-select v-model="form.EwalletType" placeholder="全部">
                 <el-option label="全部" value="all"></el-option>
                 <el-option label="公司" value="company"></el-option>
                 <el-option label="个人" value="personal"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="户名：">
-              <el-input v-model="form.accountName"></el-input>
+              <el-input v-model="form.AccountName"></el-input>
             </el-form-item>
             <el-form-item label="创建时间：" label-width="120px">
               <el-date-picker
-                v-model="form.creationTime"
+                v-model="form.CreateTime"
                 type="daterange"
                 range-separator="-"
                 start-placeholder="开始日期"
@@ -47,7 +47,7 @@
               </el-date-picker>
             </el-form-item>
             <el-form-item label="商户类型：">
-              <el-select v-model="formInline.region" placeholder="全部">
+              <el-select v-model="form.CharacterType" placeholder="全部">
                 <el-option label="全部" value="all"></el-option>
                 <el-option label="珠宝门店" value="jewelryStore"></el-option>
                 <el-option label="珠宝公司" value="jewelryCompany"></el-option>
@@ -57,22 +57,22 @@
               </el-select>
             </el-form-item>
             <el-form-item label="公司编码：">
-              <el-input v-model="form.companyCode"></el-input>
+              <el-input v-model="form.CompanyCode"></el-input>
             </el-form-item>
             <el-form-item label="公司名称：">
-              <el-input v-model="form.companyName"></el-input>
+              <el-input v-model="form.CompanyName"></el-input>
             </el-form-item>
             <el-form-item label="门店编码：">
-              <el-input v-model="form.storeCode"></el-input>
+              <el-input v-model="form.StoreCode"></el-input>
             </el-form-item>
             <el-form-item label="门店名称：">
-              <el-input v-model="form.storeName"></el-input>
+              <el-input v-model="form.StoreName"></el-input>
             </el-form-item> 
           </el-col>  
           <el-col :span="4">
             <el-form-item>
-              <el-button type="primary">搜索</el-button>
-              <el-button>重置</el-button>
+              <el-button type="primary" @click="getData">搜索</el-button>
+              <el-button @click="reset">重置</el-button>
             </el-form-item>
           </el-col>
         </el-row> 
@@ -82,63 +82,63 @@
     :data="tableData"
       border>
       <el-table-column
-        prop="documentNumber"
+        prop="PetitionCode"
         label="单号编号"
         min-width="150">
       </el-table-column>
       <el-table-column
-        prop="creationTime"
+        prop="CreateTime"
         sortable
         label="创建时间"
         width='150'>
       </el-table-column>
       <el-table-column
-        prop="founder"
+        prop="name"
         label="创建人"
         width='120'>
       </el-table-column>
       <el-table-column
-        prop="accountType"
+        prop="EwalletType"
         label="账户类型"
         width='120'>
       </el-table-column>
       <el-table-column
-        prop="accountName"
+        prop="AccountName"
         label="户名"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="region"
+        prop="CharacterType"
         label="商户类型"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="companyCode"
+        prop="CompanyCode"
         label="公司编码"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="companyName"
+        prop="CompanyName"
         label="公司名称"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="storeCode"
+        prop="StoreCode"
         label="门店编码"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="StoreName"
         label="门店名称"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="reviewTime"
+        prop="CheckTime"
         label="审核时间"
         width="140">
       </el-table-column>
       <el-table-column
-        prop="review"
+        prop="CheckUser"
         label="审核人"
         width="120">
       </el-table-column>
@@ -250,6 +250,7 @@
   </div>
 </template>
 <script>
+import { CLEARING_API_GETOPENLIST } from '@/apis/user.js'
 export default {
   data() {
     return {
@@ -267,77 +268,27 @@ export default {
         label: '已作废'
       }],
       value: '',
-      reset: false,
       lookOver: false,
       auditRequirements: false,
       searchTitle: '普通搜索',
       radio: '1',
       voidNote: '',
       form: {
-        documentNumber: '',
-        accountName: '',
-        creationTime: '',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        storeName: ''
+        PetitionCode: '',
+        EwalletType: '',
+        AccountName: '',
+        CreateTime: '',
+        CharacterType: '',
+        CompanyCode: '',
+        CompanyName: '',
+        StoreCode: '',
+        StoreName: '',
+        PageSize: 10,
+        PageIndex: 1,
+        OrderBy: 1,
+        IsAsced: 3
       },
-      tableData: [{
-        documentNumber: '170000',
-        creationTime: '',
-        founder: '张三',
-        accountType: '公司',
-        accountName: 'xxxxxx',
-        region: '珠宝公司',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        name: '',
-        reviewTime: '',
-        review: '',
-        status: '',
-        operating: ''
-      }, {
-        documentNumber: '170000',
-        creationTime: '',
-        founder: '张三',
-        accountType: '公司',
-        accountName: 'xxxxxx',
-        region: '珠宝公司',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        name: '',
-        reviewTime: '',
-        review: '',
-        status: '',
-        operating: ''
-      }, {
-        documentNumber: '',
-        creationTime: '',
-        founder: '',
-        accountType: '',
-        accountName: '',
-        region: '',
-        companyCode: '',
-        companyName: '',
-        storeCode: '',
-        name: '',
-        reviewTime: '',
-        review: '',
-        status: '',
-        operating: ''
-      }],
-      formInline: {
-        all: '',
-        company: '',
-        personalL: '',
-        ewelryStore: '',
-        jewelryCompany: '',
-        jewelleryGroup: '',
-        giftSupplier: '',
-        gift: ''
-      },
+      tableData: [],
       input3: ''
     }
   },
@@ -348,7 +299,33 @@ export default {
       } else if (this.searchTitle == '高级搜索') {
         this.searchTitle = '普通搜索'
       }
+    },
+    getData() {
+      CLEARING_API_GETOPENLIST(this.form).then(res => {
+        this.tableData = res.Data.Subset
+      })
+    },
+    reset() {
+      this.form = {
+        PetitionCode: '',
+        EwalletType: '',
+        AccountName: '',
+        CreateTime: '',
+        CharacterType: '',
+        CompanyCode: '',
+        CompanyName: '',
+        StoreCode: '',
+        StoreName: '',
+        PageSize: 10,
+        PageIndex: 1,
+        OrderBy: 1,
+        IsAsced: 3
+      }
+      this.getData()
     }
+  },
+  mounted() {
+    this.getData()
   }
 }
 </script>

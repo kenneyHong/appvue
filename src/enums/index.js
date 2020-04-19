@@ -36,7 +36,7 @@ export const GoodsStatus = {
     { KeyId: 3, 'Value': '审核通过' },
     { KeyId: 4, 'Value': '审核退回' },
     { KeyId: 5, 'Value': '已作废' },
-    { 'KeyId': 6, 'Value': '已取消' }
+    { KeyId: 6, 'Value': '已取消' }
   ]
 }
 

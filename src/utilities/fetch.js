@@ -12,8 +12,7 @@ const service = axios.create({
 // request???
 service.interceptors.request.use(
   config => {
-    console.log(config.url)
-    config.url = 'http://192.168.1.115:3000' + config.url
+    config.url = 'http://192.168.31.121:3000' + config.url
     if (config.method === 'post') {
       config.data = JSON.stringify(config.data)
     }
@@ -32,15 +31,17 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const code = response.data.Code
+    if (code == 'SIGNATURE') {
+      Message.error(response.data.Message)
+      router.replace({
+        path: '/login'
+      })
+    }
     if (code == 'ERROR') {
-      if (code == 'SIGNATURE') {
-        router.replace({
-          path: '/login'
-        })
-      }
       Message.error(response.data.Message)
     }
-    return response
+    Message.success(response.data.Message)
+    return response.data
   },
   error => {
     Message.error('系统繁忙，请稍后再试！')
