@@ -36,7 +36,7 @@ export const GoodsStatus = {
     { KeyId: 3, 'Value': '审核通过' },
     { KeyId: 4, 'Value': '审核退回' },
     { KeyId: 5, 'Value': '已作废' },
-    { KeyId: 6, 'Value': '已取消' }
+    { 'KeyId': 6, 'Value': '已取消' }
   ]
 }
 
@@ -247,5 +247,19 @@ export const CbackIsOK = {
     { 'KeyId': 1, 'Value': '等待交易' },
     { 'KeyId': 3, 'Value': '交易失败' },
     { 'KeyId': 5, 'Value': '交易完成' }
+  ]
+}
+
+// 电子钱包的流水日志的账户类型;
+export const EwalletLogBalanceType = {
+  Base: 1,
+  Op: 3,
+  Types: {
+    '1': '基本账户',
+    '3': '运营账户'
+  },
+  TypeArray: [
+    { KeyId: '1', Value: '基本账户' },
+    { KeyId: '3', Value: '运营账户' }
   ]
 }
